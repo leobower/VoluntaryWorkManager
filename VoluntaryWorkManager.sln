@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Voluntario", "Voluntario", "{4B8B56D0-DBBE-4987-83D4-1959E24A6A25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entidade", "Entidade", "{78DE49F5-70FA-4A7D-BD11-18098B5C7CAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voluntario.Domain", "Voluntario.Domain\Voluntario.Domain.csproj", "{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{9BC1FCAE-3912-4D4D-9485-304D2141C860}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoCManager", "IoCManager", "{D68853D3-1DC8-4296-885E-0E0A25F48E24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocManager.Voluntario", "IocManager.Domain\IocManager.Voluntario.csproj", "{B1CDD72C-81B6-4B3F-8A5D-77001DEEE5E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.Voluntario.Test", "IoCManager.Voluntario.Test\IoCManager.Voluntario.Test.csproj", "{2A23CF84-24DA-494C-9F55-98F5155396E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1CDD72C-81B6-4B3F-8A5D-77001DEEE5E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1CDD72C-81B6-4B3F-8A5D-77001DEEE5E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1CDD72C-81B6-4B3F-8A5D-77001DEEE5E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1CDD72C-81B6-4B3F-8A5D-77001DEEE5E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A23CF84-24DA-494C-9F55-98F5155396E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A23CF84-24DA-494C-9F55-98F5155396E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A23CF84-24DA-494C-9F55-98F5155396E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A23CF84-24DA-494C-9F55-98F5155396E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
+		{D68853D3-1DC8-4296-885E-0E0A25F48E24} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
+		{B1CDD72C-81B6-4B3F-8A5D-77001DEEE5E1} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{2A23CF84-24DA-494C-9F55-98F5155396E1} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98EF0224-F03B-4148-9EC3-D50C12A24B41}
+	EndGlobalSection
+EndGlobal
