@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 using Voluntario.Domain.BusinessRules.Interfaces;
-using Voluntario.Domain.Entities.Interfaces;
 
 namespace IocManager.Voluntario
 {
     public class VoluntarioPersistenceIocManager
     {
+        /// <summary>
+        /// TODO
+        /// Be Flexible
+        /// </summary>
         private readonly string _currentImplementation = "VoluntarioPersistence";
 
         public IVoluntarioPersistence GetCurrentImplementation()

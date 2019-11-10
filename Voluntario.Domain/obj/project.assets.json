@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj",
+      "projectUniqueName": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj",
       "projectName": "Voluntario.Domain",
-      "projectPath": "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj",
+      "projectPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj",
       "packagesPath": "C:\\Users\\leand\\.nuget\\packages\\",
-      "outputPath": "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\obj\\",
+      "outputPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

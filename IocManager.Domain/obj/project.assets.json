@@ -1219,11 +1219,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sources\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj",
+      "projectUniqueName": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj",
       "projectName": "IocManager.Voluntario",
-      "projectPath": "D:\\Sources\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj",
+      "projectPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj",
       "packagesPath": "C:\\Users\\leand\\.nuget\\packages\\",
-      "outputPath": "D:\\Sources\\VoluntaryWorkManager\\IocManager.Domain\\obj\\",
+      "outputPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IocManager.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1242,8 +1242,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj": {
-              "projectPath": "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj"
+            "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj": {
+              "projectPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj"
             }
           }
         }

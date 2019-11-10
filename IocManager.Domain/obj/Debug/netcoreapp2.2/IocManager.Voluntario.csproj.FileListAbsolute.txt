@@ -10,3 +10,15 @@ D:\Sources\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocMan
 D:\Sources\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.csproj.CopyComplete
 D:\Sources\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.dll
 D:\Sources\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.pdb
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\bin\Debug\netcoreapp2.2\IocManager.Voluntario.deps.json
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\bin\Debug\netcoreapp2.2\IocManager.Voluntario.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\bin\Debug\netcoreapp2.2\IocManager.Voluntario.pdb
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\bin\Debug\netcoreapp2.2\Voluntario.Domain.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\bin\Debug\netcoreapp2.2\Voluntario.Domain.pdb
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.csprojAssemblyReference.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.csproj.CoreCompileInputs.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.AssemblyInfoInputs.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.AssemblyInfo.cs
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.csproj.CopyComplete
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\IocManager.Domain\obj\Debug\netcoreapp2.2\IocManager.Voluntario.pdb

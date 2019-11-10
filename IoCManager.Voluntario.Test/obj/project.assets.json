@@ -5788,11 +5788,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sources\\VoluntaryWorkManager\\IoCManager.Voluntario.Test\\IoCManager.Voluntario.Test.csproj",
+      "projectUniqueName": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IoCManager.Voluntario.Test\\IoCManager.Voluntario.Test.csproj",
       "projectName": "IoCManager.Voluntario.Test",
-      "projectPath": "D:\\Sources\\VoluntaryWorkManager\\IoCManager.Voluntario.Test\\IoCManager.Voluntario.Test.csproj",
+      "projectPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IoCManager.Voluntario.Test\\IoCManager.Voluntario.Test.csproj",
       "packagesPath": "C:\\Users\\leand\\.nuget\\packages\\",
-      "outputPath": "D:\\Sources\\VoluntaryWorkManager\\IoCManager.Voluntario.Test\\obj\\",
+      "outputPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IoCManager.Voluntario.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5811,11 +5811,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\Sources\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj": {
-              "projectPath": "D:\\Sources\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj"
+            "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj": {
+              "projectPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\IocManager.Domain\\IocManager.Voluntario.csproj"
             },
-            "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj": {
-              "projectPath": "D:\\Sources\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj"
+            "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj": {
+              "projectPath": "D:\\Sources\\VoluntaryWorkManager\\VoluntaryWorkManager\\Voluntario.Domain\\Voluntario.Domain.csproj"
             }
           }
         }

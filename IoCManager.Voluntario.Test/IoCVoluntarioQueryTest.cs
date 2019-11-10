@@ -1,22 +1,24 @@
 using IocManager.Voluntario;
 using NUnit.Framework;
+using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Tests
 {
-    public class IoCVoluntarioModelTest
+    public class IoCVoluntarioQueryTest
     {
         [SetUp]
         public void Setup()
         {
-
         }
 
         [Test]
         public void TestVoluntarioModelInjection()
         {
-            IVoluntario voluntario = null;
-            VoluntarioModelIocManager iocManager = new VoluntarioModelIocManager();
+            IVoluntarioQuery voluntario = null;
+            VoluntarioQueryIocManager iocManager = new VoluntarioQueryIocManager();
             voluntario = iocManager.GetCurrentImplementation();
             Assert.IsNotNull(voluntario);
 

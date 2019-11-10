@@ -7,3 +7,12 @@ D:\Sources\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Volunt
 D:\Sources\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.AssemblyInfo.cs
 D:\Sources\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.dll
 D:\Sources\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.pdb
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\bin\Debug\netcoreapp2.2\Voluntario.Domain.deps.json
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\bin\Debug\netcoreapp2.2\Voluntario.Domain.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\bin\Debug\netcoreapp2.2\Voluntario.Domain.pdb
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.csprojAssemblyReference.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.csproj.CoreCompileInputs.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.AssemblyInfoInputs.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.AssemblyInfo.cs
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\Voluntario.Domain\obj\Debug\netcoreapp2.2\Voluntario.Domain.pdb
