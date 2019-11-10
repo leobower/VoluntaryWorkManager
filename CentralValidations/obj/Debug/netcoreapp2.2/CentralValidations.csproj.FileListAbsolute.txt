@@ -1,0 +1,8 @@
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\bin\Debug\netcoreapp2.2\CentralValidations.deps.json
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\bin\Debug\netcoreapp2.2\CentralValidations.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\bin\Debug\netcoreapp2.2\CentralValidations.pdb
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\obj\Debug\netcoreapp2.2\CentralValidations.csproj.CoreCompileInputs.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\obj\Debug\netcoreapp2.2\CentralValidations.AssemblyInfoInputs.cache
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\obj\Debug\netcoreapp2.2\CentralValidations.AssemblyInfo.cs
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\obj\Debug\netcoreapp2.2\CentralValidations.dll
+D:\Sources\VoluntaryWorkManager\VoluntaryWorkManager\CentralValidations\obj\Debug\netcoreapp2.2\CentralValidations.pdb
