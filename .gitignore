@@ -33,3 +33,4 @@ Voluntario.Domain/obj/Debug/netcoreapp2.2/Voluntario.Domain.csproj.FileListAbsol
 Voluntario.Domain/obj/project.assets.json
 Voluntario.Domain/obj/Voluntario.Domain.csproj.nuget.dgspec.json
 IoCManager.Voluntario.Test/obj/Debug/netcoreapp2.2/IoCManager.Voluntario.Test.Program.cs
+.vs/VoluntaryWorkManager/DesignTimeBuild/.dtbcache
