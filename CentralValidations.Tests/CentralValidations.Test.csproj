@@ -13,10 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
-    <ProjectReference Include="..\IocManager.Domain\IocManager.Voluntario.csproj" />
-    <ProjectReference Include="..\IoCManagerSharedModel\IoCManager.SharedModel.csproj" />
-    <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
+    <ProjectReference Include="..\CentralValidations\CentralValidations.csproj" />
   </ItemGroup>
 
 </Project>

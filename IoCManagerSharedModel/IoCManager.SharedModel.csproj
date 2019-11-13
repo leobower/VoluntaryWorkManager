@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
-    <ProjectReference Include="..\IoCManagerSharedModel\IoCManager.SharedModel.csproj" />
   </ItemGroup>
 
 </Project>
