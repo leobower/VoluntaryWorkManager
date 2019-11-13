@@ -15,5 +15,8 @@ bin/
 *.assets.json
 *.CopyComplete
 *.dtbcache
+<<<<<<< HEAD
 *.testlog
 *.manifest
+
+
