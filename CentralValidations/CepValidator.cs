@@ -1,19 +1,13 @@
 ﻿using CentralSharedModel.Interfaces;
 using IoCManager.SharedModel;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
 using System.Linq;
 
 namespace CentralValidations
 {
     public class CepValidator
     {
-        private IAddress _addres;
-
         private void GetDeserializedAdress(string response, IAddress address)
         {
             response = response.Replace("{", "").Replace("}", "");

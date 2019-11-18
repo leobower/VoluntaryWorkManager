@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Voluntario", "Voluntario", "{4B8B56D0-DBBE-4987-83D4-1959E24A6A25}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entidade", "Entidade", "{78DE49F5-70FA-4A7D-BD11-18098B5C7CAB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Domain", "Voluntario.Domain\Voluntario.Domain.csproj", "{5E7DDE51-A37D-45F9-8D21-2D51387F9D0A}"
 EndProject
@@ -21,13 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validations", "Validations"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralValidations", "CentralValidations\CentralValidations.csproj", "{752D8D35-4D1B-4231-8311-2E8F52F426DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralValidations.Test", "CentralValidations.Tests\CentralValidations.Test.csproj", "{28CAB125-3665-4DD6-9BE7-CD4D29521C64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralValidations.Test", "CentralValidations.Tests\CentralValidations.Test.csproj", "{28CAB125-3665-4DD6-9BE7-CD4D29521C64}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedModel", "SharedModel", "{B3CFB0CE-F887-4DAE-9CB5-776EF0F2FB1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralSharedModel", "CentralSharedModel\CentralSharedModel.csproj", "{FBE51AD8-7B73-456E-AAF6-A8A9932C3D79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralSharedModel", "CentralSharedModel\CentralSharedModel.csproj", "{FBE51AD8-7B73-456E-AAF6-A8A9932C3D79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.SharedModel", "IoCManagerSharedModel\IoCManager.SharedModel.csproj", "{7F53CDC5-AEE8-4042-906A-B841FED2B636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.SharedModel", "IoCManagerSharedModel\IoCManager.SharedModel.csproj", "{7F53CDC5-AEE8-4042-906A-B841FED2B636}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
