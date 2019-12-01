@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Factory\Interfaces\" />
-    <Folder Include="Factory\Implementations\" />
+    <Folder Include="Factory\NonrelationalDataBase\Interfaces\" />
+    <Folder Include="Factory\NonrelationalDataBase\Implementations\" />
+    <Folder Include="Factory\RelationalDataBase\Interfaces\" />
+    <Folder Include="Factory\RelationalDataBase\Implementations\" />
+    <Folder Include="Factory\RelationalDataBase\" />
+    <Folder Include="Context\" />
   </ItemGroup>
 
   <ItemGroup>

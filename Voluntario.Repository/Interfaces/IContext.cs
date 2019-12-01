@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Voluntario.Repository.Implementations
+namespace Voluntario.Repository.Interfaces
 {
-    public class MongoRepositoryWriter
+    public interface IContext
     {
 
     }
