@@ -1,10 +1,11 @@
 using CentralSharedModel.Interfaces;
 using IoCManager.SharedModel;
 using NUnit.Framework;
+using Voluntario.Data.Context;
 
 namespace Tests
 {
-    public class IoCSharedoModelTest
+    public class IoCContextTest
     {
         [SetUp]
         public void Setup()
@@ -13,10 +14,9 @@ namespace Tests
         }
 
         [Test]
-        public void TestSharedModelInjection()
+        public void TestMongoContextInjection()
         {
-            IAddress obj = null;
-            obj = new SharedModelIoCManager().GetIAddressCurrentImplementation();
+            IMongoDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIMongoContextCurrentImplementation();
             Assert.IsTrue(obj != null &&  obj.GetType().IsClass);
         }
 

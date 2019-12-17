@@ -14,8 +14,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
-    <ProjectReference Include="..\IocManager.Domain\IocManager.Voluntario.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Context\IoCManager.Voluntario.Data.Context.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
     <ProjectReference Include="..\IoCManagerSharedModel\IoCManager.SharedModel.csproj" />
+    <ProjectReference Include="..\Voluntario.Data.Context\Voluntario.Data.Context.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
   </ItemGroup>
 

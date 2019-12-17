@@ -1,7 +1,6 @@
-using IocManager.Voluntario;
+using IoCManager.Voluntario.Business;
 using NUnit.Framework;
 using Voluntario.Domain.BusinessRules.Interfaces;
-using Voluntario.Domain.Entities.Interfaces;
 
 namespace Tests
 {
@@ -17,7 +16,7 @@ namespace Tests
         {
             IVoluntarioValidations voluntarioValidations = null;
             VoluntarioValidationsIocManager iocManager = new VoluntarioValidationsIocManager();
-            voluntarioValidations = iocManager.GetCurrentImplementation();
+            voluntarioValidations = iocManager.GetCurrentIVoluntarioValidationsImplementation();
             Assert.IsNotNull(voluntarioValidations);
             Assert.IsTrue(voluntarioValidations.GetType().IsClass);
 

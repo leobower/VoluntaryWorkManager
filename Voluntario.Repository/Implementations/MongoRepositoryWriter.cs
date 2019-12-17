@@ -2,70 +2,81 @@
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
-using Voluntario.Repository.Interfaces;
+using Voluntario.Data.Repository.Interfaces;
+using Voluntario.Data.Context;
+using IoCManager.Voluntario.Data.Context;
 
-namespace Voluntario.Repository.Implementations
+namespace Voluntario.Data.Repository.Implementations
 {
     public class MongoRepositoryWriter : IRepositoryWriter
     {
+        private readonly IMongoDbContext _context;
 
-        private IMongo _provider;
-        private IMongoDatabase _db { get { return this._provider.Database; } }
-        public MongoRepository()
+        private string _connStr;
+        private string _dataBase;
+        private string _collectionName;
+
+        public string ConnStr { get => _connStr; set => _connStr = value; }
+        public string DataBase { get => _dataBase; set => _dataBase = value; }
+        public string CollectionName { get => _collectionName; set => _collectionName = value; }
+
+        private bool ValidateProperties()
         {
-            _provider = Mongo.Create(ConfigurationManager.ConnectionStrings["db"].ConnectionString);
+            return (!String.IsNullOrEmpty(_connStr) &&
+                    !String.IsNullOrEmpty(_dataBase) &&
+                    !String.IsNullOrEmpty(_collectionName)
+                   );
+
         }
 
-        public void Add<T>(T voluntario) where T : class, IVoluntario, new();
+        public MongoRepositoryWriter()
         {
-           
+            if (_context == null)
+                _context = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIMongoContextCurrentImplementation();
         }
 
-        public void IRepositoryWriter.Delete<T>(T voluntario)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void IRepositoryWriter.Update<T>(T voluntario)
+        void IRepositoryWriter.Add<T>(T voluntario)
         {
-            throw new NotImplementedException();
-        }
-
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
+            if (ValidateProperties())
             {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects).
-                }
+                _context.ConnStr = _connStr;
+                _context.DataBase = _dataBase;
+                _context.CollectionName = _collectionName;
 
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
-
-                disposedValue = true;
+                _context.VoluntarioCollection.InsertOne(voluntario);
             }
         }
 
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~MongoRepositoryWriter()
-        // {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
+        void IRepositoryWriter.Delete<T>(T voluntario)
+        {
+            if (ValidateProperties())
+            {
+                _context.ConnStr = _connStr;
+                _context.DataBase = _dataBase;
+                _context.CollectionName = _collectionName;
 
-        // This code added to correctly implement the disposable pattern.
+                //_context.VoluntarioCollection.DeleteOne()
+            }
+        }
+
+        void IRepositoryWriter.Update<T>(T voluntario)
+        {
+            if (ValidateProperties())
+            {
+                _context.ConnStr = _connStr;
+                _context.DataBase = _dataBase;
+                _context.CollectionName = _collectionName;
+
+                //_context.VoluntarioCollection.DeleteOne()
+            }
+        }
+
+
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
+            throw new NotImplementedException();
         }
-        #endregion
 
     }
 }

@@ -1,4 +1,4 @@
-using IocManager.Voluntario;
+using IoCManager.Voluntario.Model;
 using NUnit.Framework;
 using Voluntario.Domain.Entities.Interfaces;
 
@@ -16,8 +16,8 @@ namespace Tests
         public void TestVoluntarioModelInjection()
         {
             IVoluntario voluntario = null;
-            VoluntarioModelIocManager iocManager = new VoluntarioModelIocManager();
-            voluntario = iocManager.GetCurrentImplementation();
+            ModelIoCManager iocManager = new ModelIoCManager();
+            voluntario = iocManager.GetIVoluntarioCurrentImplementation();
             Assert.IsNotNull(voluntario);
 
             Assert.IsTrue(voluntario.GetType().IsClass);

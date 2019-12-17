@@ -1,9 +1,6 @@
-using IocManager.Voluntario;
 using NUnit.Framework;
 using Voluntario.Domain.BusinessRules.Interfaces;
-using Voluntario.Domain.Entities.Interfaces;
-using System.Linq;
-using System.Collections.Generic;
+using IoCManager.Voluntario.Business;
 
 namespace Tests
 {
@@ -19,7 +16,7 @@ namespace Tests
         {
             IVoluntarioPersistence voluntarioPersistence = null;
             VoluntarioPersistenceIocManager iocManager = new VoluntarioPersistenceIocManager();
-            voluntarioPersistence = iocManager.GetCurrentImplementation();
+            voluntarioPersistence = iocManager.GetCurrentIVoluntarioPersitenceImplementation();
             Assert.IsNotNull(voluntarioPersistence);
 
             Assert.IsTrue(voluntarioPersistence.GetType().IsClass);

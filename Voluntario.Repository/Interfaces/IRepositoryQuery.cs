@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Voluntario.Repository.Interfaces
+namespace Voluntario.Data.Repository.Interfaces
 {
     interface IRepositoryQuery
     {

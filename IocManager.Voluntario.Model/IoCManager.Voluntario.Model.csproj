@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
     <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
+    <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
   </ItemGroup>
 
 </Project>

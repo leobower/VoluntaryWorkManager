@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using IoCManager.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -6,22 +7,13 @@ using System.Text;
 
 namespace IoCManager.SharedModel
 {
-    public  class SharedModelIoCManager
+    public  class SharedModelIoCManager : BaseIoCManager<IAddress>
     {
         private  readonly string _currentIAdressImplementation = "Address";
 
-        public  IAddress GetIAddressCurrentImplementation()
+        public  IAddress GetIAddressCurrentImplementation() 
         {
-            IAddress obj = null;
-            foreach (var type in typeof(IAddress).Assembly.DefinedTypes)
-            {
-                if (type.IsClass && type.FullName.EndsWith(_currentIAdressImplementation))
-                {
-                    obj = (IAddress)Assembly.Load(typeof(IAddress).Assembly.FullName).CreateInstance(type.FullName);
-                    break;
-                }
-            }
-            return obj;
+            return base.GetCurrentImplementation(_currentIAdressImplementation);
         }
     }
 }

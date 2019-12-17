@@ -1,0 +1,18 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Context\IoCManager.Voluntario.Data.Context.csproj" />
+    <ProjectReference Include="..\Voluntario.Data.Context\Voluntario.Data.Context.csproj" />
+    <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
