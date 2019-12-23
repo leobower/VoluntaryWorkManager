@@ -11,8 +11,8 @@ namespace Voluntario.Data.Repository.Interfaces
         string DataBase { get; set; }
         string CollectionName { get; set; }
 
-        void Delete<T>(T voluntario) where T : class, IVoluntario, new();
-        void Update<T>(T voluntario) where T : class, IVoluntario, new();
-        void Add<T>(T voluntario) where T : class, IVoluntario, new();
+        void Delete(IVoluntario voluntario);  
+        void Update(IVoluntario voluntario);
+        void Add(IVoluntario voluntario);
     }
 }

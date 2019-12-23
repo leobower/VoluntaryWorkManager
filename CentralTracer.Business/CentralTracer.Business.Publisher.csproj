@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CentralMQManager\CentralMQManager.csproj" />
+    <ProjectReference Include="..\CentralTracer\CentralTracer.Model.csproj" />
+    <ProjectReference Include="..\IoCManager.TraceModel\IoCManager.CentralTrace.Model.csproj" />
+  </ItemGroup>
+
+</Project>

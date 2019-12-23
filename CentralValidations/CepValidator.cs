@@ -3,6 +3,7 @@ using IoCManager.SharedModel;
 using System.Net.Http;
 using System.Reflection;
 using System.Linq;
+using CentralTracer.Business.Publisher;
 
 namespace CentralValidations
 {
@@ -28,24 +29,27 @@ namespace CentralValidations
         
         public IAddress ValidateCep(string cep)
         {
-            string _endpoint = string.Format("https://viacep.com.br/ws/{0}/json/", cep);
-            IAddress address = null;
-            using (var client = new HttpClient())
+            using (var tracer = new TraceWrapper())
             {
-               
-                var response = client.GetAsync(_endpoint).Result;
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                string _endpoint = string.Format("https://viacep.com.br/ws/{0}/json/", cep);
+                IAddress address = null;
+                using (var client = new HttpClient())
                 {
-                    var result = response.Content.ReadAsStringAsync().Result;
-                    if(!result.ToUpper().Contains("ERRO"))
+
+                    var response = client.GetAsync(_endpoint).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        address = new SharedModelIoCManager().GetIAddressCurrentImplementation();
-                        GetDeserializedAdress(result, address);
+                        var result = response.Content.ReadAsStringAsync().Result;
+                        if (!result.ToUpper().Contains("ERRO"))
+                        {
+                            address = new SharedModelIoCManager().GetIAddressCurrentImplementation();
+                            GetDeserializedAdress(result, address);
+                        }
+
                     }
-                       
-                } 
+                }
+                return address;
             }
-            return address;
         }
     }
 }

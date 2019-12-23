@@ -22,10 +22,14 @@ namespace Voluntario.Data.Repository.Implementations
 
         private bool ValidateProperties()
         {
-            return (!String.IsNullOrEmpty(_connStr) &&
-                    !String.IsNullOrEmpty(_dataBase) &&
-                    !String.IsNullOrEmpty(_collectionName)
-                   );
+            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
+            {
+
+                return (!String.IsNullOrEmpty(_connStr) &&
+                        !String.IsNullOrEmpty(_dataBase) &&
+                        !String.IsNullOrEmpty(_collectionName)
+                       );
+            }
 
         }
 
@@ -36,39 +40,48 @@ namespace Voluntario.Data.Repository.Implementations
         }
 
 
-        void IRepositoryWriter.Add<T>(T voluntario)
+        public void Add(IVoluntario voluntario)
         {
-            if (ValidateProperties())
+            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
             {
-                _context.ConnStr = _connStr;
-                _context.DataBase = _dataBase;
-                _context.CollectionName = _collectionName;
+                if (ValidateProperties())
+                {
+                    _context.ConnStr = _connStr;
+                    _context.DataBase = _dataBase;
+                    _context.CollectionName = _collectionName;
 
-                _context.VoluntarioCollection.InsertOne(voluntario);
+                    _context.VoluntarioCollection.InsertOne(voluntario);
+                }
             }
         }
 
-        void IRepositoryWriter.Delete<T>(T voluntario)
+        public void Delete(IVoluntario voluntario)
         {
-            if (ValidateProperties())
+            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
             {
-                _context.ConnStr = _connStr;
-                _context.DataBase = _dataBase;
-                _context.CollectionName = _collectionName;
+                if (ValidateProperties())
+                {
+                    _context.ConnStr = _connStr;
+                    _context.DataBase = _dataBase;
+                    _context.CollectionName = _collectionName;
 
-                //_context.VoluntarioCollection.DeleteOne()
+                    //_context.VoluntarioCollection.DeleteOne()
+                }
             }
         }
 
-        void IRepositoryWriter.Update<T>(T voluntario)
+        public void Update(IVoluntario voluntario)
         {
-            if (ValidateProperties())
+            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
             {
-                _context.ConnStr = _connStr;
-                _context.DataBase = _dataBase;
-                _context.CollectionName = _collectionName;
+                if (ValidateProperties())
+                {
+                    _context.ConnStr = _connStr;
+                    _context.DataBase = _dataBase;
+                    _context.CollectionName = _collectionName;
 
-                //_context.VoluntarioCollection.DeleteOne()
+                    //_context.VoluntarioCollection.DeleteOne()
+                }
             }
         }
 

@@ -8,17 +8,20 @@ namespace CentralValidations
     {
         public bool ValidateDateTime(string datetime, out string dateTimeFormatted)
         {
-            bool ret = false;
-            DateTime dt = DateTime.MinValue;
-            string formatted = null;
-            if(DateTime.TryParse(datetime, out dt))
+            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
             {
-                formatted = dt.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
-                ret = true;
-            }
+                bool ret = false;
+                DateTime dt = DateTime.MinValue;
+                string formatted = null;
+                if (DateTime.TryParse(datetime, out dt))
+                {
+                    formatted = dt.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
+                    ret = true;
+                }
 
-            dateTimeFormatted = formatted;
-            return ret;
+                dateTimeFormatted = formatted;
+                return ret;
+            }
         }
     }
 }
