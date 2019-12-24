@@ -27,7 +27,7 @@ namespace Voluntario.Data.Context
                 {
                     MongoClientSettings settings = new MongoClientSettings
                     {
-                        Server = new MongoServerAddress(value, 27017)
+                        Server = new MongoServerAddress(value, 27017)//TODO
                     };
                     _mongoClient = new MongoClient(settings);
 

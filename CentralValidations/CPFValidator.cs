@@ -1,14 +1,23 @@
-﻿using System;
+﻿using CentralSharedModel.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CentralValidations
 {
-    public class CpfValidator
+    public class CpfValidator : IRequest
     {
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
+
+        public CpfValidator(string requestId)
+        {
+            RequestId = requestId;
+        }
+
         public bool ValidateCPF(string cpf, out Int64? cpfConverted)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 bool ret = true;
                 Int64? cpfConvert = null;
@@ -58,7 +67,7 @@ namespace CentralValidations
 
         public bool ValidateCPF(string cpf)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 bool ret = true;
                 Int64? cpfConvert = null;

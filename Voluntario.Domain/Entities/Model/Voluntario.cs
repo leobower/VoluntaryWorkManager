@@ -7,7 +7,7 @@ namespace Voluntario.Domain.Entities.Model
 {
     public class Voluntario : IVoluntario
     {
-        private string _id;
+        private Guid _id;
         private Int64 _cpf;
         private string cep;
         private string _dataNascimento;
@@ -17,7 +17,7 @@ namespace Voluntario.Domain.Entities.Model
         private string _senha;
         private string _telefone;
 
-        public string Id { get => _id; set => _id = value; }
+        public Guid Id { get => _id; set => _id = value; }
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string Cep { get => cep; set => cep = value; }
         public string DataNascimento { get => _dataNascimento; set => _dataNascimento = value; }

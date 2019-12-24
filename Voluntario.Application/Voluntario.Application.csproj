@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
     <ProjectReference Include="..\CentralTracer.Business\CentralTracer.Business.Publisher.csproj" />
     <ProjectReference Include="..\CentralValidations\CentralValidations.csproj" />
     <ProjectReference Include="..\IoCManager.CentralTrace.Business.Publisher\IoCManager.CentralTrace.Business.Publisher.csproj" />

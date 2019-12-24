@@ -1,14 +1,23 @@
-﻿using System;
+﻿using CentralSharedModel.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CentralValidations
 {
-    public class DateTimeValidator
+    public class DateTimeValidator : IRequest
     {
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
+
+        public DateTimeValidator(string requestId)
+        {
+            RequestId = requestId;
+        }
+
         public bool ValidateDateTime(string datetime, out string dateTimeFormatted)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 bool ret = false;
                 DateTime dt = DateTime.MinValue;

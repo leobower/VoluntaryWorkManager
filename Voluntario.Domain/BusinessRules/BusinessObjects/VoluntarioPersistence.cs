@@ -58,7 +58,7 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
 
         public void InsertVoluntario()
         {
-            ValidateVoluntario();
+            //ValidateVoluntario();
 
             this.Insert(Voluntario);
         }

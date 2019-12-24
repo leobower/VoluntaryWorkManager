@@ -7,8 +7,11 @@ using CentralTracer.Business.Publisher;
 
 namespace CentralValidations
 {
-    public class CepValidator
+    public class CepValidator : IRequest
     {
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
+
         private void GetDeserializedAdress(string response, IAddress address)
         {
             response = response.Replace("{", "").Replace("}", "");
@@ -25,6 +28,11 @@ namespace CentralValidations
                     prop.SetValue(address, values[1], null);
                 }
             }
+        }
+
+        public CepValidator(string requestId)
+        {
+            RequestId = requestId;
         }
 
         //public IAddress GetAddressCep(string cep)
@@ -54,12 +62,11 @@ namespace CentralValidations
 
         public bool ValidateCep(string cep)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new TracerWrapper(RequestId))
             {
                 bool ret = false;
 
                 string _endpoint = string.Format("https://viacep.com.br/ws/{0}/json/", cep);
-                IAddress address = null;
                 using (var client = new HttpClient())
                 {
 

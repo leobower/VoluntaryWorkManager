@@ -24,7 +24,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listEmails)
                 {
-                    valid = new EmailValidator().IsValidEmail(item);
+                    valid = new EmailValidator(Guid.NewGuid().ToString()).IsValidEmail(item);
                     if (!valid)
                     {
                         break;
@@ -50,7 +50,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listEmails)
                 {
-                    valid = new EmailValidator().IsValidEmail(item);
+                    valid = new EmailValidator(Guid.NewGuid().ToString()).IsValidEmail(item);
                     if (valid)
                     {
                         break;

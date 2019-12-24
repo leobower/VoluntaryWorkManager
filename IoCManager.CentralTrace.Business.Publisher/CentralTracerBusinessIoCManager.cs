@@ -8,10 +8,10 @@ namespace IoCManager.CentralTrace.Business.Publisher
 {
     public class CentralTracerBusinessIoCManager : BaseIoCManager<ITracerWrapper>
     {
-        private readonly string _currentImplementation = "TracerWrapper";
-        public ITracerWrapper GetITraceBusinessCurrentImplementation()
-        {
-            return base.GetCurrentImplementation(_currentImplementation);
-        }
+        //private readonly string _currentImplementation = "TracerWrapper";
+        //public ITracerWrapper GetITraceBusinessCurrentImplementation()
+        //{
+        //    return (ITracerWrapper) new TracerWrapper();//base.GetCurrentImplementation(_currentImplementation);
+        //}
     }
 }

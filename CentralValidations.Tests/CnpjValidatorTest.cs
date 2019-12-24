@@ -28,7 +28,7 @@ namespace CentralValidations.Test
                 foreach (var item in _listaCnpj)
                 {
                     currentCpf = item;
-                    control = CnpjValidator.ValidateCnpj(item, out cpf);
+                    control = new CnpjValidator(Guid.NewGuid().ToString()).ValidateCnpj(item, out cpf);
                     if (!control && (cpf == null || !cpf.HasValue))
                     {
                         cpf = null;
@@ -57,7 +57,7 @@ namespace CentralValidations.Test
                 foreach (var item in _listaCnpj)
                 {
                     currentCpf = item;
-                    control = CnpjValidator.ValidateCnpj(item, out cpf);
+                    control = new CnpjValidator(Guid.NewGuid().ToString()).ValidateCnpj(item, out cpf);
                     if (!control && (cpf == null || !cpf.HasValue))
                     {
                         cpf = null;

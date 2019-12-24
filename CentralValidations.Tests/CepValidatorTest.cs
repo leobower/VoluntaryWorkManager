@@ -23,7 +23,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listaCep)
                 {
-                    ret = new CepValidator().ValidateCep(item);
+                    ret = new CepValidator(Guid.NewGuid().ToString()).ValidateCep(item);
                     if (!ret)
                     {
                         break;
@@ -48,7 +48,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listaCep)
                 {
-                    ret = new CepValidator().ValidateCep(item);
+                    ret = new CepValidator(Guid.NewGuid().ToString()).ValidateCep(item);
                     if (ret)
                     {
                         break;

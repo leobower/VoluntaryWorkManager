@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CentralSharedModel.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Data.Repository.Interfaces
 {
-    public interface IRepositoryWriter : IDisposable
+    public interface IRepositoryWriter : IDisposable, IRequest
     {
         string ConnStr { get; set; }
         string DataBase { get; set; }

@@ -1,14 +1,23 @@
-﻿using System;
+﻿using CentralSharedModel.Interfaces;
+using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace CentralValidations
 {
-    public class EmailValidator
+    public class EmailValidator : IRequest
     {
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
+
+        public EmailValidator(string requestId)
+        {
+            RequestId = requestId;
+        }
+
         public bool IsValidEmail(string email)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 if (string.IsNullOrWhiteSpace(email))
                     return false;

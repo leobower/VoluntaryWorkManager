@@ -1,18 +1,24 @@
-﻿using System;
+﻿using CentralSharedModel.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CentralValidations
 {
-    public class CnpjValidator
+    public class CnpjValidator : IRequest
     {
-        public static bool ValidateCnpj(string cnpj, out Int64? cnpjConverted)
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
+
+        public CnpjValidator(string requestId)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            RequestId = requestId;
+        }
+
+        public bool ValidateCnpj(string cnpj, out Int64? cnpjConverted)
+        {
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
-
-
-
                 bool ret = true;
                 Int64? convert = null;
 

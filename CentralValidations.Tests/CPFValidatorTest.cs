@@ -28,7 +28,7 @@ namespace CentralValidations.Test
                 foreach (var item in _listaCpf)
                 {
                     currentCpf = item;
-                    control = new CpfValidator().ValidateCPF(item, out cpf);
+                    control = new CpfValidator(Guid.NewGuid().ToString()).ValidateCPF(item, out cpf);
                     if (!control && (cpf == null || !cpf.HasValue))
                     {
                         cpf = null;
@@ -57,7 +57,7 @@ namespace CentralValidations.Test
                 foreach (var item in _listaCpf)
                 {
                     currentCpf = item;
-                    control = new CpfValidator().ValidateCPF(item, out cpf);
+                    control = new CpfValidator(Guid.NewGuid().ToString()).ValidateCPF(item, out cpf);
                     if (!control && (cpf == null || !cpf.HasValue))
                     {
                         cpf = null;

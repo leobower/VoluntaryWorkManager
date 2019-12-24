@@ -67,6 +67,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.Voluntario.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.CentralTrace.Business.Publisher", "IoCManager.CentralTrace.Business.Publisher\IoCManager.CentralTrace.Business.Publisher.csproj", "{9319A257-206C-4B9F-8DF9-E936F81CFC87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voluntario.Application.Tests", "Voluntario.Application.Tests\Voluntario.Application.Tests.csproj", "{135F9F70-0F5A-4FF1-9D2F-94A23928D888}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serializaton", "Serializaton", "{43DAA42A-FADE-453B-9005-E5CC0469AAE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationManager.Voluntario", "SerializationManager.Voluntario\SerializationManager.Voluntario.csproj", "{16D8800B-C382-4EC7-A382-7E0168075B63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.SerializationManager.Voluntario", "IoCManager.SerializationManager.Voluntario\IoCManager.SerializationManager.Voluntario.csproj", "{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationManager.Voluntario.Tests", "SerializationManager.Voluntario.Tests\SerializationManager.Voluntario.Tests.csproj", "{B354F2BA-A943-4A27-BFA8-9DC94A02645D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Criptography", "Criptography", "{E50EE55D-A3D8-45D3-9F50-3988DAE55CEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +169,22 @@ Global
 		{9319A257-206C-4B9F-8DF9-E936F81CFC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9319A257-206C-4B9F-8DF9-E936F81CFC87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9319A257-206C-4B9F-8DF9-E936F81CFC87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135F9F70-0F5A-4FF1-9D2F-94A23928D888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135F9F70-0F5A-4FF1-9D2F-94A23928D888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135F9F70-0F5A-4FF1-9D2F-94A23928D888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135F9F70-0F5A-4FF1-9D2F-94A23928D888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D8800B-C382-4EC7-A382-7E0168075B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D8800B-C382-4EC7-A382-7E0168075B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D8800B-C382-4EC7-A382-7E0168075B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D8800B-C382-4EC7-A382-7E0168075B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B354F2BA-A943-4A27-BFA8-9DC94A02645D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B354F2BA-A943-4A27-BFA8-9DC94A02645D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B354F2BA-A943-4A27-BFA8-9DC94A02645D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B354F2BA-A943-4A27-BFA8-9DC94A02645D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,6 +220,12 @@ Global
 		{63ED3A24-B83E-442D-8DFB-E2B182FF3C89} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
 		{8E909B40-1F53-4701-A971-70FDB14E3A01} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
 		{9319A257-206C-4B9F-8DF9-E936F81CFC87} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{135F9F70-0F5A-4FF1-9D2F-94A23928D888} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
+		{43DAA42A-FADE-453B-9005-E5CC0469AAE1} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
+		{16D8800B-C382-4EC7-A382-7E0168075B63} = {43DAA42A-FADE-453B-9005-E5CC0469AAE1}
+		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{B354F2BA-A943-4A27-BFA8-9DC94A02645D} = {43DAA42A-FADE-453B-9005-E5CC0469AAE1}
+		{E50EE55D-A3D8-45D3-9F50-3988DAE55CEC} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98EF0224-F03B-4148-9EC3-D50C12A24B41}

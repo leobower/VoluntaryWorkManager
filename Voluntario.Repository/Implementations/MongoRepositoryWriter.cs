@@ -5,12 +5,16 @@ using Voluntario.Domain.Entities.Interfaces;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Data.Context;
 using IoCManager.Voluntario.Data.Context;
+using CentralSharedModel.Interfaces;
 
 namespace Voluntario.Data.Repository.Implementations
 {
     public class MongoRepositoryWriter : IRepositoryWriter
     {
         private readonly IMongoDbContext _context;
+
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
 
         private string _connStr;
         private string _dataBase;
@@ -22,7 +26,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         private bool ValidateProperties()
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
 
                 return (!String.IsNullOrEmpty(_connStr) &&
@@ -42,7 +46,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 if (ValidateProperties())
                 {
@@ -57,7 +61,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Delete(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 if (ValidateProperties())
                 {
@@ -72,7 +76,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Update(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 if (ValidateProperties())
                 {

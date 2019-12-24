@@ -24,7 +24,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listDate)
                 {
-                    valid = new DateTimeValidator().ValidateDateTime(item, out data);
+                    valid = new DateTimeValidator(Guid.NewGuid().ToString()).ValidateDateTime(item, out data);
                     if (!valid)
                     {
                         break;
@@ -52,7 +52,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listDate)
                 {
-                    valid = new DateTimeValidator().ValidateDateTime(item, out data);
+                    valid = new DateTimeValidator(Guid.NewGuid().ToString()).ValidateDateTime(item, out data);
                     if (valid)
                     {
                         break;

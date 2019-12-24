@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CentralSharedModel.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Repository.Interfaces;
@@ -7,23 +8,28 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Application
 {
-    public class Persistence : IDisposable
+    public class Persistence : IRequest, IDisposable
     {
         private Validations             _validations;
         private IRepositoryWriter       _repositoryWriter;
         private IVoluntarioPersistence  _voluntarioPersistence;
         private IVoluntarioValidations  _voluntarioValidations;
+        private string _requestId;
+        public string RequestId { get => _requestId; set => _requestId = value; }
 
         private IVoluntario _voluntario;
 
+        
+
         private void InitializeObjects()
         {
-            _validations = new Validations();
+            _validations = new Validations(RequestId);
 
             _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryIoCManager().GetIMongoRepositoryCurrentImplementation();
-            _repositoryWriter.ConnStr = "";
-            _repositoryWriter.DataBase = "";
-            _repositoryWriter.CollectionName = "";
+            _repositoryWriter.RequestId = this.RequestId;
+            _repositoryWriter.ConnStr = "localhost";///TODO
+            _repositoryWriter.DataBase = "VoluntaryWorkManager";///TODO
+            _repositoryWriter.CollectionName = "Voluntario";///TODO
 
             _voluntarioPersistence = new IoCManager.Voluntario.Business.VoluntarioPersistenceIocManager().GetCurrentIVoluntarioPersitenceImplementation();
 
@@ -39,8 +45,9 @@ namespace Voluntario.Application
 
         }
 
-        public Persistence(IVoluntario voluntario)
+        public Persistence(IVoluntario voluntario, string requestId)
         {
+            RequestId = requestId;
             if (voluntario != null)
             {
                 _voluntario = voluntario;
@@ -51,7 +58,7 @@ namespace Voluntario.Application
 
         public void Add()
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
+            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
             {
                 _voluntarioPersistence.InsertVoluntario();
             }

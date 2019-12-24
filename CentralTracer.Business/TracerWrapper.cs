@@ -1,4 +1,5 @@
 ﻿using CentralMQManager;
+using CentralSharedModel.Interfaces;
 using CentralTracer.Model;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Text;
 
 namespace CentralTracer.Business.Publisher
 {
-    public class TraceWrapper : BasePublisher, IDisposable
+    public class TracerWrapper : BasePublisher, IRequest, ITracerWrapper
     {
         private bool _disposed = false;
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
-
+        public ITraceModel Model { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private ITraceModel _model;
         private Stopwatch _sw;
@@ -38,11 +39,12 @@ namespace CentralTracer.Business.Publisher
             return stb.ToString();
         }
 
-        public TraceWrapper()
+        public TracerWrapper(string requestId)
         {
-            base.HostName = "";///TODO
-            base.Port = 0;//TODO
-            base.QueueName = "";//TODO
+            base.HostName = "localhost";///TODO
+            base.Port = 15672;//TODO
+            base.QueueName = "centralized_logs_voluntario";//TODO
+            RequestId = requestId;
 
             _model = new IoCManager.CentralTrace.Model.CentralTracerModelIoCManager().GetITraceModelCurrentImplementation();
             _frame = new StackFrame(1);
@@ -55,7 +57,7 @@ namespace CentralTracer.Business.Publisher
             _model.Parameters = GetParameters(_method.GetParameters());
             _model.StartTime = DateTime.Now.ToString();
 
-            base.Enqueue(_model);
+            base.Enqueue(_model.ToString());
             _sw = Stopwatch.StartNew();
         }
 
@@ -73,7 +75,7 @@ namespace CentralTracer.Business.Publisher
                 _sw.Stop();
                 _model.EndTime = DateTime.Now.ToString();
                 _model.ElapsedTime = _sw.ElapsedMilliseconds;
-                base.Enqueue(_model);
+                base.Enqueue(_model.ToString());
                 // Console.WriteLine(String.Format("EndTime: {0}, RequestId{1},  Class: {2}, Method: {3}, TimeElapsed {4}ms", DateTime.UtcNow, _correlationId, this.className, this.methodName, sw.ElapsedMilliseconds));
                 _sw = null;
             }
