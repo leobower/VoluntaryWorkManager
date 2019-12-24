@@ -18,13 +18,13 @@ namespace CentralValidations.Test
         public void TestValidCep()
         {
             List<string> _listaCep = new List<string>() { "01001-000", "11703680" };//CPFs Válidos
-            IAddress address = null;
+            bool ret = false;
             try
             {
                 foreach (var item in _listaCep)
                 {
-                    address = new CepValidator().ValidateCep(item);
-                    if (address == null)
+                    ret = new CepValidator().ValidateCep(item);
+                    if (!ret)
                     {
                         break;
                     }
@@ -36,21 +36,20 @@ namespace CentralValidations.Test
                 throw ex;//;new Exception(String.Format("Current CPF: {0}", currentCep), ex);
             }
 
-            Assert.IsNotNull(address);
-            Assert.IsNotEmpty(address.Cep);
+            Assert.IsTrue(ret);
         }
 
         [Test]
         public void TestInvalidCep()
         {
             List<string> _listaCep = new List<string>() { "73980-111", "21312321" };//CPFs Válidos
-            IAddress address = null;
+            bool ret = false;
             try
             {
                 foreach (var item in _listaCep)
                 {
-                    address = new CepValidator().ValidateCep(item);
-                    if (address == null)
+                    ret = new CepValidator().ValidateCep(item);
+                    if (ret)
                     {
                         break;
                     }
@@ -62,7 +61,7 @@ namespace CentralValidations.Test
                 throw ex;//;new Exception(String.Format("Current CPF: {0}", currentCep), ex);
             }
 
-            Assert.IsNull(address);
+            Assert.IsFalse(ret);
         }
 
     }

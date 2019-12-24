@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CentralTracer.Business\CentralTracer.Business.Publisher.csproj" />
+    <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
+  </ItemGroup>
+
+</Project>

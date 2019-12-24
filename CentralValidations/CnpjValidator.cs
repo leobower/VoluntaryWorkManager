@@ -8,7 +8,7 @@ namespace CentralValidations
     {
         public static bool ValidateCnpj(string cnpj, out Int64? cnpjConverted)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
             {
 
 

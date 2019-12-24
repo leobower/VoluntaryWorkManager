@@ -8,7 +8,7 @@ namespace Voluntario.Domain.Entities.Interfaces
     {
         string Id { get; set; }
         Int64  Cpf { get; set; }
-        Int32  Cep { get; set; }
+        string  Cep { get; set; }
         string DataNascimento { get; set; }
         string Email { get; set; }
         byte[] Foto { get; set; }

@@ -22,7 +22,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         private bool ValidateProperties()
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
             {
 
                 return (!String.IsNullOrEmpty(_connStr) &&
@@ -42,7 +42,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
             {
                 if (ValidateProperties())
                 {
@@ -57,7 +57,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Delete(IVoluntario voluntario)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
             {
                 if (ValidateProperties())
                 {
@@ -65,14 +65,14 @@ namespace Voluntario.Data.Repository.Implementations
                     _context.DataBase = _dataBase;
                     _context.CollectionName = _collectionName;
 
-                    //_context.VoluntarioCollection.DeleteOne()
+                    //_context.VoluntarioCollection.DeleteOne(voluntario);
                 }
             }
         }
 
         public void Update(IVoluntario voluntario)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TraceWrapper())
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
             {
                 if (ValidateProperties())
                 {

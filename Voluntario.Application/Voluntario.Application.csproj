@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CentralTracer.Business\CentralTracer.Business.Publisher.csproj" />
+    <ProjectReference Include="..\CentralValidations\CentralValidations.csproj" />
+    <ProjectReference Include="..\IoCManager.CentralTrace.Business.Publisher\IoCManager.CentralTrace.Business.Publisher.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Repository\IoCManager.Voluntario.Data.Repository.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
+    <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
+    <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

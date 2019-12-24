@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
+    <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

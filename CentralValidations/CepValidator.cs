@@ -26,11 +26,38 @@ namespace CentralValidations
                 }
             }
         }
-        
-        public IAddress ValidateCep(string cep)
+
+        //public IAddress GetAddressCep(string cep)
+        //{
+        //    using (var tracer = new TraceWrapper())
+        //    {
+        //        string _endpoint = string.Format("https://viacep.com.br/ws/{0}/json/", cep);
+        //        IAddress address = null;
+        //        using (var client = new HttpClient())
+        //        {
+
+        //            var response = client.GetAsync(_endpoint).Result;
+        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {
+        //                var result = response.Content.ReadAsStringAsync().Result;
+        //                if (!result.ToUpper().Contains("ERRO"))
+        //                {
+        //                    address = new SharedModelIoCManager().GetIAddressCurrentImplementation();
+        //                    GetDeserializedAdress(result, address);
+        //                }
+
+        //            }
+        //        }
+        //        return address;
+        //    }
+        //}
+
+        public bool ValidateCep(string cep)
         {
-            using (var tracer = new TraceWrapper())
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation())
             {
+                bool ret = false;
+
                 string _endpoint = string.Format("https://viacep.com.br/ws/{0}/json/", cep);
                 IAddress address = null;
                 using (var client = new HttpClient())
@@ -42,14 +69,18 @@ namespace CentralValidations
                         var result = response.Content.ReadAsStringAsync().Result;
                         if (!result.ToUpper().Contains("ERRO"))
                         {
-                            address = new SharedModelIoCManager().GetIAddressCurrentImplementation();
-                            GetDeserializedAdress(result, address);
+                            ret = true;
+                            //address = new SharedModelIoCManager().GetIAddressCurrentImplementation();
+                            //GetDeserializedAdress(result, address);
                         }
 
                     }
                 }
-                return address;
+                return ret;
             }
+
+
+
         }
     }
 }
