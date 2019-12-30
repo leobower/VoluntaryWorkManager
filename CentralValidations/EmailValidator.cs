@@ -17,7 +17,7 @@ namespace CentralValidations
 
         public bool IsValidEmail(string email)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 if (string.IsNullOrWhiteSpace(email))
                     return false;

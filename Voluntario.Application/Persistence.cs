@@ -58,7 +58,7 @@ namespace Voluntario.Application
 
         public void Add()
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 _voluntarioPersistence.InsertVoluntario();
             }

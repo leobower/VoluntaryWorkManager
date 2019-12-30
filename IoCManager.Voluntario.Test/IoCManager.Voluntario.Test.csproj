@@ -14,14 +14,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CentralMQManager\CentralMQManager.csproj" />
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
+    <ProjectReference Include="..\CentralTracer.Business\CentralTracer.Business.Publisher.csproj" />
+    <ProjectReference Include="..\IoCManager.CentralMQManager\IoCManager.CentralMQManager.csproj" />
+    <ProjectReference Include="..\IoCManager.CentralTrace.Business.Publisher\IoCManager.CentralTrace.Business.Publisher.csproj" />
+    <ProjectReference Include="..\IoCManager.SerializationManager.Voluntario\IoCManager.SerializationManager.Voluntario.csproj" />
     <ProjectReference Include="..\IoCManager.TraceModel\IoCManager.CentralTrace.Model.csproj" />
     <ProjectReference Include="..\IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj" />
     <ProjectReference Include="..\IoCManager.Voluntario.Data.Context\IoCManager.Voluntario.Data.Context.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Repository\IoCManager.Voluntario.Data.Repository.csproj" />
     <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
     <ProjectReference Include="..\IoCManagerSharedModel\IoCManager.SharedModel.csproj" />
+    <ProjectReference Include="..\SerializationManager.Voluntario\SerializationManager.Voluntario.csproj" />
     <ProjectReference Include="..\Voluntario.Data.Context\Voluntario.Data.Context.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
+    <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />
   </ItemGroup>
 
 </Project>

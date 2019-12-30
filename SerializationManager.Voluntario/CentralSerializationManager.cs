@@ -16,7 +16,7 @@ namespace SerializationManager.Voluntario
         }
     }
 
-    public class CentralSerializationManager<T> : ICentralSerializationManager<IVoluntario>
+    public class CentralSerializationManager : ICentralSerializationManager<IVoluntario>
     {
         private readonly JsonSerializerSettings _settings;  
 

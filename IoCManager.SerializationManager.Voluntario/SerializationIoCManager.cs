@@ -9,7 +9,7 @@ namespace IoCManager.SerializationManager.Voluntario
 {
     public class SerializationIoCManager : BaseIoCManager<ICentralSerializationManager<IVoluntario>>
     {
-        private readonly string _currentIAdressImplementation = "CentralSerializationManager`1";
+        private readonly string _currentIAdressImplementation = "CentralSerializationManager";
 
         public ICentralSerializationManager<IVoluntario> GetISerializationCurrentImplementation()
         {

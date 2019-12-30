@@ -4,7 +4,7 @@ using IoCManager.Voluntario.Business;
 
 namespace Tests
 {
-    public class IoCVoluntarioPersistenceTest
+    public class IoCVoluntarioPersistenceTests
     {
         [SetUp]
         public void Setup()

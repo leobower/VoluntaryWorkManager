@@ -62,7 +62,7 @@ namespace CentralValidations
 
         public bool ValidateCep(string cep)
         {
-            using (var tracer = new TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = false;
 

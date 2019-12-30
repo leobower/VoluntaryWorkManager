@@ -4,7 +4,7 @@ using IoCManager.Voluntario.Business;
 
 namespace Tests
 {
-    public class IoCVoluntarioQueryTest
+    public class IoCVoluntarioQueryTests
     {
         [SetUp]
         public void Setup()

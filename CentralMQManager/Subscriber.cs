@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CentralMQManager
 {
-    public abstract class BaseSubscriber : BaseClass
+    public abstract class Subscriber : BaseClass
     {
         private Action<string> _doWork;
         public Action<string> DoWork { get => _doWork; set => _doWork = value; }

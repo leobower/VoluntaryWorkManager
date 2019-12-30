@@ -4,7 +4,7 @@ using Voluntario.Domain.BusinessRules.Interfaces;
 
 namespace Tests
 {
-    public class IoCVoluntarioValidationsTest
+    public class IoCVoluntarioValidationsTests
     {
         [SetUp]
         public void Setup()

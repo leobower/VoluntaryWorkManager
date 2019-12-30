@@ -10,11 +10,27 @@ namespace IoCManager.BaseClasses
         protected T GetCurrentImplementation(string currentImplementation)
         {
             object obj = null;
+
             foreach (var type in typeof(T).Assembly.DefinedTypes)
             {
                 if (type.IsClass && type.FullName.EndsWith(currentImplementation))
                 {
                     obj = (T)Assembly.Load(typeof(T).Assembly.FullName).CreateInstance(type.FullName);
+                    break;
+                }
+            }
+            return (T)obj;
+        }
+
+        protected T GetCurrentImplementationWithParameters(string currentImplementation, object[] args)
+        {
+            object obj = null;
+
+            foreach (var type in typeof(T).Assembly.DefinedTypes)
+            {
+                if (type.IsClass && type.FullName.EndsWith(currentImplementation))
+                {
+                    obj = (T)Activator.CreateInstance(type, args);
                     break;
                 }
             }

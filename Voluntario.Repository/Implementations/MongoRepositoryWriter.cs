@@ -26,7 +26,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         private bool ValidateProperties()
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
 
                 return (!String.IsNullOrEmpty(_connStr) &&
@@ -46,7 +46,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 if (ValidateProperties())
                 {
@@ -61,7 +61,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Delete(IVoluntario voluntario)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 if (ValidateProperties())
                 {
@@ -76,7 +76,7 @@ namespace Voluntario.Data.Repository.Implementations
 
         public void Update(IVoluntario voluntario)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 if (ValidateProperties())
                 {

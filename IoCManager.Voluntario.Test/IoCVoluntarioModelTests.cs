@@ -7,7 +7,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Tests
 {
-    public class IoCVoluntarioModelTest
+    public class IoCVoluntarioModelTests
     {
         [SetUp]
         public void Setup()

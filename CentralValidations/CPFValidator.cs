@@ -17,7 +17,7 @@ namespace CentralValidations
 
         public bool ValidateCPF(string cpf, out Int64? cpfConverted)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = true;
                 Int64? cpfConvert = null;
@@ -67,7 +67,7 @@ namespace CentralValidations
 
         public bool ValidateCPF(string cpf)
         {
-            using (var tracer = new CentralTracer.Business.Publisher.TracerWrapper(RequestId))
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = true;
                 Int64? cpfConvert = null;

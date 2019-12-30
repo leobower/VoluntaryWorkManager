@@ -6,11 +6,10 @@ using System.Text;
 
 namespace CentralMQManager
 {
-    public class BasePublisher : BaseClass
+    public class Publisher : BaseClass, IPublisher
     {
         public void Enqueue(object obj)
         {
-
             if (base.ValidateHostPort())
             {
                 var factory = new ConnectionFactory
@@ -31,10 +30,7 @@ namespace CentralMQManager
                     }
 
                 }
-
-
             }
-
         }
     }
 }
