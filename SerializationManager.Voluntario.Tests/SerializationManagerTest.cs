@@ -23,7 +23,7 @@ namespace SerializationManager.Voluntario.Tests
                 voluntario.Cpf = 31495307840;
                 voluntario.DataNascimento = "16/02/1982";
                 voluntario.Email = "le.ribeiro.vca@gmail.com";
-                voluntario.Id = Guid.NewGuid();
+                voluntario.Id = Guid.NewGuid().ToString();
                 voluntario.Nome = "Leandro Figueiredo Silva Ribeiro";
                 voluntario.Senha = "Senha";
                 voluntario.Telefone = "12323123";

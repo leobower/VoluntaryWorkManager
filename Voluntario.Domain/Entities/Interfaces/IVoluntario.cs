@@ -6,7 +6,7 @@ namespace Voluntario.Domain.Entities.Interfaces
 {
     public interface IVoluntario
     {
-        Guid Id { get; set; }
+        string Id { get; set; }
         Int64  Cpf { get; set; }
         string  Cep { get; set; }
         string DataNascimento { get; set; }

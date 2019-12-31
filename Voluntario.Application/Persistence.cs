@@ -19,8 +19,6 @@ namespace Voluntario.Application
 
         private IVoluntario _voluntario;
 
-        
-
         private void InitializeObjects()
         {
             _validations = new Validations(RequestId);
@@ -41,6 +39,8 @@ namespace Voluntario.Application
             _voluntarioPersistence.VoluntarioValidations = _voluntarioValidations;
             _voluntarioPersistence.Voluntario = _voluntario;
             _voluntarioPersistence.Insert = (a) => _repositoryWriter.Add(_voluntario);
+            _voluntarioPersistence.Update = (a) => _repositoryWriter.Update(_voluntario);
+            _voluntarioPersistence.Delete = (a) => _repositoryWriter.Delete(_voluntario);
 
 
         }
@@ -63,6 +63,22 @@ namespace Voluntario.Application
                 _voluntarioPersistence.InsertVoluntario();
             }
            
+        }
+
+        public void Update()
+        {
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            {
+                _voluntarioPersistence.UpdateVoluntario();
+            }
+        }
+
+        public void Delete()
+        {
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            {
+                _voluntarioPersistence.DeleteVoluntario();
+            }
         }
 
         public void Dispose()

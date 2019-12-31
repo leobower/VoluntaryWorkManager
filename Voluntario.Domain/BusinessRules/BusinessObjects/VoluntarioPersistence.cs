@@ -53,12 +53,13 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
 
             if (!VoluntarioValidations.ValidaEmail(Voluntario.Email))
                 throw new Exception("");
+
         }
 
 
         public void InsertVoluntario()
         {
-            //ValidateVoluntario();
+            ValidateVoluntario();
 
             this.Insert(Voluntario);
         }
@@ -75,7 +76,7 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             if (!ValidateObjVoluntario())
                 throw new Exception("Null Reference of 'IVoluntario' property");
 
-            this.Update(Voluntario);
+            this.Delete(Voluntario);
         }
     }
 }

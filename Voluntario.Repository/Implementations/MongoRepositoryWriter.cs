@@ -6,6 +6,8 @@ using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Data.Context;
 using IoCManager.Voluntario.Data.Context;
 using CentralSharedModel.Interfaces;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace Voluntario.Data.Repository.Implementations
 {
@@ -69,7 +71,9 @@ namespace Voluntario.Data.Repository.Implementations
                     _context.DataBase = _dataBase;
                     _context.CollectionName = _collectionName;
 
-                    //_context.VoluntarioCollection.DeleteOne(voluntario);
+                    var filter = Builders<IVoluntario>.Filter.Eq("_id", voluntario.Id);//Where(x => x.Id == voluntario.Id);
+
+                    _context.VoluntarioCollection.DeleteOne(filter);
                 }
             }
         }
@@ -84,7 +88,11 @@ namespace Voluntario.Data.Repository.Implementations
                     _context.DataBase = _dataBase;
                     _context.CollectionName = _collectionName;
 
-                    //_context.VoluntarioCollection.DeleteOne()
+                    var filter = Builders<IVoluntario>.Filter.Eq("_id", voluntario.Id);//Where(x => x.Id == voluntario.Id);
+                   // var update = Builders<IVoluntario>.Update. Set(filter, voluntario);
+
+                    _context.VoluntarioCollection.ReplaceOne(filter, voluntario);
+
                 }
             }
         }
