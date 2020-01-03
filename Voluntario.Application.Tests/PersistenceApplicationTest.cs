@@ -6,7 +6,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Tests
 {
-    public class ApplicationTest : IRequest
+    public class PersistenceApplicationTest : IRequest
     {
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
@@ -23,7 +23,7 @@ namespace Tests
             _voluntario.DataNascimento = "16/02/1982";
             _voluntario.Email = "le.ribeiro.vca@gmail.com";
             _voluntario.Id = Guid.NewGuid().ToString();
-            _voluntario.Nome = "Leandro Figueiredo Silva Ribeiro";
+            _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
             _voluntario.Senha = "Senha";
             _voluntario.Telefone = "12323123";
         }
@@ -34,7 +34,7 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
 
-            using (Persistence per = new Persistence(_voluntario, _requestId))
+            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
             {
                 per.Add();
             }
@@ -44,7 +44,7 @@ namespace Tests
         public void UpdateTest()
         {
             AddTest();
-            using (Persistence per = new Persistence(_voluntario, _requestId))
+            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
             {
                 _voluntario.Email = "leandro_vca@hotmail.com";
                 per.Update();
@@ -55,7 +55,7 @@ namespace Tests
         public void DeleteTest()
         {
             AddTest();
-            using (Persistence per = new Persistence(_voluntario, _requestId))
+            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
             {
                 per.Delete();
             }

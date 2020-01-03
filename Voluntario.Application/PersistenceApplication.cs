@@ -8,7 +8,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Application
 {
-    public class Persistence : IRequest, IDisposable
+    public class PersistenceApplication : IRequest, IDisposable
     {
         private Validations             _validations;
         private IRepositoryWriter       _repositoryWriter;
@@ -23,7 +23,7 @@ namespace Voluntario.Application
         {
             _validations = new Validations(RequestId);
 
-            _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryIoCManager().GetIMongoRepositoryCurrentImplementation();
+            _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIMongoRepositoryWriterCurrentImplementation();
             _repositoryWriter.RequestId = this.RequestId;
             _repositoryWriter.ConnStr = "localhost";///TODO
             _repositoryWriter.DataBase = "VoluntaryWorkManager";///TODO
@@ -45,7 +45,7 @@ namespace Voluntario.Application
 
         }
 
-        public Persistence(IVoluntario voluntario, string requestId)
+        public PersistenceApplication(IVoluntario voluntario, string requestId)
         {
             RequestId = requestId;
             if (voluntario != null)

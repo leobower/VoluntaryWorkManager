@@ -6,10 +6,10 @@ using Voluntario.Data.Repository.Interfaces;
 
 namespace IoCManager.Voluntario.Data.Repository
 {
-    public class RepositoryIoCManager : BaseIoCManager<IRepositoryWriter>
+    public class RepositoryWriterIoCManager : BaseIoCManager<IRepositoryWriter>
     {
         private readonly string _currentImplementation = "MongoRepositoryWriter"; //
-        public IRepositoryWriter GetIMongoRepositoryCurrentImplementation()
+        public IRepositoryWriter GetIMongoRepositoryWriterCurrentImplementation()
         {
             return base.GetCurrentImplementation(_currentImplementation);
         }
