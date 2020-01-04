@@ -149,7 +149,7 @@ namespace Tests
 
             using (QueryApplication qry = new QueryApplication(_requestId))
             {
-                qry.VoluntarioName = _voluntario.Nome;
+                qry.VoluntarioName = _voluntario.Nome.Split(':')[0];
                 try
                 {
                     obj = qry.GetByName();
@@ -167,6 +167,48 @@ namespace Tests
             }
 
             Assert.IsNotNull(obj);
+            Assert.GreaterOrEqual(obj.Count, 1);
+            Assert.IsNotEmpty(obj[0].Id);
+        }
+
+        [Test]
+        public void GetAll()
+        {
+            IList<IVoluntario> obj = null;
+            if (_voluntario == null)
+                Setup();
+            //Add
+            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            {
+                per.Add();
+            }
+
+            using (QueryApplication qry = new QueryApplication(_requestId))
+            {
+                //qry.VoluntarioName = _voluntario.Nome.Split(':')[0];
+                try
+                {
+                    int current = 1;
+                    obj = qry.GetAllPaged(current);
+                    for (int page = current; page <= qry.TotalPages; page++)
+                    {
+                        obj = qry.GetAllPaged(page);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+
+            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            {
+                per.Delete();
+            }
+
+            Assert.IsNotNull(obj);
+            Assert.GreaterOrEqual(obj.Count, 1);
             Assert.IsNotEmpty(obj[0].Id);
         }
 

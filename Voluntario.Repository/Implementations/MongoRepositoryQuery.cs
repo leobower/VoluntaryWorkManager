@@ -17,9 +17,10 @@ namespace Voluntario.Data.Repository.Implementations
             if (base._context == null)
                 base._context = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIMongoContextCurrentImplementation();
         }
+        private double _totalPages;
+        public double TotalPages { get => _totalPages; set => _totalPages = value; }
 
-
-        public IList<IVoluntario> GetListVoluntario(int currentPage, double totalPages)
+        public IList<IVoluntario> GetListVoluntario(int currentPage)
         {
             IList<IVoluntario> ret = null;
             double pagesTotal = 0;
@@ -32,13 +33,14 @@ namespace Voluntario.Data.Repository.Implementations
                 double totalDocuments = _context.VoluntarioCollection.CountDocuments(FilterDefinition<IVoluntario>.Empty);
                 pagesTotal = Math.Ceiling(totalDocuments / pageSize);
 
+                if (currentPage.Equals(0))
+                    currentPage = 1;
+
                 ret = _context.VoluntarioCollection.Find(FilterDefinition<IVoluntario>.Empty)
                             .Skip((currentPage - 1) * pageSize)
                             .Limit(pageSize).ToList();
-
-
             }
-            totalPages = pagesTotal;
+            TotalPages = pagesTotal;
             return ret;
         }
 
@@ -98,7 +100,10 @@ namespace Voluntario.Data.Repository.Implementations
                     throw new Exception("Provide the ConnStr, DataBase and CollectionName properties information");
                 var regex = new Regex($"^{name}");
 
-                var filter = Builders<IVoluntario>.Filter.ElemMatch(x => x.Nome, x => Regex.IsMatch(name, $"^{name}"));
+                var filter = new BsonDocument { { "Nome", new BsonDocument { { "$regex", name }, { "$options", "i" } } } };
+
+                //var result = collection.Find(filter).ToList();
+                //var filter = Builders<IVoluntario>.Filter.ElemMatch(x => x.Nome, x => Regex.IsMatch(name, $"^{name}"));
                 ret = base._context.VoluntarioCollection.Find(filter).ToList();
 
             }

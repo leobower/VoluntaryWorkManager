@@ -13,12 +13,13 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         Func<string, IVoluntario> _byEmail;
         Func<Int64, IVoluntario> _byCpf;
         Func<string, IList<IVoluntario>> _byName;
-        Func<int, double, IList<IVoluntario>> _selectAllPaged;
+        Func<int, IList<IVoluntario>> _selectAllPaged;
         private IVoluntarioValidations _voluntarioValidations;
         private Int64 _cpf;
         private string _email;
         private string _id;
         private string _name;
+        private int _currentPage;
 
 
         public IVoluntarioValidations VoluntarioValidations { get => _voluntarioValidations; set => _voluntarioValidations = value; }
@@ -26,12 +27,13 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         public Func<string, IVoluntario> ById { get => _byId; set => _byId = value; }
         public Func<string, IVoluntario> ByEmail { get => _byEmail; set => _byEmail = value; }
         public Func<string, IList<IVoluntario>> ByName { get => _byName; set => _byName = value; }
-        public Func<int, double, IList<IVoluntario>> SelectAllPaged { get => _selectAllPaged; set => _selectAllPaged = value; }
+        public Func<int, IList<IVoluntario>> SelectAllPaged { get => _selectAllPaged; set => _selectAllPaged = value; }
         public Func<long, IVoluntario> ByCpf { get => _byCpf; set => _byCpf = value; }
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string Email { get => _email; set => _email = value; }
         public string Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
+        public int CurrentPage { get => _currentPage; set => _currentPage = value; }
 
         private bool ValidateObjVoluntarioValidation()
         {
@@ -78,6 +80,16 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             if (String.IsNullOrEmpty(Name))
                 throw new Exception("Provide Name Property Information");
             return this.ByName(Name);
+        }
+
+        public IList<IVoluntario> GetAll()
+        {
+            if(CurrentPage < 0)
+                throw new Exception("Provide CurrentPage Property Information");
+            IList<IVoluntario> ret = null;
+            ret = this.SelectAllPaged(CurrentPage);
+
+            return ret;
         }
 
     }

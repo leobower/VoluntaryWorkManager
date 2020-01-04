@@ -39,7 +39,6 @@ namespace Voluntario.Application
             _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
             _validations = new Validations(RequestId);
             
-
             _query.ConnStr = "localhost";///TODO
             _query.DataBase = "VoluntaryWorkManager";///TODO
             _query.CollectionName = "Voluntario";///TODO
@@ -48,7 +47,7 @@ namespace Voluntario.Application
             _voluntarioQuery.ByEmail = (a) => _query.GetVoluntarioByEmail(Email);
             _voluntarioQuery.ById = (a) => _query.GetVoluntarioById(VoluntarioId);
             _voluntarioQuery.ByName = (a) => _query.GetVoluntarioByName(VoluntarioName);
-            //_voluntarioQuery.SelectAllPaged = (a) => _query.GetListVoluntario(CurrentPage, TotalPages);
+            _voluntarioQuery.SelectAllPaged = (a) => _query.GetListVoluntario(CurrentPage);
 
             //_voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(Cep);
             _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(Cpf.ToString());
@@ -100,7 +99,18 @@ namespace Voluntario.Application
             }
         }
 
-
+        public IList<IVoluntario> GetAllPaged(int currentPage)
+        {
+            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            {
+                _voluntarioQuery.CurrentPage = currentPage;
+                CurrentPage = currentPage;
+                IList<IVoluntario> ret = null;
+                ret = _voluntarioQuery.GetAll();
+                TotalPages = _query.TotalPages;
+                return ret;
+            }
+        }
 
         public void Dispose()
         {

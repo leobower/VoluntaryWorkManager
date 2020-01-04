@@ -28,10 +28,6 @@ namespace Voluntario.Data.Repository.Implementations
             {
                 if (base.ValidateProperties())
                 {
-                    //base._context.ConnStr = base.ConnStr;
-                    //base._context.DataBase = base.DataBase;
-                    //base._context.CollectionName = base.CollectionName;
-
                     base._context.VoluntarioCollection.InsertOne(voluntario);
                 }
             }
@@ -43,10 +39,6 @@ namespace Voluntario.Data.Repository.Implementations
             {
                 if (base.ValidateProperties())
                 {
-                    //base._context.ConnStr = base.ConnStr;
-                    //base._context.DataBase = base.DataBase;
-                    //base._context.CollectionName = base.CollectionName;
-
                     var filter = Builders<IVoluntario>.Filter.Eq("_id", voluntario.Id);//Where(x => x.Id == voluntario.Id);
 
                     base._context.VoluntarioCollection.DeleteOne(filter);
@@ -60,13 +52,8 @@ namespace Voluntario.Data.Repository.Implementations
             {
                 if (base.ValidateProperties())
                 {
-                    //base._context.ConnStr = base.ConnStr;
-                    //base._context.DataBase = base.DataBase;
-                    //base._context.CollectionName = base.CollectionName;
-
                     var filter = Builders<IVoluntario>.Filter.Eq("_id", voluntario.Id);//Where(x => x.Id == voluntario.Id);
                                                                                        // var update = Builders<IVoluntario>.Update. Set(filter, voluntario);
-
                     base._context.VoluntarioCollection.ReplaceOne(filter, voluntario);
 
                 }

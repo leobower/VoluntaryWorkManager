@@ -15,17 +15,19 @@ namespace Voluntario.Domain.BusinessRules.Interfaces
         Func<string, IVoluntario> ByEmail { get; set; }
 
         Func<string, IList<IVoluntario>> ByName { get; set; }
-        Func<int, double, IList<IVoluntario>> SelectAllPaged { get; set; }
+        Func<int, IList<IVoluntario>> SelectAllPaged { get; set; }
 
         long Cpf { get; set; }
         string Email { get; set; }
         string Id { get; set; }
         string Name { get; set; }
-
+        int CurrentPage { get; set; }
+            
         IVoluntario GetById();
         IVoluntario GetByCpf();
         IVoluntario GetByEmail();
         IList<IVoluntario> GetByName();
+        IList<IVoluntario> GetAll();
 
     }
 }
