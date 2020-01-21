@@ -33,32 +33,35 @@ namespace Tests
         {
             if (_voluntario == null)
                 Setup();
-
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Add();
-            }
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            per.Voluntario = _voluntario;
+            per.RequestId = _requestId;
+            per.Add();
+            
         }
 
         [Test]
         public void UpdateTest()
         {
             AddTest();
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                _voluntario.Email = "leandro_vca@hotmail.com";
-                per.Update();
-            }
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            per.Voluntario = _voluntario;
+            per.RequestId = _requestId;
+
+            _voluntario.Email = "leandro_vca@hotmail.com";
+            per.Update();
+
         }
 
         [Test]
         public void DeleteTest()
         {
             AddTest();
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Delete();
-            }
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            per.Voluntario = _voluntario;
+            per.RequestId = _requestId;
+            per.Delete();
+            
         }
 
     }

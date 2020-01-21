@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.csproj" />
     <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
     <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />

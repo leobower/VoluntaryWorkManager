@@ -8,7 +8,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Application
 {
-    public class QueryApplication : IRequest, IDisposable
+    public class QueryApplication : IRequest, IQueryApplication
     {
         private string _requestId;
         private Int64 _cpf;
@@ -34,26 +34,45 @@ namespace Voluntario.Application
 
         private void InitializeObjects()
         {
-            _voluntarioQuery = new IoCManager.Voluntario.Business.VoluntarioQueryIocManager().GetCurrentIVoluntarioQueryImplementation();
-            _query = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIMongoRepositoryQueryCurrentImplementation();
-            _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
-            _validations = new Validations(RequestId);
-            
-            _query.ConnStr = "localhost";///TODO
-            _query.DataBase = "VoluntaryWorkManager";///TODO
-            _query.CollectionName = "Voluntario";///TODO
+            if (!String.IsNullOrEmpty(RequestId))
+            {
+                if (_query == null)
+                {
+                    _query = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIMongoRepositoryQueryCurrentImplementation();
+                    _query.ConnStr = "localhost";///TODO
+                    _query.DataBase = "VoluntaryWorkManager";///TODO
+                    _query.CollectionName = "Voluntario";///TODO
+                }
 
-            _voluntarioQuery.ByCpf = (a) => _query.GetVoluntarioByCpf(Cpf);
-            _voluntarioQuery.ByEmail = (a) => _query.GetVoluntarioByEmail(Email);
-            _voluntarioQuery.ById = (a) => _query.GetVoluntarioById(VoluntarioId);
-            _voluntarioQuery.ByName = (a) => _query.GetVoluntarioByName(VoluntarioName);
-            _voluntarioQuery.SelectAllPaged = (a) => _query.GetListVoluntario(CurrentPage);
+                if (_validations == null)
+                    _validations = new Validations(RequestId);
 
-            //_voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(Cep);
-            _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(Cpf.ToString());
-            _voluntarioValidations.ValidaEmail = (a) => _validations.EmailValidator.IsValidEmail(Email);
+                if (_voluntarioValidations == null)
+                {
+                    _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
+                    _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(Cpf.ToString());
+                    _voluntarioValidations.ValidaEmail = (a) => _validations.EmailValidator.IsValidEmail(Email);
+                    //_voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(Cep);
 
-            _voluntarioQuery.VoluntarioValidations = _voluntarioValidations;
+                }
+
+                if (_voluntarioQuery == null)
+                {
+                    _voluntarioQuery = new IoCManager.Voluntario.Business.VoluntarioQueryIocManager().GetCurrentIVoluntarioQueryImplementation();
+                    _voluntarioQuery.ByCpf = (a) => _query.GetVoluntarioByCpf(Cpf);
+                    _voluntarioQuery.ByEmail = (a) => _query.GetVoluntarioByEmail(Email);
+                    _voluntarioQuery.ById = (a) => _query.GetVoluntarioById(VoluntarioId);
+                    _voluntarioQuery.ByName = (a) => _query.GetVoluntarioByName(VoluntarioName);
+                    _voluntarioQuery.SelectAllPaged = (a) => _query.GetListVoluntario(CurrentPage);
+                    _voluntarioQuery.VoluntarioValidations = _voluntarioValidations;
+                }
+            }
+            else
+                throw new Exception("Provide value for the RequestId Property.");
+        }
+
+        public QueryApplication()
+        {
 
         }
 
@@ -67,6 +86,7 @@ namespace Voluntario.Application
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
+                InitializeObjects();
                 _voluntarioQuery.Id = this.VoluntarioId;
                 return _voluntarioQuery.GetById();
             }
@@ -76,6 +96,7 @@ namespace Voluntario.Application
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
+                InitializeObjects();
                 _voluntarioQuery.Cpf = this.Cpf;
                 return _voluntarioQuery.GetByCpf();
             }
@@ -85,6 +106,7 @@ namespace Voluntario.Application
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
+                InitializeObjects();
                 _voluntarioQuery.Email = this.Email;
                 return _voluntarioQuery.GetByEmail();
             }
@@ -94,6 +116,7 @@ namespace Voluntario.Application
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
+                InitializeObjects();
                 _voluntarioQuery.Name = this.VoluntarioName;
                 return _voluntarioQuery.GetByName();
             }
@@ -103,6 +126,7 @@ namespace Voluntario.Application
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
+                InitializeObjects();
                 _voluntarioQuery.CurrentPage = currentPage;
                 CurrentPage = currentPage;
                 IList<IVoluntario> ret = null;

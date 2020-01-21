@@ -37,13 +37,11 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Add();
-            }
+            new PersistenceApplicationTest().AddTest();
 
-            using (QueryApplication qry = new QueryApplication(_requestId))
+            using (IQueryApplication app = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
+                app.RequestId = _requestId;
                 qry.Cpf = _voluntario.Cpf;
                 try
                 {
