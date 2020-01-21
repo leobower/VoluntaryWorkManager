@@ -8,6 +8,12 @@ namespace Voluntario.Application
     public interface IQueryApplication : IDisposable
     {
         string RequestId { get; set; }
+        long Cpf { get; set; }
+        string VoluntarioId { get; set; }
+        string VoluntarioName { get; set; }
+        string Email { get; set; }
+        int CurrentPage { get; set; }
+        double TotalPages { get; set; }
         IVoluntario GetById();
         IVoluntario GetByCpf();
         IVoluntario GetByEmail();

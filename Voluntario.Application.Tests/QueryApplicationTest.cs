@@ -37,11 +37,14 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            new PersistenceApplicationTest().AddTest();
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Add();
+            //}
 
-            using (IQueryApplication app = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
-                app.RequestId = _requestId;
+                qry.RequestId = _requestId;
                 qry.Cpf = _voluntario.Cpf;
                 try
                 {
@@ -54,10 +57,10 @@ namespace Tests
 
             }
 
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Delete();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Delete();
+            //}
 
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
@@ -70,13 +73,14 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Add();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Add();
+            //}
 
-            using (QueryApplication qry = new QueryApplication(_requestId))
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
+                qry.RequestId = _requestId;
                 qry.Email = _voluntario.Email;
                 try
                 {
@@ -89,10 +93,10 @@ namespace Tests
 
             }
 
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Delete();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Delete();
+            //}
 
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
@@ -105,13 +109,14 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Add();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Add();
+            //}
 
-            using (QueryApplication qry = new QueryApplication(_requestId))
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
+                qry.RequestId = _requestId;
                 qry.VoluntarioId = _voluntario.Id;
                 try
                 {
@@ -124,10 +129,10 @@ namespace Tests
 
             }
 
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Delete();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Delete();
+            //}
 
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
@@ -140,13 +145,14 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Add();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Add();
+            //}
 
-            using (QueryApplication qry = new QueryApplication(_requestId))
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
+                qry.RequestId = _requestId;
                 qry.VoluntarioName = _voluntario.Nome.Split(':')[0];
                 try
                 {
@@ -159,10 +165,10 @@ namespace Tests
 
             }
 
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Delete();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Delete();
+            //}
 
             Assert.IsNotNull(obj);
             Assert.GreaterOrEqual(obj.Count, 1);
@@ -176,16 +182,17 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Add();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Add();
+            //}
 
-            using (QueryApplication qry = new QueryApplication(_requestId))
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
                 //qry.VoluntarioName = _voluntario.Nome.Split(':')[0];
                 try
                 {
+                    qry.RequestId = _requestId;
                     int current = 1;
                     obj = qry.GetAllPaged(current);
                     for (int page = current; page <= qry.TotalPages; page++)
@@ -200,10 +207,10 @@ namespace Tests
 
             }
 
-            using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            {
-                per.Delete();
-            }
+            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
+            //{
+            //    per.Delete();
+            //}
 
             Assert.IsNotNull(obj);
             Assert.GreaterOrEqual(obj.Count, 1);
