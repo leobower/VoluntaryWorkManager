@@ -46,13 +46,16 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
                 throw new Exception("Set the IVoluntarioValidations property and it's properties");
 
             if (!VoluntarioValidations.ValidaCEP(Voluntario.Cep.ToString()))
-                throw new Exception("");
+                throw new Exception("Invalid CEP");
 
             if (!VoluntarioValidations.ValidaCPF(Voluntario.Cpf.ToString()))
-                throw new Exception("");
+                throw new Exception("invalid CPF");
 
             if (!VoluntarioValidations.ValidaEmail(Voluntario.Email))
-                throw new Exception("");
+                throw new Exception("Invalid Email");
+
+            if(!VoluntarioValidations.ValidaIdade.Invoke())
+                throw new Exception("Invalid Age");
 
         }
 

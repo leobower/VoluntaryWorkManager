@@ -13,6 +13,8 @@ namespace Voluntario.Domain.BusinessRules.Interfaces
         Func<string, bool> ValidaEmail { get; set; }
         Func<string, bool> ValidaCEP { get; set; }
 
+        Func<bool> ValidaIdade { get;}
+
 
     }
 }
