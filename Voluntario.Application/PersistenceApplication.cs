@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Voluntario.Application
         private IRepositoryWriter       _repositoryWriter;
         private IVoluntarioPersistence  _voluntarioPersistence;
         private IVoluntarioValidations  _voluntarioValidations;
+        private ICryptography _cryptography;
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
 
@@ -24,6 +26,9 @@ namespace Voluntario.Application
         {
             if(_voluntario != null && !String.IsNullOrEmpty(RequestId))
             {
+                if (_cryptography == null)
+                    _cryptography = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+
                 if (_validations == null)
                     _validations = new Validations(RequestId);
 
@@ -41,6 +46,7 @@ namespace Voluntario.Application
                     _voluntarioPersistence = new IoCManager.Voluntario.Business.VoluntarioPersistenceIocManager().GetCurrentIVoluntarioPersitenceImplementation();
                     _voluntarioPersistence.VoluntarioValidations = _voluntarioValidations;
                     _voluntarioPersistence.Voluntario = _voluntario;
+                    _voluntarioPersistence.Encrypt = (a) => _cryptography.Encrypt(_voluntario.Senha);
                     _voluntarioPersistence.Insert = (a) => _repositoryWriter.Add(_voluntario);
                     _voluntarioPersistence.Update = (a) => _repositoryWriter.Update(_voluntario);
                     _voluntarioPersistence.Delete = (a) => _repositoryWriter.Delete(_voluntario);

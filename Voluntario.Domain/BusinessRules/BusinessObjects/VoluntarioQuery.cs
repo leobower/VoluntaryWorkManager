@@ -9,6 +9,7 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
 {
     public class VoluntarioQuery : IVoluntarioQuery
     {
+        private const string _senhaObfuscated = "********";
         Func<string, IVoluntario> _byId;
         Func<string, IVoluntario> _byEmail;
         Func<Int64, IVoluntario> _byCpf;
@@ -55,7 +56,9 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         {
             if (String.IsNullOrEmpty(Id))
                 throw new Exception("Provide Id Property Information");
-            return this.ById(Id);
+            var ret = this.ById(Id);
+            ret.Senha = _senhaObfuscated;
+            return ret;
         }
 
         public IVoluntario GetByCpf()
@@ -64,7 +67,9 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
 
             if (!VoluntarioValidations.ValidaCPF(Cpf.ToString()))
                 throw new Exception("Provide CPF Property Information");
-            return this.ByCpf(Cpf);
+            var ret = this.ByCpf(Cpf);
+            ret.Senha = _senhaObfuscated;
+            return ret;
         }
 
         public IVoluntario GetByEmail()
@@ -72,24 +77,32 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             Validate();
             if (!VoluntarioValidations.ValidaEmail(Email))
                 throw new Exception("Provide Email Property Information");
-            return this.ByEmail(Email);
+            var ret = this.ByEmail(Email);
+            ret.Senha = _senhaObfuscated;
+            return ret;
         }
+
+        private IList<IVoluntario> SetSenhaList(IList<IVoluntario> pList)
+        {
+            var lista = (List<IVoluntario>)pList;
+            lista.ForEach(p => { p.Senha = _senhaObfuscated; });
+            return lista;
+        }
+
+
 
         public IList<IVoluntario> GetByName()
         {
             if (String.IsNullOrEmpty(Name))
                 throw new Exception("Provide Name Property Information");
-            return this.ByName(Name);
+            return SetSenhaList(this.ByName(Name));
         }
 
         public IList<IVoluntario> GetAll()
         {
             if(CurrentPage < 0)
                 throw new Exception("Provide CurrentPage Property Information");
-            IList<IVoluntario> ret = null;
-            ret = this.SelectAllPaged(CurrentPage);
-
-            return ret;
+            return SetSenhaList(this.ByName(Name));
         }
 
     }

@@ -4,25 +4,33 @@ using System.Text;
 using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Voluntario.Domain.BusinessRules.BusinessObjects
+namespace Voluntario.Domain.BusinessRules.Rules
 {
     public class VoluntarioValidations : IVoluntarioValidations
     {
         //TODO - PARAM
-        private const Int16 MIN_AGE = 18; 
+        private const Int16 MIN_AGE = 18;
+        private readonly VoluntaryMaxLengthFieldsValidator _lengthValidator;
 
         private IVoluntario _voluntario;
 
         private Func<string, bool> _validaCPF;
         private Func<string, bool> _validaEmail;
         private Func<string, bool> _validaCEP;
-        private Func< bool> _validaIdade;
+
+        public VoluntarioValidations()
+        {
+            _lengthValidator = new VoluntaryMaxLengthFieldsValidator(_voluntario);
+        }
 
         public Func<string, bool> ValidaCPF { get => _validaCPF; set => _validaCPF = value; }
         public Func<string, bool> ValidaEmail { get => _validaEmail; set => _validaEmail = value; }
         public Func<string, bool> ValidaCEP { get => _validaCEP; set => _validaCEP = value; }
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
         public Func< bool> ValidaIdade { get => validaIdade;}
+        public Func<bool> ValidaId { get => _lengthValidator.IdValidator; }
+        public Func<bool> ValidaLengthCpf { get => _lengthValidator.CpfValidator; }
+        public Func<bool> ValidaSenha { get => _lengthValidator.SenhaValidator; }
 
         private bool validaIdade()
         {
@@ -34,6 +42,8 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             ret = age >= MIN_AGE;
             return ret;
         }
+
+
         private bool ValidateObjVoluntario()
         {
             return Voluntario != null;

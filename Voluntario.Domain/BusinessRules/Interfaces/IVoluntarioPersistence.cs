@@ -14,7 +14,7 @@ namespace Voluntario.Domain.BusinessRules.Interfaces
         Action<IVoluntario> Insert { get; set; }
         Action<IVoluntario> Delete { get; set; }
         Action<IVoluntario> Update { get; set; }
-
+        Func<string,string> Encrypt { set; }
         void InsertVoluntario();
         void UpdateVoluntario();
         void DeleteVoluntario();
