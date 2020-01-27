@@ -24,7 +24,7 @@ namespace Voluntario.Application
 
         private void InitializeObjects()
         {
-            if(_voluntario != null && !String.IsNullOrEmpty(RequestId))
+            if (_voluntario != null && !String.IsNullOrEmpty(RequestId))
             {
                 if (_cryptography == null)
                     _cryptography = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
@@ -66,11 +66,6 @@ namespace Voluntario.Application
             {
                 throw new Exception("Povide Values for the Voluntario and RequestId Properties.");
             }
-
-            
-           
-
-            
 
         }
 

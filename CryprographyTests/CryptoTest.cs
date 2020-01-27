@@ -30,7 +30,7 @@ namespace CryprographyTests
             string valueEncrypted = _customCrypto.Encrypt(value);
             string valueDecrypted = _customCrypto.Decrypt(valueEncrypted);
 
-            Assert.IsTrue(valueEncrypted.Equals(value));
+            Assert.IsTrue(valueDecrypted.Equals(value));
         }
     }
 }

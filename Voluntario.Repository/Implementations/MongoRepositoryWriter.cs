@@ -14,7 +14,6 @@ namespace Voluntario.Data.Repository.Implementations
     public class MongoRepositoryWriter : BaseMongoRepository, IRepositoryWriter
     { 
        
-
         public MongoRepositoryWriter()
         {
             if (base._context == null)

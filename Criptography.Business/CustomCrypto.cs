@@ -11,6 +11,8 @@ namespace Cryptography
         private byte[] _keyByte = { };
 
         private static string _key = "Pass@123";
+        private const string KEY = "DEmiTILAmENUNIL";
+        private const string IV = "DEmitIlPIRAzoloNA";
 
         //Default Initial vector
         private byte[] _ivByte = { 0x01, 0x12, 0x23, 0x34, 0x45, 0x56, 0x67, 0x78 };
@@ -130,13 +132,13 @@ namespace Cryptography
 
         public string Decrypt(string value)
         {
-            return Decrypter(value, string.Empty, string.Empty);
+            return Decrypter(value, KEY, IV);
         }
 
        
         public string Encrypt(string value)
         {
-            return Encrypter(value, String.Empty, String.Empty);
+            return Encrypter(value, KEY, IV);
         }
 
 
