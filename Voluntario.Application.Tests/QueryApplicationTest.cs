@@ -25,8 +25,44 @@ namespace Tests
             _voluntario.Email = "teste1@gmail.com";
             _voluntario.Id = Guid.NewGuid().ToString();
             _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
-            _voluntario.Senha = "Senha";
+            _voluntario.Senha = "12345678";
             _voluntario.Telefone = "12323123";
+        }
+
+        private void AddListVolunt()
+        {
+            _requestId = Guid.NewGuid().ToString();
+            for (int i = 0; i < 5; i++)
+            {
+                _voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+                _voluntario.Cep = "11703680";
+                _voluntario.Cpf = 12753272069;
+                _voluntario.DataNascimento = "16/02/1982";
+                _voluntario.Email = $"teste{i.ToString()}@gmail.com";
+                _voluntario.Id = Guid.NewGuid().ToString();
+                _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
+                _voluntario.Senha = "12345678";
+                _voluntario.Telefone = "12323123";
+
+                AddVoluntario();
+                _voluntario = null;
+            }
+        }
+
+        private void AddVoluntario()
+        {
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            per.Voluntario = _voluntario;
+            per.RequestId = _requestId;
+            per.Add();
+        }
+
+        private void DeleteVoluntario()
+        {
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            per.Voluntario = _voluntario;
+            per.RequestId = _requestId;
+            per.Delete();
         }
 
 
@@ -37,10 +73,7 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Add();
-            //}
+            AddVoluntario();
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
@@ -56,15 +89,13 @@ namespace Tests
                 }
 
             }
-
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Delete();
-            //}
+            DeleteVoluntario();
 
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
         }
+
+       
 
         [Test]
         public void GetByEmail()
@@ -73,10 +104,7 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Add();
-            //}
+            AddVoluntario();
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
@@ -93,10 +121,7 @@ namespace Tests
 
             }
 
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Delete();
-            //}
+            DeleteVoluntario();
 
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
@@ -109,10 +134,7 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Add();
-            //}
+            AddVoluntario();
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
@@ -129,10 +151,7 @@ namespace Tests
 
             }
 
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Delete();
-            //}
+            DeleteVoluntario();
 
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
@@ -145,10 +164,7 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Add();
-            //}
+            AddVoluntario();
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
@@ -165,10 +181,7 @@ namespace Tests
 
             }
 
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Delete();
-            //}
+            DeleteVoluntario();
 
             Assert.IsNotNull(obj);
             Assert.GreaterOrEqual(obj.Count, 1);
@@ -182,10 +195,7 @@ namespace Tests
             if (_voluntario == null)
                 Setup();
             //Add
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Add();
-            //}
+            AddListVolunt();
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
@@ -206,11 +216,6 @@ namespace Tests
                 }
 
             }
-
-            //using (PersistenceApplication per = new PersistenceApplication(_voluntario, _requestId))
-            //{
-            //    per.Delete();
-            //}
 
             Assert.IsNotNull(obj);
             Assert.GreaterOrEqual(obj.Count, 1);

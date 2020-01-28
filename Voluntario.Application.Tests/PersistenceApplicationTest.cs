@@ -24,7 +24,7 @@ namespace Tests
             _voluntario.Email = "le.ribeiro.vca@gmail.com";
             _voluntario.Id = Guid.NewGuid().ToString();
             _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
-            _voluntario.Senha = "Senha";
+            _voluntario.Senha = "12345678";
             _voluntario.Telefone = "12323123";
         }
 

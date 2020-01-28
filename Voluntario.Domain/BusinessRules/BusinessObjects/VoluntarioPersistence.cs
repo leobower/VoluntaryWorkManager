@@ -78,8 +78,17 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         private void SetSenha()
         {
             var att = typeof(IVoluntario).GetTypeInfo().GetProperty("Senha").GetCustomAttribute<CustomMaxLength>();
-            if (!String.IsNullOrEmpty(Voluntario.Senha) &&  Voluntario.Senha.Length.Equals(att.MinLength))
-                Voluntario.Senha = _encrypt(Voluntario.Senha);
+            if(!String.IsNullOrEmpty(Voluntario.Senha))
+            {
+                if(!Voluntario.Senha.Length.Equals(att.MaxLength))
+                {
+                    if (Voluntario.Senha.Length.Equals(att.MinLength))
+                        Voluntario.Senha = _encrypt(Voluntario.Senha);
+                    else
+                        throw new Exception("Invalid value for Senha Property");
+                }
+            }
+           
         }
 
 

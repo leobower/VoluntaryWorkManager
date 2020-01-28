@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Voluntario.Domain.BusinessRules.Rules;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Domain.BusinessRules.Interfaces
@@ -17,7 +18,7 @@ namespace Voluntario.Domain.BusinessRules.Interfaces
         Func<bool> ValidaSenha { get; }
 
         Func<bool> ValidaIdade { get;}
-
+        VoluntaryMaxLengthFieldsValidator LengthValidator { get; set; }
 
     }
 }

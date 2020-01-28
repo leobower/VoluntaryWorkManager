@@ -10,7 +10,8 @@ namespace Voluntario.Domain.BusinessRules.Rules
     {
         //TODO - PARAM
         private const Int16 MIN_AGE = 18;
-        private readonly VoluntaryMaxLengthFieldsValidator _lengthValidator;
+        private VoluntaryMaxLengthFieldsValidator _lengthValidator;
+        public VoluntaryMaxLengthFieldsValidator LengthValidator { get => _lengthValidator; set => _lengthValidator = value; }
 
         private IVoluntario _voluntario;
 
@@ -20,7 +21,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
 
         public VoluntarioValidations()
         {
-            _lengthValidator = new VoluntaryMaxLengthFieldsValidator(_voluntario);
+            _lengthValidator = new VoluntaryMaxLengthFieldsValidator();
         }
 
         public Func<string, bool> ValidaCPF { get => _validaCPF; set => _validaCPF = value; }
@@ -31,6 +32,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
         public Func<bool> ValidaId { get => _lengthValidator.IdValidator; }
         public Func<bool> ValidaLengthCpf { get => _lengthValidator.CpfValidator; }
         public Func<bool> ValidaSenha { get => _lengthValidator.SenhaValidator; }
+       
 
         private bool validaIdade()
         {

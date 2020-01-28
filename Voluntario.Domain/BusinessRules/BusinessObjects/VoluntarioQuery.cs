@@ -89,8 +89,6 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             return lista;
         }
 
-
-
         public IList<IVoluntario> GetByName()
         {
             if (String.IsNullOrEmpty(Name))
@@ -102,7 +100,7 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         {
             if(CurrentPage < 0)
                 throw new Exception("Provide CurrentPage Property Information");
-            return SetSenhaList(this.ByName(Name));
+            return SetSenhaList(this.SelectAllPaged(CurrentPage));
         }
 
     }

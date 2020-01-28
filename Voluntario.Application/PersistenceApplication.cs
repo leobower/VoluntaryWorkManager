@@ -41,6 +41,16 @@ namespace Voluntario.Application
                     _repositoryWriter.CollectionName = "Voluntario";///TODO
                 }
 
+                if (_voluntarioValidations == null)
+                {
+                    _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
+                    _voluntarioValidations.LengthValidator.Volunt = _voluntario;
+                    _voluntarioValidations.Voluntario = _voluntario;
+                    _voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(_voluntario.Cep);
+                    _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(_voluntario.Cpf.ToString());
+                    _voluntarioValidations.ValidaEmail = (a) => _validations.EmailValidator.IsValidEmail(_voluntario.Email);
+                }
+
                 if (_voluntarioPersistence == null)
                 {
                     _voluntarioPersistence = new IoCManager.Voluntario.Business.VoluntarioPersistenceIocManager().GetCurrentIVoluntarioPersitenceImplementation();
@@ -51,15 +61,6 @@ namespace Voluntario.Application
                     _voluntarioPersistence.Update = (a) => _repositoryWriter.Update(_voluntario);
                     _voluntarioPersistence.Delete = (a) => _repositoryWriter.Delete(_voluntario);
 
-                }
-
-
-                if (_voluntarioValidations == null)
-                {
-                    _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
-                    _voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(_voluntario.Cep);
-                    _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(_voluntario.Cpf.ToString());
-                    _voluntarioValidations.ValidaEmail = (a) => _validations.EmailValidator.IsValidEmail(_voluntario.Email);
                 }
             }
             else

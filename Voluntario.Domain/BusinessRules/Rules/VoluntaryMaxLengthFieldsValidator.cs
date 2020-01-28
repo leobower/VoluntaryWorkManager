@@ -6,13 +6,15 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Domain.BusinessRules.Rules
 {
-    internal class VoluntaryMaxLengthFieldsValidator
+    public class VoluntaryMaxLengthFieldsValidator
     {
-        private readonly IVoluntario _volunt;
+        private IVoluntario _volunt;
 
-        internal VoluntaryMaxLengthFieldsValidator(IVoluntario voluntario)
+        public IVoluntario Volunt { get => _volunt; set => _volunt = value; }
+
+        internal VoluntaryMaxLengthFieldsValidator()
         {
-            _volunt = voluntario;
+            
         }
 
         internal bool IdValidator()
@@ -29,7 +31,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
                 }
             }
 
-            return false;
+            return ret;
         }
 
         internal bool CpfValidator()
@@ -41,7 +43,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
                 ret = _volunt.Cpf.ToString().Length.Equals(att.MaxLength);
             }
 
-            return false;
+            return ret;
         }
 
         internal bool CepValidator()
@@ -53,7 +55,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
                 ret = _volunt.Cep.Length.Equals(att.MaxLength);
             }
 
-            return false;
+            return ret;
         }
 
         internal bool SenhaValidator()
@@ -65,7 +67,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
                 ret = _volunt.Senha.Length >= att.MinLength && _volunt.Senha.Length <= att.MaxLength;
             }
 
-            return false;
+            return ret;
         }
 
        
