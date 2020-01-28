@@ -16,7 +16,7 @@ namespace Voluntario.Application
         private IVoluntarioPersistence  _voluntarioPersistence;
         private IVoluntarioValidations  _voluntarioValidations;
         private ICryptography _cryptography;
-        private IVoluntarioQuery _query;
+        private IQueryApplication _query;
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
 
@@ -27,8 +27,6 @@ namespace Voluntario.Application
         {
             if (_voluntario != null && !String.IsNullOrEmpty(RequestId))
             {
-               
-
                 if (_cryptography == null)
                     _cryptography = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
 
@@ -67,9 +65,9 @@ namespace Voluntario.Application
                 }
                 if (_query == null)
                 {
-                    _query = new IoCManager.Voluntario.Business.VoluntarioQueryIocManager().GetCurrentIVoluntarioQueryImplementation();
-                    _voluntarioPersistence.ExistsCPF = (a) => _query.ByCpf(_voluntario.Cpf);
-                    _voluntarioPersistence.ExistsEmail = (a) => _query.ByEmail(_voluntario.Email);
+                    //_query = new IoCManager. Voluntario.'.VoluntarioQueryIocManager().GetCurrentIVoluntarioQueryImplementation();
+                    //_voluntarioPersistence.ExistsCPF = (a) => _query.ByCpf(_voluntario.Cpf);
+                    //_voluntarioPersistence.ExistsEmail = (a) => _query.ByEmail(_voluntario.Email);
 
                 }
             }
