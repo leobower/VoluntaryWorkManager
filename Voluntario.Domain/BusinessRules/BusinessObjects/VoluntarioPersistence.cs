@@ -16,6 +16,9 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         private Action<IVoluntario> _insert;
         private Action<IVoluntario> _delete;
         private Action<IVoluntario> _update;
+        private Func<string, IVoluntario> _existsEmail;
+        private Func<Int64, IVoluntario> _existsCPF;
+
         private Func<string, string> _encrypt;
 
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
@@ -25,6 +28,8 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         public Action<IVoluntario> Delete { get => _delete; set => _delete = value; }
         public Action<IVoluntario> Update { get => _update; set => _update = value; }
         public Func<string, string> Encrypt { set => _encrypt = value; }
+        public Func<string, IVoluntario> ExistsEmail { get => _existsEmail; set => _existsEmail = value; }
+        public Func<Int64, IVoluntario> ExistsCPF { get => _existsCPF; set => _existsCPF = value; }
 
         private bool ValidateObjVoluntario()
         {
@@ -96,7 +101,17 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         {
             ValidateVoluntario();
             SetSenha();
-            this.Insert(Voluntario);
+            if (ExistsCPF(_voluntario.Cpf) == null )
+            {
+                if(this.ExistsEmail(_voluntario.Email) == null)
+                {
+                    this.Insert(Voluntario);
+                }
+                else
+                    throw new Exception("Email Already Exists");
+            }
+            else
+                throw new Exception("CPF Already Exists");
         }
 
         public void UpdateVoluntario()

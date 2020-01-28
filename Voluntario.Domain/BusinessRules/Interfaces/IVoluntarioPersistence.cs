@@ -15,6 +15,8 @@ namespace Voluntario.Domain.BusinessRules.Interfaces
         Action<IVoluntario> Delete { get; set; }
         Action<IVoluntario> Update { get; set; }
         Func<string,string> Encrypt { set; }
+        Func<string, IVoluntario> ExistsEmail { get; set; }
+        Func<Int64, IVoluntario> ExistsCPF { get; set; }
         void InsertVoluntario();
         void UpdateVoluntario();
         void DeleteVoluntario();
