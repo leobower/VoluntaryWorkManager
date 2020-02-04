@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Voluntario", "Voluntario", "{4B8B56D0-DBBE-4987-83D4-1959E24A6A25}"
 EndProject
@@ -89,9 +89,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptography", "Criptograph
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Application", "IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.csproj", "{BA563AF6-AB48-482D-9A6E-1E7F1D04B14B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryprographyTests", "CryprographyTests\CryprographyTests.csproj", "{702DCC8B-4769-499E-9DF8-CBE1EE89F7F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryprographyTests", "CryprographyTests\CryprographyTests.csproj", "{702DCC8B-4769-499E-9DF8-CBE1EE89F7F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.Cryptography", "IoCManager.Cryptography\IoCManager.Cryptography.csproj", "{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Cryptography", "IoCManager.Cryptography\IoCManager.Cryptography.csproj", "{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voluntario.API.Rest", "Voluntario.API.Rest\Voluntario.API.Rest.csproj", "{29B463C1-851A-4EBC-9721-8D7E2090E401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voluntario.API.SOUP", "Voluntario.API.SOUP\Voluntario.API.SOUP.csproj", "{75558731-53A4-4E2C-AC36-F2BD110A5F8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -223,6 +227,14 @@ Global
 		{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B463C1-851A-4EBC-9721-8D7E2090E401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B463C1-851A-4EBC-9721-8D7E2090E401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B463C1-851A-4EBC-9721-8D7E2090E401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B463C1-851A-4EBC-9721-8D7E2090E401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75558731-53A4-4E2C-AC36-F2BD110A5F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75558731-53A4-4E2C-AC36-F2BD110A5F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75558731-53A4-4E2C-AC36-F2BD110A5F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75558731-53A4-4E2C-AC36-F2BD110A5F8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -271,6 +283,8 @@ Global
 		{BA563AF6-AB48-482D-9A6E-1E7F1D04B14B} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
 		{702DCC8B-4769-499E-9DF8-CBE1EE89F7F0} = {E50EE55D-A3D8-45D3-9F50-3988DAE55CEC}
 		{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{29B463C1-851A-4EBC-9721-8D7E2090E401} = {458580D3-7D90-43CB-B965-E255445703DE}
+		{75558731-53A4-4E2C-AC36-F2BD110A5F8C} = {458580D3-7D90-43CB-B965-E255445703DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98EF0224-F03B-4148-9EC3-D50C12A24B41}

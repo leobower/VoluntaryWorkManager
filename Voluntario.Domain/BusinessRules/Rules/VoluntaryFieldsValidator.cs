@@ -6,13 +6,13 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Domain.BusinessRules.Rules
 {
-    public class VoluntaryMaxLengthFieldsValidator
+    public class VoluntaryFieldsValidator
     {
         private IVoluntario _volunt;
 
         public IVoluntario Volunt { get => _volunt; set => _volunt = value; }
 
-        internal VoluntaryMaxLengthFieldsValidator()
+        internal VoluntaryFieldsValidator()
         {
             
         }

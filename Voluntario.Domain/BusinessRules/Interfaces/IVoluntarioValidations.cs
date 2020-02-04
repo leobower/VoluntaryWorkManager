@@ -18,7 +18,7 @@ namespace Voluntario.Domain.BusinessRules.Interfaces
         Func<bool> ValidaSenha { get; }
 
         Func<bool> ValidaIdade { get;}
-        VoluntaryMaxLengthFieldsValidator LengthValidator { get; set; }
+        VoluntaryFieldsValidator LengthValidator { get; set; }
 
     }
 }
