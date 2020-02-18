@@ -9,7 +9,7 @@ using CentralSharedModel.Interfaces;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace Voluntario.Data.Repository.Implementations
+namespace Voluntario.Data.Repository.Implementations.Mongo
 {
     public class MongoRepositoryWriter : BaseMongoRepository, IRepositoryWriter
     { 

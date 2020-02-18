@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Context;
 
-namespace Voluntario.Data.Repository.Implementations
+namespace Voluntario.Data.Repository.Implementations.Mongo
 {
     public abstract class BaseMongoRepository
     {

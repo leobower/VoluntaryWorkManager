@@ -8,7 +8,7 @@ using MongoDB.Driver;
 using System.Text.RegularExpressions;
 using MongoDB.Bson;
 
-namespace Voluntario.Data.Repository.Implementations
+namespace Voluntario.Data.Repository.Implementations.Mongo
 {
     public class MongoRepositoryQuery : BaseMongoRepository, IRepositoryQuery
     {
