@@ -23,7 +23,7 @@ namespace Voluntario.Domain.Entities.Interfaces
         string Senha { get; set; }
         [CustomMaxLength(20, 20)]
         string Telefone { get; set; }   
-        //IList<string> AreasInteresse { get; set; }
+        IList<string> AreasInteresse { get; set; }
 
     }
 }

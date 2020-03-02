@@ -42,6 +42,8 @@ namespace CentralTracer.Business.Publisher
             _model.MethodName = _method.Name;
             _model.Parameters = GetParameters(_method.GetParameters());
             _model.StartTime = DateTime.Now.ToString();
+            _model.ElapsedTime = 0;
+            _model.EndTime = null;
 
             _publisher.Enqueue(_model.ToString());
             _sw = Stopwatch.StartNew();

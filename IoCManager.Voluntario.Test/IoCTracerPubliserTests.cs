@@ -15,20 +15,18 @@ namespace Tests
         }
 
         [Test]
-        public void TestTracerInjection()
+        public void TestTracerInjectionNoParameters()
         {
-            //ITracerWrapper obj;
-            //try
-            //{
-            //    obj = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(Guid.NewGuid().ToString());
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
-            //Assert.IsTrue(obj != null && obj.GetType().IsClass);
-
-
+            ITracerWrapper obj;
+            try
+            {
+                obj = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(Guid.NewGuid().ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            Assert.IsTrue(obj != null && obj.GetType().IsClass);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace CentralTracer.Model
 
         public override string ToString()
         {
-            return String.Format("StartTime: {0}, RequestId: {1},  Class: {2}, Method: {3}, Parameters: [{4}], EndTime: {5}, Elapsed: {6}ms", StartTime, RequestId, ClassName, MethodName, Parameters, EndTime, ElapsedTime);
+            return String.Format("StartTime: {0}, RequestId: {1},  Class: {2}, Method: {3}, Parameters: [{4}], EndTime: {5}, Elapsed: {6}ms, Id: {7}", StartTime, RequestId, ClassName, MethodName, Parameters, EndTime, ElapsedTime, Id);
         }
 
     }

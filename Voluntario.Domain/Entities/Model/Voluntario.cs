@@ -16,7 +16,7 @@ namespace Voluntario.Domain.Entities.Model
         private string _nome;
         private string _senha;
         private string _telefone;
-        //private IList<string> _areasInteresse;
+        private IList<string> _areasInteresse;
         public string Id { get => _id; set => _id = value; }
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string Cep { get => cep; set => cep = value; }
@@ -26,7 +26,7 @@ namespace Voluntario.Domain.Entities.Model
         public string Nome { get => _nome; set => _nome = value; }
         public string Senha { get => _senha; set => _senha = value; }
         public string Telefone { get => _telefone; set => _telefone = value; }
-        //public IList<string> AreasInteresse { get => _areasInteresse; set => _areasInteresse = value; }
+        public IList<string> AreasInteresse { get => _areasInteresse; set => _areasInteresse = value; }
 
         public Voluntario()
         {
