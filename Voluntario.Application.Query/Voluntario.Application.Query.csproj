@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Repository\IoCManager.Voluntario.Data.Repository.csproj" />
+    <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
+    <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

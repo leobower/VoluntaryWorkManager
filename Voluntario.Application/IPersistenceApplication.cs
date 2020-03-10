@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Voluntario.Application
+namespace Voluntario.Application.Persistence
 {
     public interface IPersistenceApplication
     {
