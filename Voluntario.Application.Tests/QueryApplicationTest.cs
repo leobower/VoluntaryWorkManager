@@ -13,6 +13,9 @@ namespace Tests
     public class QueryApplicationTest : IRequest
     {
         private string _requestId;
+        private string connStr = "localhost";
+        private string dataBase = "VoluntaryWorkManager";
+        private string collection = "Voluntario";
         public string RequestId { get => _requestId; set => _requestId = value; }
         private IVoluntario _voluntario;
 
@@ -53,7 +56,7 @@ namespace Tests
 
         private void AddVoluntario()
         {
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
             per.Add();
@@ -61,7 +64,7 @@ namespace Tests
 
         private void DeleteVoluntario()
         {
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
             per.Delete();

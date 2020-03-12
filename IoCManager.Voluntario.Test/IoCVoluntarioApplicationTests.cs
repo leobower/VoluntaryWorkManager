@@ -22,7 +22,7 @@ namespace Tests
         {
             IPersistenceApplication persistenceApp = null;
             PersistenceApplicationIoCManager ioc = new PersistenceApplicationIoCManager();
-            persistenceApp = ioc.GetCurrentIPersistenceApplicationImplementation();
+            persistenceApp = ioc.GetCurrentIPersistenceApplicationImplementation("localhost", "VoluntaryWorkManager", "Voluntario");
 
             Assert.IsNotNull(persistenceApp);
 

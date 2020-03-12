@@ -11,6 +11,12 @@ namespace Tests
     public class PersistenceApplicationTest : IRequest
     {
         private string _requestId;
+        //"localhost", "VoluntaryWorkManager", "Voluntario"
+        private string connStr = "localhost";
+        private string dataBase = "VoluntaryWorkManager";
+        private string collection = "Voluntario";
+
+
         public string RequestId { get => _requestId; set => _requestId = value; }
 
         private IVoluntario _voluntario;
@@ -37,7 +43,7 @@ namespace Tests
         {
             if (_voluntario == null)
                 Setup();
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
             per.Add();
@@ -48,7 +54,7 @@ namespace Tests
         public void UpdateTest()
         {
             AddTest();
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
 
@@ -61,7 +67,7 @@ namespace Tests
         public void DeleteTest()
         {
             AddTest();
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
             per.Delete();

@@ -36,9 +36,6 @@ namespace Voluntario.Application.Persistence
                 {
                     _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIMongoRepositoryWriterCurrentImplementation();
                     _repositoryWriter.RequestId = this.RequestId;
-                    _repositoryWriter.ConnStr = "localhost";///TODO
-                    _repositoryWriter.DataBase = "VoluntaryWorkManager";///TODO
-                    _repositoryWriter.CollectionName = "Voluntario";///TODO
                 }
 
                 if (_voluntarioValidations == null)
@@ -78,9 +75,16 @@ namespace Voluntario.Application.Persistence
             }
 
         }
-        public PersistenceApplication() 
+        public PersistenceApplication(string connStr, string database, string collectionName) 
         {
-
+            if (_repositoryWriter == null)
+            {
+                _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIMongoRepositoryWriterCurrentImplementation();
+                _repositoryWriter.RequestId = this.RequestId;
+                _repositoryWriter.ConnStr = connStr;
+                _repositoryWriter.DataBase = database;
+                _repositoryWriter.CollectionName = collectionName;
+            }
         }
 
        

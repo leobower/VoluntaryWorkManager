@@ -15,9 +15,15 @@ namespace IoCManager.Voluntario.Application.Persistence
         /// </summary>
         private readonly string _currentImplementation = "PersistenceApplication";
 
-        public IPersistenceApplication GetCurrentIPersistenceApplicationImplementation()
+        //public IPersistenceApplication GetCurrentIPersistenceApplicationImplementation()
+        //{
+        //    return base.GetCurrentImplementation(_currentImplementation);
+        //}
+
+        public IPersistenceApplication GetCurrentIPersistenceApplicationImplementation(string connStr, string database, string collectionName)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
-        }
+            object[] arrParams = new object[] { connStr, database , collectionName};
+            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+        }       
     }
 }
