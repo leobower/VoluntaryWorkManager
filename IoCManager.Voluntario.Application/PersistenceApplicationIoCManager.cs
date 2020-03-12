@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Application;
+using Voluntario.Application.Persistence;
 
-namespace IoCManager.Voluntario.Application
+namespace IoCManager.Voluntario.Application.Persistence
 {
     public class PersistenceApplicationIoCManager : BaseIoCManager<IPersistenceApplication>
     {

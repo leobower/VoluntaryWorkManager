@@ -1,16 +1,16 @@
 ﻿using CentralSharedModel.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using Voluntario.Application.BaseClasses;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Voluntario.Application
+namespace Voluntario.Application.Query
 {
-    public class QueryApplication : IRequest, IQueryApplication
+    public class QueryApplication : Validations,IRequest, IQueryApplication
     {
-        private string _requestId;
+        //private string _requestId;
         private Int64 _cpf;
         private string _email;
         private string _id;
@@ -18,7 +18,7 @@ namespace Voluntario.Application
         private int _currentPage;
         private double _totalPages;
 
-        public string RequestId { get => _requestId; set => _requestId = value; }
+        //public string RequestId { get => _requestId; set => _requestId = value; }
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string VoluntarioId { get => _id; set => _id = value; }
         public string VoluntarioName { get => name; set => name = value; }
@@ -28,7 +28,6 @@ namespace Voluntario.Application
 
         private IRepositoryQuery _query;
         private IVoluntarioQuery _voluntarioQuery;
-        private Validations _validations;
         private IVoluntarioValidations _voluntarioValidations;
 
 
@@ -44,14 +43,12 @@ namespace Voluntario.Application
                     _query.CollectionName = "Voluntario";///TODO
                 }
 
-                if (_validations == null)
-                    _validations = new Validations(RequestId);
 
                 if (_voluntarioValidations == null)
                 {
                     _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
-                    _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(Cpf.ToString());
-                    _voluntarioValidations.ValidaEmail = (a) => _validations.EmailValidator.IsValidEmail(Email);
+                    _voluntarioValidations.ValidaCPF = (a) => CpfValidator.ValidateCPF(Cpf.ToString());
+                    _voluntarioValidations.ValidaEmail = (a) => EmailValidator.IsValidEmail(Email);
                     //_voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(Cep);
 
                 }
@@ -138,7 +135,6 @@ namespace Voluntario.Application
 
         public void Dispose()
         {
-            _validations = null;
             _query = null;
             _voluntarioQuery = null;
             _voluntarioValidations = null;

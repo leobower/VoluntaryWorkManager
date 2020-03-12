@@ -1,7 +1,10 @@
 using IoCManager.Voluntario.Application;
+using IoCManager.Voluntario.Application.Persistence;
+using IoCManager.Voluntario.Application.Query;
 using NUnit.Framework;
 using System;
-using Voluntario.Application;
+using Voluntario.Application.Persistence;
+using Voluntario.Application.Query;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Tests

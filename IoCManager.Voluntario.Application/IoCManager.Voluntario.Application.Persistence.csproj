@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
-    <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.csproj" />
+    <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

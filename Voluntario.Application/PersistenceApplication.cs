@@ -1,24 +1,23 @@
 ﻿using CentralSharedModel.Interfaces;
 using Cryptography;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
+using Voluntario.Application.BaseClasses;
+using Voluntario.Application.Query;
 
-namespace Voluntario.Application
+namespace Voluntario.Application.Persistence
 {
-    public class PersistenceApplication : IRequest, IDisposable, IPersistenceApplication
+    public class PersistenceApplication : Validations, IDisposable, IPersistenceApplication
     {
-        private Validations             _validations;
+       // private Validations             _validations;
         private IRepositoryWriter       _repositoryWriter;
         private IVoluntarioPersistence  _voluntarioPersistence;
         private IVoluntarioValidations  _voluntarioValidations;
         private ICryptography _cryptography;
         private IQueryApplication _query;
         private string _requestId;
-        public string RequestId { get => _requestId; set => _requestId = value; }
 
         private IVoluntario _voluntario;
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
@@ -30,8 +29,8 @@ namespace Voluntario.Application
                 if (_cryptography == null)
                     _cryptography = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
 
-                if (_validations == null)
-                    _validations = new Validations(RequestId);
+                //if (_validations == null)
+                //    _validations = new Validations(RequestId);
 
                 if (_repositoryWriter == null)
                 {
@@ -47,9 +46,9 @@ namespace Voluntario.Application
                     _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
                     _voluntarioValidations.LengthValidator.Volunt = _voluntario;
                     _voluntarioValidations.Voluntario = _voluntario;
-                    _voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(_voluntario.Cep);
-                    _voluntarioValidations.ValidaCPF = (a) => _validations.CpfValidator.ValidateCPF(_voluntario.Cpf.ToString());
-                    _voluntarioValidations.ValidaEmail = (a) => _validations.EmailValidator.IsValidEmail(_voluntario.Email);
+                    _voluntarioValidations.ValidaCEP = (a) => base.CepValidator.ValidateCep(_voluntario.Cep);
+                    _voluntarioValidations.ValidaCPF = (a) => base.CpfValidator.ValidateCPF(_voluntario.Cpf.ToString());
+                    _voluntarioValidations.ValidaEmail = (a) => base.EmailValidator.IsValidEmail(_voluntario.Email);
                 }
 
                 if (_voluntarioPersistence == null)
@@ -65,9 +64,11 @@ namespace Voluntario.Application
                 }
                 if (_query == null)
                 {
-                    //_query = new IoCManager. Voluntario.'.VoluntarioQueryIocManager().GetCurrentIVoluntarioQueryImplementation();
-                    //_voluntarioPersistence.ExistsCPF = (a) => _query.ByCpf(_voluntario.Cpf);
-                    //_voluntarioPersistence.ExistsEmail = (a) => _query.ByEmail(_voluntario.Email);
+                    _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation();
+                    _query.Cpf = _voluntario.Cpf;
+                    _query.Email = _voluntario.Email;
+                    _voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
+                    _voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
 
                 }
             }
@@ -77,28 +78,18 @@ namespace Voluntario.Application
             }
 
         }
-
-        public PersistenceApplication()
+        public PersistenceApplication() 
         {
 
         }
 
-        //public PersistenceApplication(IVoluntario voluntario, string requestId)
-        //{
-        //    RequestId = requestId;
-        //    if (voluntario != null)
-        //    {
-        //        _voluntario = voluntario;
-        //        InitializeObjects();
-        //    }
-
-        //}
-
+       
         public void Add()
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 InitializeObjects();
+               
                 _voluntarioPersistence.InsertVoluntario();
             }
            
@@ -124,7 +115,6 @@ namespace Voluntario.Application
 
         public void Dispose()
         {
-            _validations = null;
             _repositoryWriter = null;
             _voluntarioPersistence = null;
             _voluntarioValidations = null;

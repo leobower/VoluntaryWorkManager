@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Application;
+using Voluntario.Application.Query;
 
-namespace IoCManager.Voluntario.Application
+namespace IoCManager.Voluntario.Application.Query
 {
     public class QueryApplicationIoCManager : BaseIoCManager<IQueryApplication>
     {

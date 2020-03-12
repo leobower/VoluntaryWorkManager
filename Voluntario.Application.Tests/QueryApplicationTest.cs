@@ -4,6 +4,8 @@ using System.Text;
 using CentralSharedModel.Interfaces;
 using NUnit.Framework;
 using Voluntario.Application;
+using Voluntario.Application.Persistence;
+using Voluntario.Application.Query;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Tests
@@ -51,7 +53,7 @@ namespace Tests
 
         private void AddVoluntario()
         {
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
             per.Add();
@@ -59,7 +61,7 @@ namespace Tests
 
         private void DeleteVoluntario()
         {
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
+            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation();
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
             per.Delete();
@@ -75,7 +77,7 @@ namespace Tests
             //Add
             AddVoluntario();
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
                 qry.RequestId = _requestId;
                 qry.Cpf = _voluntario.Cpf;
@@ -106,7 +108,7 @@ namespace Tests
             //Add
             AddVoluntario();
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
                 qry.RequestId = _requestId;
                 qry.Email = _voluntario.Email;
@@ -136,7 +138,7 @@ namespace Tests
             //Add
             AddVoluntario();
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
                 qry.RequestId = _requestId;
                 qry.VoluntarioId = _voluntario.Id;
@@ -166,7 +168,7 @@ namespace Tests
             //Add
             AddVoluntario();
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
                 qry.RequestId = _requestId;
                 qry.VoluntarioName = _voluntario.Nome.Split(':')[0];
@@ -197,7 +199,7 @@ namespace Tests
             //Add
             AddListVolunt();
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
+            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation())
             {
                 //qry.VoluntarioName = _voluntario.Nome.Split(':')[0];
                 try

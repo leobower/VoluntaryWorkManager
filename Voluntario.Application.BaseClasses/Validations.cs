@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Voluntario.Application
+namespace Voluntario.Application.BaseClasses
 {
-    internal class Validations : IRequest
+    public abstract class Validations : IRequest
     {
         private CepValidator _cepValidator;
         private CpfValidator _cpfValidator;
@@ -20,9 +20,8 @@ namespace Voluntario.Application
         public DateTimeValidator DateTimeValidator { get => _dateTimeValidator; set => _dateTimeValidator = value; }
         public EmailValidator EmailValidator { get => _emailValidator; set => _emailValidator = value; }
 
-        public Validations(string requestId)
+        public Validations()
         {
-            RequestId = requestId;
             _cepValidator = new CepValidator(RequestId);
             _cpfValidator = new CpfValidator(RequestId);
             _dateTimeValidator = new DateTimeValidator(RequestId);

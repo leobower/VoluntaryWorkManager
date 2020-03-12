@@ -101,17 +101,13 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         {
             ValidateVoluntario();
             SetSenha();
-            //if (ExistsCPF(_voluntario.Cpf) == null )
-            //{
-            //    if(this.ExistsEmail(_voluntario.Email) == null)
-            //    {
+            if (ExistsCPF(_voluntario.Cpf) != null)
+                throw new Exception("Check the CPF information!");
+            else
+               if (ExistsEmail(_voluntario.Email) != null)
+                   throw new Exception("Check the CPF information!");
+
             this.Insert(Voluntario);
-            //    }
-            //    else
-            //        throw new Exception("Email Already Exists");
-            //}
-            //else
-            //    throw new Exception("CPF Already Exists");
         }
 
         public void UpdateVoluntario()

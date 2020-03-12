@@ -87,7 +87,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnviromentVariablesManager.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptography", "Criptography.Business\Cryptography.csproj", "{4063AB59-568C-4932-A111-66D287537BA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Application", "IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.csproj", "{BA563AF6-AB48-482D-9A6E-1E7F1D04B14B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Application.Persistence", "IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.Persistence.csproj", "{BA563AF6-AB48-482D-9A6E-1E7F1D04B14B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryprographyTests", "CryprographyTests\CryprographyTests.csproj", "{702DCC8B-4769-499E-9DF8-CBE1EE89F7F0}"
 EndProject
@@ -107,9 +107,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{093860E6-3642-41DB-A189-BAB00FED9E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voluntario.Application.Query", "Voluntario.Application.Query\Voluntario.Application.Query.csproj", "{0C8527E4-F289-4C79-820B-337D76C07F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Application.Query", "Voluntario.Application.Query\Voluntario.Application.Query.csproj", "{0C8527E4-F289-4C79-820B-337D76C07F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voluntario.Application.BaseClasses", "Voluntario.Application.BaseClasses\Voluntario.Application.BaseClasses.csproj", "{B2985881-83DE-4D6D-A14E-1ACF49735831}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Application.BaseClasses", "Voluntario.Application.BaseClasses\Voluntario.Application.BaseClasses.csproj", "{B2985881-83DE-4D6D-A14E-1ACF49735831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.Voluntario.Application.Query", "IoCManager.Voluntario.Application.Query\IoCManager.Voluntario.Application.Query.csproj", "{C0FCACD5-C650-4777-8BDA-F19C61EA458D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -257,6 +259,10 @@ Global
 		{B2985881-83DE-4D6D-A14E-1ACF49735831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2985881-83DE-4D6D-A14E-1ACF49735831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2985881-83DE-4D6D-A14E-1ACF49735831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -313,6 +319,7 @@ Global
 		{093860E6-3642-41DB-A189-BAB00FED9E10} = {04DD8D69-38D8-40D3-85AB-2AAB34ABC711}
 		{0C8527E4-F289-4C79-820B-337D76C07F1E} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
 		{B2985881-83DE-4D6D-A14E-1ACF49735831} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
+		{C0FCACD5-C650-4777-8BDA-F19C61EA458D} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98EF0224-F03B-4148-9EC3-D50C12A24B41}

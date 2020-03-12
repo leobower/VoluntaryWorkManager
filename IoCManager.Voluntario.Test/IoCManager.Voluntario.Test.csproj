@@ -23,14 +23,15 @@
     <ProjectReference Include="..\IoCManager.Cryptography\IoCManager.Cryptography.csproj" />
     <ProjectReference Include="..\IoCManager.SerializationManager.Voluntario\IoCManager.SerializationManager.Voluntario.csproj" />
     <ProjectReference Include="..\IoCManager.TraceModel\IoCManager.CentralTrace.Model.csproj" />
-    <ProjectReference Include="..\IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Application.Query\IoCManager.Voluntario.Application.Query.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.Persistence.csproj" />
     <ProjectReference Include="..\IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj" />
     <ProjectReference Include="..\IoCManager.Voluntario.Data.Context\IoCManager.Voluntario.Data.Context.csproj" />
     <ProjectReference Include="..\IoCManager.Voluntario.Data.Repository\IoCManager.Voluntario.Data.Repository.csproj" />
     <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
     <ProjectReference Include="..\IoCManagerSharedModel\IoCManager.SharedModel.csproj" />
     <ProjectReference Include="..\SerializationManager.Voluntario\SerializationManager.Voluntario.csproj" />
-    <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.csproj" />
+    <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
     <ProjectReference Include="..\Voluntario.Data.Context\Voluntario.Data.Context.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
     <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />
