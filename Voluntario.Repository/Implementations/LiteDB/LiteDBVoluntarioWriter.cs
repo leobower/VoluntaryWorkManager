@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Context;
-using Voluntario.Data.Context.LiteDB;
+using Voluntario.Data.Context.LiteDb;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
 

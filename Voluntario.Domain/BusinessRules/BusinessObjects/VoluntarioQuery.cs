@@ -57,7 +57,8 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             if (String.IsNullOrEmpty(Id))
                 throw new Exception("Provide Id Property Information");
             var ret = this.ById(Id);
-            ret.Senha = _senhaObfuscated;
+            if (ret != null)
+                ret.Senha = _senhaObfuscated;
             return ret;
         }
 
@@ -68,7 +69,8 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             if (!VoluntarioValidations.ValidaCPF(Cpf.ToString()))
                 throw new Exception("Provide CPF Property Information");
             var ret = this.ByCpf(Cpf);
-            ret.Senha = _senhaObfuscated;
+            if(ret != null)
+                ret.Senha = _senhaObfuscated;
             return ret;
         }
 
@@ -78,7 +80,8 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
             if (!VoluntarioValidations.ValidaEmail(Email))
                 throw new Exception("Provide Email Property Information");
             var ret = this.ByEmail(Email);
-            ret.Senha = _senhaObfuscated;
+            if (ret != null)
+                ret.Senha = _senhaObfuscated;
             return ret;
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Voluntario.Application.BaseClasses;
+using Voluntario.Data.Context.LiteDb;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
@@ -76,17 +77,21 @@ namespace Voluntario.Application.Query
             {
                 _queryRepository = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation(database, collectionName);
                 _queryRepository.RequestId = RequestId;
-                //_query.ConnStr = "localhost";///TODO
-                //_query.DataBase = "VoluntaryWorkManager";///TODO
-                //_query.CollectionName = "Voluntario";///TODO
+                _queryRepository.IsToDispose = true;
             }
         }
 
-        public QueryApplication(string requestId)
+        public QueryApplication(IVoluntarioLiteDbContext context)
         {
-            RequestId = requestId;
-            InitializeObjects();
+            if (_queryRepository == null)
+            {
+                _queryRepository = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation(context);
+                _queryRepository.RequestId = RequestId;
+                _queryRepository.IsToDispose = false;
+            }
         }
+
+
 
         public IVoluntario GetById()
         {

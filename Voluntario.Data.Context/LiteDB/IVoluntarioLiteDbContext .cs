@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Voluntario.Data.Context.LiteDB
+namespace Voluntario.Data.Context.LiteDb
 {
     public interface IVoluntarioLiteDbContext : IBaseVoluntarioDbContext
     {

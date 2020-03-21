@@ -53,7 +53,7 @@ namespace Tests
         [Test]
         public void UpdateTest()
         {
-            AddTest();
+            //AddTest();
             IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;
@@ -66,7 +66,7 @@ namespace Tests
         [Test]
         public void DeleteTest()
         {
-            AddTest();
+            //AddTest();
             IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = _voluntario;
             per.RequestId = _requestId;

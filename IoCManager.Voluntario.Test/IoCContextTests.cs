@@ -2,7 +2,7 @@ using CentralSharedModel.Interfaces;
 using IoCManager.SharedModel;
 using NUnit.Framework;
 using Voluntario.Data.Context;
-using Voluntario.Data.Context.LiteDB;
+using Voluntario.Data.Context.LiteDb;
 
 namespace Tests
 {

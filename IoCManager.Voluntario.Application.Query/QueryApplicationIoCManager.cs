@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Voluntario.Application;
 using Voluntario.Application.Query;
+using Voluntario.Data.Context.LiteDb;
 
 namespace IoCManager.Voluntario.Application.Query
 {
@@ -18,6 +19,12 @@ namespace IoCManager.Voluntario.Application.Query
         public IQueryApplication GetCurrentIQueryApplicationImplementation(string connStr, string database, string collectionName)
         {
             object[] arrParams = new object[] { connStr, database, collectionName };
+            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+        }
+
+        public IQueryApplication GetCurrentIQueryApplicationImplementation(IVoluntarioLiteDbContext context)
+        {
+            object[] arrParams = new object[] { context };
             return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
         }
     }

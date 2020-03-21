@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Voluntario.Data.Context.LiteDB;
+using Voluntario.Data.Context.LiteDb;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
 
@@ -9,9 +9,17 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 {
     public class LiteDBVoluntarioQuery : BaseLiteDBRepository, IRepositoryQuery
     {
+        public bool IsToDispose { get; set; }
         public LiteDBVoluntarioQuery(string dataBaseName, string collectionName)
         {
             base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            IsToDispose = true;
+        }
+
+        public LiteDBVoluntarioQuery(IVoluntarioLiteDbContext context)
+        {
+            base.Context = context;
+            IsToDispose = false;
         }
 
         public IVoluntario GetVoluntarioByCpf(Int64 cpf)
@@ -98,12 +106,16 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Dispose()
         {
-            if(Context != null && Context.VoluntarioDataBase != null)
-                Context.VoluntarioDataBase.Dispose();
-            if(Context != null && Context.VoluntarioCollection != null)
-                Context.VoluntarioCollection = null;
-            Context = null;
-            RequestId = null;
+            if(IsToDispose)
+            {
+                if (Context != null && Context.VoluntarioDataBase != null)
+                    Context.VoluntarioDataBase.Dispose();
+                if (Context != null && Context.VoluntarioCollection != null)
+                    Context.VoluntarioCollection = null;
+                Context = null;
+                RequestId = null;
+            }
+
         }
 
     }

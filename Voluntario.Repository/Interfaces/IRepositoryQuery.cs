@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Context;
-using Voluntario.Data.Context.LiteDB;
+using Voluntario.Data.Context.LiteDb;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Data.Repository.Interfaces
@@ -11,6 +11,7 @@ namespace Voluntario.Data.Repository.Interfaces
     public interface IRepositoryQuery : IDisposable, IRequest
     {
         IVoluntarioLiteDbContext Context { get; set; }
+        bool IsToDispose { get; set; }
 
         IVoluntario GetVoluntarioByCpf(Int64 cpf);
         IList<IVoluntario> GetVoluntarioByName(string name);

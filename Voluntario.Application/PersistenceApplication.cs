@@ -29,15 +29,6 @@ namespace Voluntario.Application.Persistence
                 if (_cryptography == null)
                     _cryptography = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
 
-                //if (_validations == null)
-                //    _validations = new Validations(RequestId);
-
-                //if (_repositoryWriter == null)
-                //{
-                //    _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntarioDBTest", "VoluntarioCollectionTest");
-                    
-                //}
-
                 if (_voluntarioValidations == null)
                 {
                     _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
@@ -61,7 +52,6 @@ namespace Voluntario.Application.Persistence
                 }
                 if (_query != null)
                 {
-                    //_query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation();
                     _query.Cpf = _voluntario.Cpf;
                     _query.Email = _voluntario.Email;
                     _query.RequestId = base.RequestId;
@@ -85,16 +75,16 @@ namespace Voluntario.Application.Persistence
                 _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation(database, collectionName);
                 _repositoryWriter.RequestId = this.RequestId;
             }
-            //if (_query == null)
-            //{
-            //    _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, database, collectionName);
-            //    //_query.Cpf = _voluntario.Cpf;
-            //    //_query.Email = _voluntario.Email;
-            //    //_query.RequestId = base.RequestId;
-            //    //_voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
-            //    //_voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
+            if (_query == null)
+            {
+                _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(_repositoryWriter.Context);
+                //_query.Cpf = _voluntario.Cpf;
+                //_query.Email = _voluntario.Email;
+                //_query.RequestId = base.RequestId;
+                //_voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
+                //_voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
 
-            //}
+            }
         }
 
        
