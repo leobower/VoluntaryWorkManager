@@ -8,10 +8,11 @@ namespace IoCManager.Voluntario.Data.Repository
 {
     public class RepositoryWriterIoCManager : BaseIoCManager<IRepositoryWriter>
     {
-        private readonly string _currentImplementation = "MongoRepositoryWriter"; //
-        public IRepositoryWriter GetIMongoRepositoryWriterCurrentImplementation()
+        private readonly string _currentImplementation = "LiteDBVoluntarioWriter"; //
+        public IRepositoryWriter GetIRepositoryWriterCurrentImplementation(string dataBaseName, string collectionName)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+            object[] arrParams = new object[] { dataBaseName, collectionName };
+            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
         }
     }
 }

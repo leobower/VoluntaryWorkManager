@@ -32,11 +32,11 @@ namespace Voluntario.Application.Persistence
                 //if (_validations == null)
                 //    _validations = new Validations(RequestId);
 
-                if (_repositoryWriter == null)
-                {
-                    _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIMongoRepositoryWriterCurrentImplementation();
-                    _repositoryWriter.RequestId = this.RequestId;
-                }
+                //if (_repositoryWriter == null)
+                //{
+                //    _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntarioDBTest", "VoluntarioCollectionTest");
+                    
+                //}
 
                 if (_voluntarioValidations == null)
                 {
@@ -59,15 +59,18 @@ namespace Voluntario.Application.Persistence
                     _voluntarioPersistence.Delete = (a) => _repositoryWriter.Delete(_voluntario);
 
                 }
-                if (_query == null)
+                if (_query != null)
                 {
-                    _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation();
+                    //_query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation();
                     _query.Cpf = _voluntario.Cpf;
                     _query.Email = _voluntario.Email;
+                    _query.RequestId = base.RequestId;
                     _voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
                     _voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
 
                 }
+                _repositoryWriter.RequestId = this.RequestId;
+
             }
             else
             {
@@ -79,12 +82,19 @@ namespace Voluntario.Application.Persistence
         {
             if (_repositoryWriter == null)
             {
-                _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIMongoRepositoryWriterCurrentImplementation();
+                _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation(database, collectionName);
                 _repositoryWriter.RequestId = this.RequestId;
-                _repositoryWriter.ConnStr = connStr;
-                _repositoryWriter.DataBase = database;
-                _repositoryWriter.CollectionName = collectionName;
             }
+            //if (_query == null)
+            //{
+            //    _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, database, collectionName);
+            //    //_query.Cpf = _voluntario.Cpf;
+            //    //_query.Email = _voluntario.Email;
+            //    //_query.RequestId = base.RequestId;
+            //    //_voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
+            //    //_voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
+
+            //}
         }
 
        
@@ -92,9 +102,19 @@ namespace Voluntario.Application.Persistence
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                InitializeObjects();
-               
-                _voluntarioPersistence.InsertVoluntario();
+                using (_repositoryWriter)
+                {
+                    InitializeObjects();
+                    try
+                    {
+                        _voluntarioPersistence.InsertVoluntario();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+                
             }
            
         }
@@ -103,8 +123,11 @@ namespace Voluntario.Application.Persistence
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                InitializeObjects();
-                _voluntarioPersistence.UpdateVoluntario();
+                using (_repositoryWriter)
+                {
+                    InitializeObjects();
+                    _voluntarioPersistence.UpdateVoluntario();
+                }
             }
         }
 
@@ -112,14 +135,17 @@ namespace Voluntario.Application.Persistence
         {
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                InitializeObjects();
-                _voluntarioPersistence.DeleteVoluntario();
+                using (_repositoryWriter)
+                {
+                    InitializeObjects();
+                    _voluntarioPersistence.DeleteVoluntario();
+                }
             }
         }
 
         public void Dispose()
         {
-            _repositoryWriter = null;
+            _repositoryWriter.Dispose();
             _voluntarioPersistence = null;
             _voluntarioValidations = null;
         }

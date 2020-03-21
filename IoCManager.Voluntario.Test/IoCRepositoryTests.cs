@@ -16,16 +16,18 @@ namespace Tests
         [Test]
         public void TestRepositoryWriterInjection()
         {
-            IRepositoryWriter obj = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIMongoRepositoryWriterCurrentImplementation();
+            IRepositoryWriter obj = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("Voluntario", "VoluntarioCollection");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
+            obj.Dispose();
 
         }
 
         [Test]
         public void TestRepositoryQueryInjection()
         {
-            IRepositoryQuery obj = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIMongoRepositoryQueryCurrentImplementation();
+            IRepositoryQuery obj = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation("Voluntario", "VoluntarioCollection");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
+            obj.Dispose();
 
         }
     }

@@ -15,9 +15,10 @@ namespace IoCManager.Voluntario.Application.Query
         /// </summary>
         private readonly string _currentImplementation = "QueryApplication";
 
-        public IQueryApplication GetCurrentIQueryApplicationImplementation()
+        public IQueryApplication GetCurrentIQueryApplicationImplementation(string connStr, string database, string collectionName)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+            object[] arrParams = new object[] { connStr, database, collectionName };
+            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
         }
     }
 }

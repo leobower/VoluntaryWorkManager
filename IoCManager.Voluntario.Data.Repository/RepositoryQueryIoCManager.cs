@@ -8,10 +8,11 @@ namespace IoCManager.Voluntario.Data.Repository
 {
     public class RepositoryQueryIoCManager : BaseIoCManager<IRepositoryQuery>
     {
-        private readonly string _currentImplementation = "MongoRepositoryQuery"; //
-        public IRepositoryQuery GetIMongoRepositoryQueryCurrentImplementation()
+        private readonly string _currentImplementation = "LiteDBVoluntarioQuery"; //
+        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(string dataBaseName, string collectionName)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+            object[] arrParams = new object[] { dataBaseName, collectionName };
+            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
         }
     }
 }

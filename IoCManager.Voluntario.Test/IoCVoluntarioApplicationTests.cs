@@ -27,7 +27,7 @@ namespace Tests
             Assert.IsNotNull(persistenceApp);
 
             Assert.IsTrue(persistenceApp.GetType().IsClass);
-
+            persistenceApp.Dispose();
         }
 
         [Test]
@@ -35,12 +35,12 @@ namespace Tests
         {
             IQueryApplication app = null;
             QueryApplicationIoCManager ioc = new QueryApplicationIoCManager();
-            app = ioc.GetCurrentIQueryApplicationImplementation();
+            app = ioc.GetCurrentIQueryApplicationImplementation("localhost", "VoluntaryWorkManager", "Voluntario");
 
             Assert.IsNotNull(app);
 
             Assert.IsTrue(app.GetType().IsClass);
-
+            app.Dispose();
         }
 
     }

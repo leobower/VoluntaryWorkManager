@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.10.0" />
+    <Compile Remove="Implementations\SQLSERVER\**" />
+    <EmbeddedResource Remove="Implementations\SQLSERVER\**" />
+    <None Remove="Implementations\SQLSERVER\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Implementations\SQLSERVER\" />
+    <Folder Include="Implementations\Mongo\" />
   </ItemGroup>
 
 </Project>

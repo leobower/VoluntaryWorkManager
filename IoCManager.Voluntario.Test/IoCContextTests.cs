@@ -2,6 +2,7 @@ using CentralSharedModel.Interfaces;
 using IoCManager.SharedModel;
 using NUnit.Framework;
 using Voluntario.Data.Context;
+using Voluntario.Data.Context.LiteDB;
 
 namespace Tests
 {
@@ -14,10 +15,11 @@ namespace Tests
         }
 
         [Test]
-        public void TestMongoContextInjection()
+        public void TestContextInjection()
         {
-            IMongoDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIMongoContextCurrentImplementation();
+            IVoluntarioLiteDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation("VoluntarioDBTest","VoluntarioCollectionTest");
             Assert.IsTrue(obj != null &&  obj.GetType().IsClass);
+            obj.Dispose();
         }
 
     }
