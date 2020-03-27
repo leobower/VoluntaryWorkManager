@@ -17,7 +17,7 @@ namespace Tests
         [Test]
         public void TestContextInjection()
         {
-            IVoluntarioLiteDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation("VoluntarioDBTest","VoluntarioCollectionTest");
+            IVoluntarioLiteDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
             Assert.IsTrue(obj != null &&  obj.GetType().IsClass);
             obj.Dispose();
         }

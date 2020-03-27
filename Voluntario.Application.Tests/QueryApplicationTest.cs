@@ -14,7 +14,7 @@ namespace Tests
     {
         private string _requestId;
         private string connStr = "localhost";
-        private string dataBase = "VoluntaryWorkManager";
+        private string dataBase = "VoluntaryWorkManager_TestPersistence";
         private string collection = "Voluntario";
         public string RequestId { get => _requestId; set => _requestId = value; }
         private IVoluntario _voluntario;

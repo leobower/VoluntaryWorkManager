@@ -16,7 +16,7 @@ namespace Tests
         [Test]
         public void TestRepositoryWriterInjection()
         {
-            IRepositoryWriter obj = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("Voluntario", "VoluntarioCollection");
+            IRepositoryWriter obj = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
 
@@ -25,7 +25,7 @@ namespace Tests
         [Test]
         public void TestRepositoryQueryInjection()
         {
-            IRepositoryQuery obj = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation("Voluntario", "VoluntarioCollection");
+            IRepositoryQuery obj = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
 

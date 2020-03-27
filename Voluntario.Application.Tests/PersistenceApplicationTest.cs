@@ -13,7 +13,7 @@ namespace Tests
         private string _requestId;
         //"localhost", "VoluntaryWorkManager", "Voluntario"
         private string connStr = "localhost";
-        private string dataBase = "VoluntaryWorkManager";
+        private string dataBase = "VoluntaryWorkManager_TestPersistence";
         private string collection = "Voluntario";
 
 
@@ -27,9 +27,9 @@ namespace Tests
             _requestId = Guid.NewGuid().ToString();
             _voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
             _voluntario.Cep = "11703680";
-            _voluntario.Cpf = 31495307840;
+            _voluntario.Cpf = 22140614011;
             _voluntario.DataNascimento = "16/02/1982";
-            _voluntario.Email = "le.ribeiro.vca@gmail.com";
+            _voluntario.Email = "le.ribeiro.vca1@gmail.com";
             _voluntario.Id = Guid.NewGuid().ToString();
             _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
             _voluntario.Senha = "12345678";
