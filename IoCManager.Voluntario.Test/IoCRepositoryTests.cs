@@ -30,5 +30,23 @@ namespace Tests
             obj.Dispose();
 
         }
+
+        [Test]
+        public void TestRepositoryWriterInjection2()
+        {
+            IRepositoryWriter obj = new IoCManager.Voluntario.Data.Repository.RepositoryWriterTempIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
+            Assert.IsTrue(obj != null && obj.GetType().IsClass);
+            obj.Dispose();
+
+        }
+
+        [Test]
+        public void TestRepositoryQueryInjection2()
+        {
+            IRepositoryQuery obj = new IoCManager.Voluntario.Data.Repository.RepositoryTempIoCManager().GetIRepositoryQueryCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
+            Assert.IsTrue(obj != null && obj.GetType().IsClass);
+            obj.Dispose();
+
+        }
     }
 }

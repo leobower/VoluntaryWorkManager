@@ -17,7 +17,7 @@ namespace Voluntario.Application.Persistence
         private IVoluntarioValidations  _voluntarioValidations;
         private ICryptography _cryptography;
         private IQueryApplication _query;
-        private string _requestId;
+        //private string _requestId;
 
         private IVoluntario _voluntario;
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
