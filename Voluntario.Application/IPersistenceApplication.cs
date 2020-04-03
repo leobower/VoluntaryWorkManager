@@ -8,6 +8,7 @@ namespace Voluntario.Application.Persistence
     public interface IPersistenceApplication
     {
         IVoluntario Voluntario { get; set; }
+
         string RequestId { get; set; }
         void Add();
         void Update();

@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Voluntario.Data.Context
 {
-    public interface IBaseVoluntarioDbContext : IDisposable
+    public interface IBaseVoluntarioDbContext<D,I> : IDisposable
     {
         string Server { get; set; }
         int Port { get; set; }
         string DataBaseName { get; set; }
         string UserName { get; set; }
         string Pass { get; set; }
-
-        //string ToString();
-            
+        string CollectionName { get; set; }
+        D VoluntarioDataBase { get; set; }
+        I VoluntarioCollection { get; set; }
     }
 }

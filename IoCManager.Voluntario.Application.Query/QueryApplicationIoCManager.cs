@@ -22,7 +22,7 @@ namespace IoCManager.Voluntario.Application.Query
             return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
         }
 
-        public IQueryApplication GetCurrentIQueryApplicationImplementation(IVoluntarioLiteDbContext context)
+        public IQueryApplication GetCurrentIQueryApplicationImplementation(object context)
         {
             object[] arrParams = new object[] { context };
             return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);

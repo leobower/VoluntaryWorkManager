@@ -36,15 +36,6 @@ namespace Voluntario.Application.Query
         {
             if (!String.IsNullOrEmpty(RequestId))
             {
-                //if (_query == null)
-                //{
-                //    _query = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation();
-                //    //_query.ConnStr = "localhost";///TODO
-                //    //_query.DataBase = "VoluntaryWorkManager";///TODO
-                //    //_query.CollectionName = "Voluntario";///TODO
-                //}
-
-
                 if (_voluntarioValidations == null)
                 {
                     _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
@@ -81,7 +72,7 @@ namespace Voluntario.Application.Query
             }
         }
 
-        public QueryApplication(IVoluntarioLiteDbContext context)
+        public QueryApplication(object context)
         {
             if (_queryRepository == null)
             {

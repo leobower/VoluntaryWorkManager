@@ -10,7 +10,7 @@ namespace Voluntario.Data.Repository.Interfaces
 {
     public interface IRepositoryQuery : IDisposable, IRequest
     {
-        IVoluntarioLiteDbContext Context { get; set; }
+       // IVoluntarioLiteDbContext Context { get; set; }
         bool IsToDispose { get; set; }
 
         IVoluntario GetVoluntarioByCpf(Int64 cpf);

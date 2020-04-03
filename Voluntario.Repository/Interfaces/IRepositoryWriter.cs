@@ -10,8 +10,7 @@ namespace Voluntario.Data.Repository.Interfaces
 {
     public interface IRepositoryWriter : IDisposable, IRequest
     {
-        IVoluntarioLiteDbContext Context { get; set; }
-
+        object ContextObj { get; }
         void Delete(IVoluntario voluntario);  
         void Update(IVoluntario voluntario);
         void Add(IVoluntario voluntario);

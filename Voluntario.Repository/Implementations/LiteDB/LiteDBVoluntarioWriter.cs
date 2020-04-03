@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Context;
@@ -10,13 +11,11 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 {
     public class LiteDBVoluntarioWriter : BaseLiteDBRepository, IRepositoryWriter
     {
-
+        public object ContextObj {get => (object)base.Context;}
         public LiteDBVoluntarioWriter(string dataBaseName, string collectionName)
         {
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(). GetIContextCurrentImplementation(dataBaseName, collectionName);
         }
-
-        
 
         public void Add(IVoluntario voluntario)
         {

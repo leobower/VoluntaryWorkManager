@@ -16,7 +16,7 @@ namespace IoCManager.Voluntario.Data.Repository
             return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
         }
 
-        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(IVoluntarioLiteDbContext context)
+        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(object context)
         {
             object[] arrParams = new object[] { context };
             return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);

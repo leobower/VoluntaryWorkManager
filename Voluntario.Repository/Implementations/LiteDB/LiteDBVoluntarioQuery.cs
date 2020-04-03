@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Voluntario.Data.Context;
 using Voluntario.Data.Context.LiteDb;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
@@ -12,13 +14,13 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public bool IsToDispose { get; set; }
         public LiteDBVoluntarioQuery(string dataBaseName, string collectionName)
         {
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
             IsToDispose = true;
         }
 
-        public LiteDBVoluntarioQuery(IVoluntarioLiteDbContext context)
+        public LiteDBVoluntarioQuery(object context)
         {
-            base.Context = context;
+            base.Context = (IBaseVoluntarioDbContext < LiteDatabase, ILiteCollection < IVoluntario >> )context;
             IsToDispose = false;
         }
 
@@ -27,9 +29,8 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
             IVoluntario vol = null;
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                var col = base.Context.VoluntarioDataBase.GetCollection<IVoluntario>(base.Context.CollectionName);
-                col.EnsureIndex(x => x.Cpf);
-                vol = col.Query()
+                base.Context.VoluntarioCollection.EnsureIndex(x => x.Cpf);
+                vol = base.Context.VoluntarioCollection.Query()
                     .Where(c => c.Cpf == cpf)
                     .FirstOrDefault();
 
@@ -42,9 +43,8 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
             IList<IVoluntario> ret = null;
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                var col = base.Context.VoluntarioDataBase.GetCollection<IVoluntario>(base.Context.CollectionName);
-                col.EnsureIndex(x => x.Nome);
-                ret = col.Query()
+                base.Context.VoluntarioCollection.EnsureIndex(x => x.Nome);
+                ret = base.Context.VoluntarioCollection.Query()
                     .Where(x => x.Nome.ToUpper().Contains(name.ToUpper()))
                     .OrderBy(x => x.Nome)
                     .Limit(100)
@@ -59,9 +59,8 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
             IVoluntario vol = null;
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                var col = base.Context.VoluntarioDataBase.GetCollection<IVoluntario>(base.Context.CollectionName);
-                col.EnsureIndex(x => x.Id);
-                vol = col.Query()
+                base.Context.VoluntarioCollection.EnsureIndex(x => x.Id);
+                vol = base.Context.VoluntarioCollection.Query()
                     .Where(c => c.Id == Id)
                     .FirstOrDefault();
 
@@ -79,9 +78,8 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
             IList<IVoluntario> ret = null;
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                var col = base.Context.VoluntarioDataBase.GetCollection<IVoluntario>(base.Context.CollectionName);
-                col.EnsureIndex(x => x.Nome);
-                ret = col.Query()
+                base.Context.VoluntarioCollection.EnsureIndex(x => x.Nome);
+                ret = base.Context.VoluntarioCollection.Query()
                     .ToList();
 
             }
@@ -93,9 +91,8 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
             IVoluntario vol = null;
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                var col = base.Context.VoluntarioDataBase.GetCollection<IVoluntario>(base.Context.CollectionName);
-                col.EnsureIndex(x => x.Email);
-                vol = col.Query()
+                base.Context.VoluntarioCollection.EnsureIndex(x => x.Email);
+                vol = base.Context.VoluntarioCollection.Query()
                     .Where(c => c.Email == email)
                     .FirstOrDefault();
 

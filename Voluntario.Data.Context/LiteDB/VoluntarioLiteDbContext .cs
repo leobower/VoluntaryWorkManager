@@ -4,7 +4,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Data.Context.LiteDb
 {
-    public class VoluntarioLiteDbContext : IVoluntarioLiteDbContext
+    public class VoluntarioLiteDbContext : IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>>  //IVoluntarioLiteDbContext
     {
         private string _server;
         private int _port;
@@ -22,6 +22,7 @@ namespace Voluntario.Data.Context.LiteDb
         public LiteDatabase VoluntarioDataBase { get; set; }
         public ILiteCollection<IVoluntario> VoluntarioCollection { get; set; }
         public string CollectionName { get => _collectionName; set => _collectionName = value; }
+       
 
         public VoluntarioLiteDbContext(string dataBaseName, string collectionName)
         {

@@ -77,12 +77,7 @@ namespace Voluntario.Application.Persistence
             }
             if (_query == null)
             {
-                _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(_repositoryWriter.Context);
-                //_query.Cpf = _voluntario.Cpf;
-                //_query.Email = _voluntario.Email;
-                //_query.RequestId = base.RequestId;
-                //_voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
-                //_voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
+                _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(_repositoryWriter.ContextObj);
 
             }
         }

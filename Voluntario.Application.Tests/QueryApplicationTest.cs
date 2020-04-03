@@ -6,23 +6,19 @@ using NUnit.Framework;
 using Voluntario.Application;
 using Voluntario.Application.Persistence;
 using Voluntario.Application.Query;
+using Voluntario.Application.Tests;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Tests
 {
-    public class QueryApplicationTest : IRequest
+    public class QueryApplicationTest : BaseTestClass, IRequest
     {
-        private string _requestId;
-        private string connStr = "localhost";
-        private string dataBase = "VoluntaryWorkManager_TestPersistence";
-        private string collection = "Voluntario";
-        public string RequestId { get => _requestId; set => _requestId = value; }
-        private IVoluntario _voluntario;
+       
 
         private IList<IVoluntario> ListaAll()
         {
             IList<IVoluntario> obj = null;
-            if (_voluntario == null)
+            if (Voluntario == null)
                 Setup();
             //Add
             //AddListVolunt();
@@ -31,7 +27,7 @@ namespace Tests
             {
                 try
                 {
-                    qry.RequestId = _requestId;
+                    qry.RequestId = RequestId;
                     int current = 1;
                     obj = qry.GetAllPaged(current);
                 }
@@ -44,54 +40,39 @@ namespace Tests
             return obj;
         }
 
-        [SetUp]
-        public void Setup()
-        {
-            _requestId = Guid.NewGuid().ToString();
-            _voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
-            _voluntario.Cep = "11703680";
-            _voluntario.Cpf = 31495307840;
-            _voluntario.DataNascimento = "16/02/1982";
-            _voluntario.Email = "teste1@gmail.com";
-            _voluntario.Id = Guid.NewGuid().ToString();
-            _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
-            _voluntario.Senha = "12345678";
-            _voluntario.Telefone = "12323123";
-        }
-
         private void AddListVolunt()
         {
-            _requestId = Guid.NewGuid().ToString();
+            RequestId = Guid.NewGuid().ToString();
             for (int i = 0; i < 5; i++)
             {
-                _voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
-                _voluntario.Cep = "11703680";
-                _voluntario.Cpf = 31495307840;
-                _voluntario.DataNascimento = "16/02/1982";
-                _voluntario.Email = $"teste{i.ToString()}@gmail.com";
-                _voluntario.Id = Guid.NewGuid().ToString();
-                _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
-                _voluntario.Senha = "12345678";
-                _voluntario.Telefone = "12323123";
+                Voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+                Voluntario.Cep = "11703680";
+                Voluntario.Cpf = 31495307840;
+                Voluntario.DataNascimento = "16/02/1982";
+                Voluntario.Email = $"teste{i.ToString()}@gmail.com";
+                Voluntario.Id = Guid.NewGuid().ToString();
+                Voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
+                Voluntario.Senha = "12345678";
+                Voluntario.Telefone = "12323123";
 
                 AddVoluntario();
-                _voluntario = null;
+                Voluntario = null;
             }
         }
 
         private void AddVoluntario()
         {
             IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
-            per.Voluntario = _voluntario;
-            per.RequestId = _requestId;
+            per.Voluntario = Voluntario;
+            per.RequestId = RequestId;
             per.Add();
         }
 
         private void DeleteVoluntario()
         {
             IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
-            per.Voluntario = _voluntario;
-            per.RequestId = _requestId;
+            per.Voluntario = Voluntario;
+            per.RequestId = RequestId;
             per.Delete();
         }
 
@@ -100,20 +81,15 @@ namespace Tests
         public void GetByCpf()
         {
             IVoluntario obj = null;
-            //if (_voluntario == null)
-            //    Setup();
-            //Add
-            //AddVoluntario();
             Int64 cpf = ListaAll()[0].Cpf;
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
-                qry.RequestId = _requestId;
+                qry.RequestId = RequestId;
                 qry.Cpf = cpf;
                 try
                 {
                     obj = qry.GetByCpf();
-                    //DeleteVoluntario();
                 }
                 catch (Exception ex)
                 {
@@ -132,15 +108,11 @@ namespace Tests
         public void GetByEmail()
         {
             IVoluntario obj = null;
-            //if (_voluntario == null)
-            //    Setup();
-            ////Add
-            //AddVoluntario();
             string email = ListaAll()[0].Email;
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
-                qry.RequestId = _requestId;
+                qry.RequestId = RequestId;
                 qry.Email = email;
                 try
                 {
@@ -153,8 +125,6 @@ namespace Tests
 
             }
 
-            //DeleteVoluntario();
-
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
         }
@@ -163,15 +133,11 @@ namespace Tests
         public void GetById()
         {
             IVoluntario obj = null;
-            //if (_voluntario == null)
-            //    Setup();
-            //Add
-            //AddVoluntario();
             string id = ListaAll()[0].Id;
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
-                qry.RequestId = _requestId;
+                qry.RequestId = RequestId;
                 qry.VoluntarioId = id;
                 try
                 {
@@ -184,8 +150,6 @@ namespace Tests
 
             }
 
-            //DeleteVoluntario();
-
             Assert.IsNotNull(obj);
             Assert.IsNotEmpty(obj.Id);
         }
@@ -194,15 +158,11 @@ namespace Tests
         public void GetByName()
         {
             IList<IVoluntario> obj = null;
-            //if (_voluntario == null)
-            //    Setup();
-            //Add
-            //AddVoluntario();
             string nome = ListaAll()[0].Nome.Split(':')[0];
 
             using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
-                qry.RequestId = _requestId;
+                qry.RequestId = RequestId;
                 qry.VoluntarioName = nome;
                 try
                 {
@@ -214,8 +174,6 @@ namespace Tests
                 }
 
             }
-
-            //DeleteVoluntario();
 
             Assert.IsNotNull(obj);
             Assert.GreaterOrEqual(obj.Count, 1);
