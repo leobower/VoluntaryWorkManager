@@ -29,7 +29,7 @@ namespace Voluntario.Application.Tests
             _voluntario.DataNascimento = "16/02/1982";
             _voluntario.Email = "le.ribeiro.vca1@gmail.com";
             _voluntario.Id = Guid.NewGuid().ToString();
-            _voluntario.Nome = $"Teste : {Guid.NewGuid().ToString()}";
+            _voluntario.Nome = $"Teste : {_voluntario.Id}";
             _voluntario.Senha = "12345678";
             _voluntario.Telefone = "12323123";
             _voluntario.AreasInteresse = new List<string>() { "teste01", "teste02" };

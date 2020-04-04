@@ -11,10 +11,6 @@ namespace Tests
 {
     public class PersistenceApplicationTest : BaseTestClass, IRequest
     {
-       
-
-       
-
         [Test]
         public void AddTest()
         {
@@ -43,7 +39,7 @@ namespace Tests
         [Test]
         public void DeleteTest()
         {
-            //AddTest();
+            AddTest();
             IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = Voluntario;
             per.RequestId = RequestId;

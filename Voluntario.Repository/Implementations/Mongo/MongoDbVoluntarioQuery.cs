@@ -17,7 +17,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public MongoDBVoluntarioQuery(string dataBaseName, string collectionName)
         {
             //TODO
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager_2<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
             IsToDispose = true;
         }
 
@@ -27,15 +27,14 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
             IsToDispose = false;
         }
 
-
-
+        //TODO PAGINATION
         public IList<IVoluntario> GetListVoluntario(int currentPage)
         {
             IList<IVoluntario> ret = null;
             using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
-                IMongoQueryable<IVoluntario> query = base.Context.VoluntarioCollection.AsQueryable()
-                                        .OrderBy(x => x.Nome);
+                IMongoQueryable<IVoluntario> query = base.Context.VoluntarioCollection.AsQueryable();
+                                        //.OrderBy(x => x.Nome);
 
                 ret = query.ToList();
             }

@@ -16,7 +16,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public MongoDBVoluntarioWriter(string dataBaseName, string collectionName)
         {
             //TODO
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager_2<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
         }
 
         public void Add(IVoluntario voluntario)
@@ -30,18 +30,12 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
 
         public void Delete(IVoluntario voluntario)
         {
-            Expression<Func<IVoluntario, bool>> filter =
-                                    x => x.Id.Equals(ObjectId.Parse(voluntario.Id));
-
-            DeleteResult delresult = base.Context.VoluntarioCollection.DeleteOne(filter);
+            DeleteResult delresult = base.Context.VoluntarioCollection.DeleteOne(Builders<IVoluntario>.Filter.Eq("_id", voluntario.Id));
         }
 
         public void Update(IVoluntario voluntario)
         {
-            Expression<Func<IVoluntario, bool>> filter =
-                                    x => x.Id.Equals(ObjectId.Parse(voluntario.Id));
-
-            ReplaceOneResult upResult = base.Context.VoluntarioCollection.ReplaceOne(filter, voluntario);
+            ReplaceOneResult upResult = base.Context.VoluntarioCollection.ReplaceOne(Builders<IVoluntario>.Filter.Eq("_id",voluntario.Id), voluntario);
         }
 
         public void Dispose()
