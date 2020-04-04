@@ -8,6 +8,41 @@ namespace Voluntario.Application.Tests
 {
     public abstract class BaseTestClass
     {
+        private Int64 GerarCpf()
+        {
+            int soma = 0, resto = 0;
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+            Random rnd = new Random();
+            string semente = rnd.Next(100000000, 999999999).ToString();
+
+            for (int i = 0; i < 9; i++)
+                soma += int.Parse(semente[i].ToString()) * multiplicador1[i];
+
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+
+            semente = semente + resto;
+            soma = 0;
+
+            for (int i = 0; i < 10; i++)
+                soma += int.Parse(semente[i].ToString()) * multiplicador2[i];
+
+            resto = soma % 11;
+
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+
+            semente = semente + resto;
+            return Int64.Parse(semente);
+        }
+
         private IVoluntario _voluntario;
         private string _requestId;
         //"localhost", "VoluntaryWorkManager", "Voluntario"
@@ -25,9 +60,9 @@ namespace Voluntario.Application.Tests
             _requestId = Guid.NewGuid().ToString();
             _voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
             _voluntario.Cep = "11703680";
-            _voluntario.Cpf = 22140614011;
+            _voluntario.Cpf = GerarCpf();
             _voluntario.DataNascimento = "16/02/1982";
-            _voluntario.Email = "le.ribeiro.vca1@gmail.com";
+            _voluntario.Email = $"le.ribeiro.vca.{new Random().Next(0,500)}@gmail.com";
             _voluntario.Id = Guid.NewGuid().ToString();
             _voluntario.Nome = $"Teste : {_voluntario.Id}";
             _voluntario.Senha = "12345678";
