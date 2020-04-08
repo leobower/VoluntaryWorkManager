@@ -1,10 +1,10 @@
-﻿using IoCManager.BaseClasses;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace IoCManager.Voluntario.Model
+namespace Voluntario.IoCManager.Model
 {
     public class ModelIoCManager :BaseIoCManager<IVoluntario>
     {

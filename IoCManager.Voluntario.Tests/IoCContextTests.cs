@@ -1,5 +1,3 @@
-using CentralSharedModel.Interfaces;
-using IoCManager.SharedModel;
 using LiteDB;
 using MongoDB.Driver;
 using NUnit.Framework;
@@ -7,7 +5,7 @@ using Voluntario.Data.Context;
 using Voluntario.Data.Context.LiteDb;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Tests
+namespace Voluntario.IoCManager.Tests
 {
     public class IoCContextTests
     {
@@ -21,7 +19,7 @@ namespace Tests
         public void TestContextInjection_LiteDb()
         {
             IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> obj =
-                    new IoCManager.Voluntario.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
+                    new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
             //IVoluntarioLiteDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();

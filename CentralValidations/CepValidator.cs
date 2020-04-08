@@ -1,5 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
-using IoCManager.SharedModel;
+using CrossCutting.IoCManager.SharedModel;
 using System.Net.Http;
 using System.Reflection;
 using System.Linq;
@@ -62,7 +62,7 @@ namespace CentralValidations
 
         public bool ValidateCep(string cep)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = false;
 

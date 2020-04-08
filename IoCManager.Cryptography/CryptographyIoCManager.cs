@@ -1,8 +1,7 @@
-﻿using Cryptography;
-using IoCManager.BaseClasses;
-using System;
+﻿using CrossCutting.IoCManager.BaseClasses;
+using Cryptography;
 
-namespace IoCManager.Cryptography
+namespace CrossCutting.IoCManager.Cryptography
 {
     public class CryptographyIoCManager : BaseIoCManager<ICryptography>
     {

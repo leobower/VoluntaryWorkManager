@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
-    <ProjectReference Include="..\IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj" />
-    <ProjectReference Include="..\IoCManager.Voluntario.Data.Repository\IoCManager.Voluntario.Data.Repository.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Business\Voluntario.IoCManager.Business.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Repository\Voluntario.IoCManager.Data.Repository.csproj" />
     <ProjectReference Include="..\Voluntario.Application.BaseClasses\Voluntario.Application.BaseClasses.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
     <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />

@@ -11,7 +11,7 @@ namespace CryprographyTests
         [SetUp]
         public void Setup()
         {
-            _customCrypto = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+            _customCrypto = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
         }
 
         [Test]

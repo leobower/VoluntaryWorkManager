@@ -1,8 +1,8 @@
 using CentralSharedModel.Interfaces;
-using IoCManager.SharedModel;
+using CrossCutting.IoCManager.SharedModel;
 using NUnit.Framework;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCSharedoModelTests
     {

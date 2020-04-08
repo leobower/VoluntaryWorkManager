@@ -15,9 +15,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
-    <ProjectReference Include="..\IoCManager.Voluntario.Application.Query\IoCManager.Voluntario.Application.Query.csproj" />
-    <ProjectReference Include="..\IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.Persistence.csproj" />
-    <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Application.Query\CrossCutting.IoCManager.Voluntario.Application.Query.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Application\CrossCutting.IoCManager.Voluntario.Application.Persistence.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Model\Voluntario.IoCManager.Model.csproj" />
     <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
   </ItemGroup>

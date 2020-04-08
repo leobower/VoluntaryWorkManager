@@ -1,10 +1,10 @@
 ﻿using CentralMQManager;
-using IoCManager.BaseClasses;
+using CrossCutting.IoCManager.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IoCManager.CentralMQManager
+namespace CrossCutting.IoCManager.CentralMQManager
 {
     public class PublisherIoCManager : BaseIoCManager<IPublisher>
     {

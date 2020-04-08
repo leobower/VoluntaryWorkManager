@@ -17,7 +17,7 @@ namespace CentralValidations
 
         public bool ValidateCnpj(string cnpj, out Int64? cnpjConverted)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = true;
                 Int64? convert = null;

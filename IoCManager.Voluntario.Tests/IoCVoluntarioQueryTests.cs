@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Voluntario.Domain.BusinessRules.Interfaces;
-using IoCManager.Voluntario.Business;
+using Voluntario.IoCManager.Business;
 
-namespace Tests
+namespace Voluntario.IoCManager.Tests
 {
     public class IoCVoluntarioQueryTests
     {

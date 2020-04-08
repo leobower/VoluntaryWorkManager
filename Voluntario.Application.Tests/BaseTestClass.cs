@@ -58,7 +58,7 @@ namespace Voluntario.Application.Tests
         public void Setup()
         {
             _requestId = Guid.NewGuid().ToString();
-            _voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+            _voluntario = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
             _voluntario.Cep = "11703680";
             _voluntario.Cpf = GerarCpf();
             _voluntario.DataNascimento = "16/02/1982";

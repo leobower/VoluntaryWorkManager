@@ -1,9 +1,9 @@
-﻿using IoCManager.BaseClasses;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using System.Reflection;
 using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace IoCManager.Voluntario.Business
+namespace Voluntario.IoCManager.Business
 {
     public class VoluntarioQueryIocManager : BaseIoCManager<IVoluntarioQuery>
     {

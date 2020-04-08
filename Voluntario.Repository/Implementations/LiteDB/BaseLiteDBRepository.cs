@@ -16,7 +16,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Validate()
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 if (Context == null)
                     throw new Exception("Provide Contructor Information");

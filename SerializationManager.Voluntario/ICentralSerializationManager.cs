@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SerializationManager.Voluntario
+namespace Voluntario.SerializationManager
 {
     public interface ICentralSerializationManager<T>
     {

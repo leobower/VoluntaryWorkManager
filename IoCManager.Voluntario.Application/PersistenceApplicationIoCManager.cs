@@ -1,11 +1,7 @@
-﻿using IoCManager.BaseClasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Voluntario.Application;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using Voluntario.Application.Persistence;
 
-namespace IoCManager.Voluntario.Application.Persistence
+namespace CrossCutting.IoCManager.Voluntario.Application.Persistence
 {
     public class PersistenceApplicationIoCManager : BaseIoCManager<IPersistenceApplication>
     {

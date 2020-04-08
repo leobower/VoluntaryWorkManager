@@ -1,10 +1,10 @@
 ﻿using CentralTracer.Model;
-using IoCManager.BaseClasses;
+using CrossCutting.IoCManager.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IoCManager.CentralTrace.Model
+namespace CrossCutting.IoCManager.CentralTrace.Model
 {
     public class CentralTracerModelIoCManager : BaseIoCManager<ITraceModel>
     {

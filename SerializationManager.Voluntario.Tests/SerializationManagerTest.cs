@@ -1,9 +1,8 @@
 using NUnit.Framework;
-using SerializationManager.Voluntario;
 using System;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace SerializationManager.Voluntario.Tests
+namespace Voluntario.SerializationManager.Tests
 {
     public class SerializationManagerTest
     {
@@ -11,7 +10,7 @@ namespace SerializationManager.Voluntario.Tests
         [SetUp]
         public void Setup()
         {
-            voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+            voluntario = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
             voluntario.Cep = "11703680";
             voluntario.Cpf = 31495307840;
             voluntario.DataNascimento = "16/02/1982";
@@ -24,7 +23,7 @@ namespace SerializationManager.Voluntario.Tests
 
         private string TestSerialization()
         {
-            ICentralSerializationManager<IVoluntario> ser = new IoCManager.SerializationManager.Voluntario.SerializationIoCManager().GetISerializationCurrentImplementation();
+            ICentralSerializationManager<IVoluntario> ser = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetISerializationCurrentImplementation();
 
             return ser.Serialize(voluntario);
         }

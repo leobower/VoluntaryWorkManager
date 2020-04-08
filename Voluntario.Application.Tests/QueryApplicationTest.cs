@@ -23,7 +23,7 @@ namespace Tests
             //Add
             //AddListVolunt();
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
                 try
                 {
@@ -45,7 +45,7 @@ namespace Tests
             RequestId = Guid.NewGuid().ToString();
             for (int i = 0; i < 5; i++)
             {
-                Voluntario = new IoCManager.Voluntario.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+                Voluntario = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
                 Voluntario.Cep = "11703680";
                 Voluntario.Cpf = 31495307840;
                 Voluntario.DataNascimento = "16/02/1982";
@@ -62,7 +62,7 @@ namespace Tests
 
         private void AddVoluntario()
         {
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
+            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = Voluntario;
             per.RequestId = RequestId;
             per.Add();
@@ -70,7 +70,7 @@ namespace Tests
 
         private void DeleteVoluntario()
         {
-            IPersistenceApplication per = new IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
+            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
             per.Voluntario = Voluntario;
             per.RequestId = RequestId;
             per.Delete();
@@ -83,7 +83,7 @@ namespace Tests
             IVoluntario obj = null;
             Int64 cpf = ListaAll()[0].Cpf;
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
                 qry.RequestId = RequestId;
                 qry.Cpf = cpf;
@@ -110,7 +110,7 @@ namespace Tests
             IVoluntario obj = null;
             string email = ListaAll()[0].Email;
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
                 qry.RequestId = RequestId;
                 qry.Email = email;
@@ -135,7 +135,7 @@ namespace Tests
             IVoluntario obj = null;
             string id = ListaAll()[0].Id;
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
                 qry.RequestId = RequestId;
                 qry.VoluntarioId = id;
@@ -160,7 +160,7 @@ namespace Tests
             IList<IVoluntario> obj = null;
             string nome = ListaAll()[0].Nome.Split(':')[0];
 
-            using (IQueryApplication qry = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
             {
                 qry.RequestId = RequestId;
                 qry.VoluntarioName = nome;

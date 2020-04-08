@@ -1,10 +1,7 @@
 ﻿using CentralTracer.Business.Publisher;
-using IoCManager.BaseClasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using CrossCutting.IoCManager.BaseClasses;
 
-namespace IoCManager.CentralTrace.Business.Publisher
+namespace CrossCutting.IoCManager.CentralTrace.Business.Publisher
 {
     public class CentralTracerBusinessIoCManager : BaseIoCManager<ITracerWrapper>
     {

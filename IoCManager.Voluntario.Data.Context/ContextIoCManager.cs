@@ -1,9 +1,7 @@
-﻿using IoCManager.BaseClasses;
-using System;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using Voluntario.Data.Context;
-using Voluntario.Data.Context.LiteDb;
 
-namespace IoCManager.Voluntario.Data.Context
+namespace Voluntario.IoCManager.Data.Context
 {
     public class ContextIoCManager<D,I> : BaseIoCManager<IBaseVoluntarioDbContext<D,I>>
     {

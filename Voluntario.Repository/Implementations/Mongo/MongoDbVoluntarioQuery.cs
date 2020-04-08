@@ -17,7 +17,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public MongoDBVoluntarioQuery(string dataBaseName, string collectionName)
         {
             //TODO
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
             IsToDispose = true;
         }
 
@@ -31,7 +31,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public IList<IVoluntario> GetListVoluntario(int currentPage)
         {
             IList<IVoluntario> ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 IMongoQueryable<IVoluntario> query = base.Context.VoluntarioCollection.AsQueryable();
                                         //.OrderBy(x => x.Nome);
@@ -44,7 +44,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public IVoluntario GetVoluntarioByCpf(long cpf)
         {
             IVoluntario ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Expression<Func<IVoluntario, bool>> filter = x => x.Cpf.Equals(cpf);
                 ret = base.Context.VoluntarioCollection.Find(filter).First();
@@ -55,7 +55,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public IVoluntario GetVoluntarioByEmail(string email)
         {
             IVoluntario ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Expression<Func<IVoluntario, bool>> filter = x => x.Email.Equals(email);
                 ret = base.Context.VoluntarioCollection.Find(filter).First();
@@ -66,7 +66,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public IVoluntario GetVoluntarioById(string Id)
         {
             IVoluntario ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Expression<Func<IVoluntario, bool>> filter = x => x.Id.Equals(Id);
                 ret = base.Context.VoluntarioCollection.Find(filter).First();
@@ -77,7 +77,7 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public IList<IVoluntario> GetVoluntarioByName(string name)
         {
             IList<IVoluntario> ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 IMongoQueryable<IVoluntario> query = base.Context.VoluntarioCollection.AsQueryable()
                                         .Where(x => x.Nome.Contains(name))

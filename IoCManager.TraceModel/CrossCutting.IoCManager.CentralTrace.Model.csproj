@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralTracer\CentralTracer.Model.csproj" />
-    <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
+    <ProjectReference Include="..\IoCManager.BaseClasses\CrossCutting.IoCManager.BaseClasses.csproj" />
   </ItemGroup>
 
 </Project>

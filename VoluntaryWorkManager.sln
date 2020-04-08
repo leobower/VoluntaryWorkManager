@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoCManager", "IoCManager", "{D68853D3-1DC8-4296-885E-0E0A25F48E24}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Test", "IoCManager.Voluntario.Test\IoCManager.Voluntario.Test.csproj", "{2A23CF84-24DA-494C-9F55-98F5155396E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.Test", "IoCManager.Voluntario.Test\CrossCutting.IoCManager.Test.csproj", "{2A23CF84-24DA-494C-9F55-98F5155396E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validations", "Validations", "{5C694182-DDFD-4D32-9A2B-E24987A881BD}"
 EndProject
@@ -23,33 +23,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedModel", "SharedModel"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralSharedModel", "CentralSharedModel\CentralSharedModel.csproj", "{FBE51AD8-7B73-456E-AAF6-A8A9932C3D79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.SharedModel", "IoCManagerSharedModel\IoCManager.SharedModel.csproj", "{7F53CDC5-AEE8-4042-906A-B841FED2B636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.SharedModel", "IoCManagerSharedModel\CrossCutting.IoCManager.SharedModel.csproj", "{7F53CDC5-AEE8-4042-906A-B841FED2B636}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Data.Repository", "Voluntario.Repository\Voluntario.Data.Repository.csproj", "{A7EF77DF-5A9D-433F-BDF6-6867AE3DC05E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.BaseClasses", "IoCManager.BaseClasses\IoCManager.BaseClasses.csproj", "{31189197-BB88-4352-88DF-D72A45D7D37B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.BaseClasses", "IoCManager.BaseClasses\CrossCutting.IoCManager.BaseClasses.csproj", "{31189197-BB88-4352-88DF-D72A45D7D37B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Model", "IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj", "{F04A06E4-A9C1-4400-B721-92B27E38FDCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.IoCManager.Model", "IocManager.Voluntario.Model\Voluntario.IoCManager.Model.csproj", "{F04A06E4-A9C1-4400-B721-92B27E38FDCC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Business", "IocManager.Voluntario.Business\IoCManager.Voluntario.Business.csproj", "{02C714C7-6EA7-4770-8C08-439CC4DBFF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.IoCManager.Business", "IocManager.Voluntario.Business\Voluntario.IoCManager.Business.csproj", "{02C714C7-6EA7-4770-8C08-439CC4DBFF8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{AC5B4716-07BC-475C-B5AD-CFA7DD9B9382}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Data.Context", "Voluntario.Data.Context\Voluntario.Data.Context.csproj", "{914F4971-4339-4116-84BD-DC7085CE7610}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Data.Context", "IoCManager.Voluntario.Data.Context\IoCManager.Voluntario.Data.Context.csproj", "{3D892499-EE84-489B-AA07-50DBF9B39F81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.IoCManager.Data.Context", "IoCManager.Voluntario.Data.Context\Voluntario.IoCManager.Data.Context.csproj", "{3D892499-EE84-489B-AA07-50DBF9B39F81}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{28AE2CC7-C39B-45E7-819A-6B964373BE0B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{8E1DD074-E878-4F85-AC74-B9FF498BB458}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{458580D3-7D90-43CB-B965-E255445703DE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{458580D3-7D90-43CB-B965-E255445703DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tracer", "Tracer", "{25511CAA-4FC7-4024-B666-423B1F72C296}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralTracer.Model", "CentralTracer\CentralTracer.Model.csproj", "{5610A197-9D35-4212-A449-9CFD4CB0089C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.CentralTrace.Model", "IoCManager.TraceModel\IoCManager.CentralTrace.Model.csproj", "{9D0AC25E-4702-4F07-B2B5-4259121DA58E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.CentralTrace.Model", "IoCManager.TraceModel\CrossCutting.IoCManager.CentralTrace.Model.csproj", "{9D0AC25E-4702-4F07-B2B5-4259121DA58E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralTracer.Business.Publisher", "CentralTracer.Business\CentralTracer.Business.Publisher.csproj", "{6A5C3C48-709A-4742-AB95-050B83DF5031}"
 EndProject
@@ -59,23 +59,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MQManager", "MQManager", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CentralMQManager", "CentralMQManager\CentralMQManager.csproj", "{C9151BB9-F46D-4079-A16F-A6FCF9D1F007}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.CentralMQManager", "IoCManager.CentralMQManager\IoCManager.CentralMQManager.csproj", "{9D5AAB48-7134-4ABC-8D8D-659EFBCAA96F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.CentralMQManager", "IoCManager.CentralMQManager\CrossCutting.IoCManager.CentralMQManager.csproj", "{9D5AAB48-7134-4ABC-8D8D-659EFBCAA96F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Application.Persistence", "Voluntario.Application\Voluntario.Application.Persistence.csproj", "{63ED3A24-B83E-442D-8DFB-E2B182FF3C89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Data.Repository", "IoCManager.Voluntario.Data.Repository\IoCManager.Voluntario.Data.Repository.csproj", "{8E909B40-1F53-4701-A971-70FDB14E3A01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.IoCManager.Data.Repository", "IoCManager.Voluntario.Data.Repository\Voluntario.IoCManager.Data.Repository.csproj", "{8E909B40-1F53-4701-A971-70FDB14E3A01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.CentralTrace.Business.Publisher", "IoCManager.CentralTrace.Business.Publisher\IoCManager.CentralTrace.Business.Publisher.csproj", "{9319A257-206C-4B9F-8DF9-E936F81CFC87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.CentralTrace.Business.Publisher", "IoCManager.CentralTrace.Business.Publisher\CrossCutting.IoCManager.CentralTrace.Business.Publisher.csproj", "{9319A257-206C-4B9F-8DF9-E936F81CFC87}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Application.Tests", "Voluntario.Application.Tests\Voluntario.Application.Tests.csproj", "{135F9F70-0F5A-4FF1-9D2F-94A23928D888}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serializaton", "Serializaton", "{43DAA42A-FADE-453B-9005-E5CC0469AAE1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerializationManager.Voluntario", "SerializationManager.Voluntario\SerializationManager.Voluntario.csproj", "{16D8800B-C382-4EC7-A382-7E0168075B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.SerializationManager", "SerializationManager.Voluntario\Voluntario.SerializationManager.csproj", "{16D8800B-C382-4EC7-A382-7E0168075B63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.SerializationManager.Voluntario", "IoCManager.SerializationManager.Voluntario\IoCManager.SerializationManager.Voluntario.csproj", "{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.IoCManager.SerializationManager", "IoCManager.SerializationManager.Voluntario\Voluntario.IoCManager.SerializationManager.csproj", "{A8B0A3FD-6345-4D9F-BF15-009F09B3953B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerializationManager.Voluntario.Tests", "SerializationManager.Voluntario.Tests\SerializationManager.Voluntario.Tests.csproj", "{B354F2BA-A943-4A27-BFA8-9DC94A02645D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.SerializationManager.Tests", "SerializationManager.Voluntario.Tests\Voluntario.SerializationManager.Tests.csproj", "{B354F2BA-A943-4A27-BFA8-9DC94A02645D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cryptography", "Cryptography", "{E50EE55D-A3D8-45D3-9F50-3988DAE55CEC}"
 EndProject
@@ -87,11 +87,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnviromentVariablesManager.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptography", "Criptography.Business\Cryptography.csproj", "{4063AB59-568C-4932-A111-66D287537BA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Voluntario.Application.Persistence", "IoCManager.Voluntario.Application\IoCManager.Voluntario.Application.Persistence.csproj", "{BA563AF6-AB48-482D-9A6E-1E7F1D04B14B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.Voluntario.Application.Persistence", "IoCManager.Voluntario.Application\CrossCutting.IoCManager.Voluntario.Application.Persistence.csproj", "{BA563AF6-AB48-482D-9A6E-1E7F1D04B14B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryprographyTests", "CryprographyTests\CryprographyTests.csproj", "{702DCC8B-4769-499E-9DF8-CBE1EE89F7F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCManager.Cryptography", "IoCManager.Cryptography\IoCManager.Cryptography.csproj", "{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.Cryptography", "IoCManager.Cryptography\CrossCutting.IoCManager.Cryptography.csproj", "{B253E8D0-84FA-4FB9-BABF-64BF4CD8C574}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.API.Rest", "Voluntario.API.Rest\Voluntario.API.Rest.csproj", "{29B463C1-851A-4EBC-9721-8D7E2090E401}"
 EndProject
@@ -111,7 +111,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Application.Quer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.Application.BaseClasses", "Voluntario.Application.BaseClasses\Voluntario.Application.BaseClasses.csproj", "{B2985881-83DE-4D6D-A14E-1ACF49735831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCManager.Voluntario.Application.Query", "IoCManager.Voluntario.Application.Query\IoCManager.Voluntario.Application.Query.csproj", "{C0FCACD5-C650-4777-8BDA-F19C61EA458D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting.IoCManager.Voluntario.Application.Query", "IoCManager.Voluntario.Application.Query\CrossCutting.IoCManager.Voluntario.Application.Query.csproj", "{C0FCACD5-C650-4777-8BDA-F19C61EA458D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoCManager", "IoCManager", "{635A543A-62EB-4864-8128-419E80866E31}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voluntario.IoCManager.Tests", "IoCManager.Voluntario.Tests\Voluntario.IoCManager.Tests.csproj", "{09C98F2E-91DA-4CD7-8450-560441D3AB41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{54A3EAB2-F2FE-4353-8CC7-017746558458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -263,6 +269,10 @@ Global
 		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0FCACD5-C650-4777-8BDA-F19C61EA458D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09C98F2E-91DA-4CD7-8450-560441D3AB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C98F2E-91DA-4CD7-8450-560441D3AB41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C98F2E-91DA-4CD7-8450-560441D3AB41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C98F2E-91DA-4CD7-8450-560441D3AB41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -279,14 +289,13 @@ Global
 		{7F53CDC5-AEE8-4042-906A-B841FED2B636} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
 		{A7EF77DF-5A9D-433F-BDF6-6867AE3DC05E} = {AC5B4716-07BC-475C-B5AD-CFA7DD9B9382}
 		{31189197-BB88-4352-88DF-D72A45D7D37B} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
-		{F04A06E4-A9C1-4400-B721-92B27E38FDCC} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
-		{02C714C7-6EA7-4770-8C08-439CC4DBFF8F} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{F04A06E4-A9C1-4400-B721-92B27E38FDCC} = {635A543A-62EB-4864-8128-419E80866E31}
+		{02C714C7-6EA7-4770-8C08-439CC4DBFF8F} = {635A543A-62EB-4864-8128-419E80866E31}
 		{AC5B4716-07BC-475C-B5AD-CFA7DD9B9382} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
 		{914F4971-4339-4116-84BD-DC7085CE7610} = {AC5B4716-07BC-475C-B5AD-CFA7DD9B9382}
-		{3D892499-EE84-489B-AA07-50DBF9B39F81} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{3D892499-EE84-489B-AA07-50DBF9B39F81} = {635A543A-62EB-4864-8128-419E80866E31}
 		{28AE2CC7-C39B-45E7-819A-6B964373BE0B} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
 		{8E1DD074-E878-4F85-AC74-B9FF498BB458} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
-		{458580D3-7D90-43CB-B965-E255445703DE} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
 		{25511CAA-4FC7-4024-B666-423B1F72C296} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
 		{5610A197-9D35-4212-A449-9CFD4CB0089C} = {25511CAA-4FC7-4024-B666-423B1F72C296}
 		{9D0AC25E-4702-4F07-B2B5-4259121DA58E} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
@@ -296,12 +305,12 @@ Global
 		{C9151BB9-F46D-4079-A16F-A6FCF9D1F007} = {0F667114-831E-4E55-A8F5-1A78539F6B38}
 		{9D5AAB48-7134-4ABC-8D8D-659EFBCAA96F} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
 		{63ED3A24-B83E-442D-8DFB-E2B182FF3C89} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
-		{8E909B40-1F53-4701-A971-70FDB14E3A01} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{8E909B40-1F53-4701-A971-70FDB14E3A01} = {635A543A-62EB-4864-8128-419E80866E31}
 		{9319A257-206C-4B9F-8DF9-E936F81CFC87} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
 		{135F9F70-0F5A-4FF1-9D2F-94A23928D888} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
-		{43DAA42A-FADE-453B-9005-E5CC0469AAE1} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
+		{43DAA42A-FADE-453B-9005-E5CC0469AAE1} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
 		{16D8800B-C382-4EC7-A382-7E0168075B63} = {43DAA42A-FADE-453B-9005-E5CC0469AAE1}
-		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{A8B0A3FD-6345-4D9F-BF15-009F09B3953B} = {635A543A-62EB-4864-8128-419E80866E31}
 		{B354F2BA-A943-4A27-BFA8-9DC94A02645D} = {43DAA42A-FADE-453B-9005-E5CC0469AAE1}
 		{E50EE55D-A3D8-45D3-9F50-3988DAE55CEC} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
 		{6E976133-C90F-4F29-BF44-9E464DB887A1} = {9BC1FCAE-3912-4D4D-9485-304D2141C860}
@@ -320,6 +329,8 @@ Global
 		{0C8527E4-F289-4C79-820B-337D76C07F1E} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
 		{B2985881-83DE-4D6D-A14E-1ACF49735831} = {8E1DD074-E878-4F85-AC74-B9FF498BB458}
 		{C0FCACD5-C650-4777-8BDA-F19C61EA458D} = {D68853D3-1DC8-4296-885E-0E0A25F48E24}
+		{635A543A-62EB-4864-8128-419E80866E31} = {4B8B56D0-DBBE-4987-83D4-1959E24A6A25}
+		{09C98F2E-91DA-4CD7-8450-560441D3AB41} = {635A543A-62EB-4864-8128-419E80866E31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98EF0224-F03B-4148-9EC3-D50C12A24B41}

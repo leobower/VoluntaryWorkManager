@@ -1,13 +1,13 @@
-using IoCManager.Voluntario.Application;
-using IoCManager.Voluntario.Application.Persistence;
-using IoCManager.Voluntario.Application.Query;
+using CrossCutting.IoCManager.Voluntario.Application;
+using CrossCutting.IoCManager.Voluntario.Application.Persistence;
+using CrossCutting.IoCManager.Voluntario.Application.Query;
 using NUnit.Framework;
 using System;
 using Voluntario.Application.Persistence;
 using Voluntario.Application.Query;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCVoluntarioApplicationTests
     {

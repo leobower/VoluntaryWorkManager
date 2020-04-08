@@ -1,10 +1,10 @@
-﻿using IoCManager.BaseClasses;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Repository.Interfaces;
 
-namespace IoCManager.Voluntario.Data.Repository
+namespace Voluntario.IoCManager.Data.Repository
 {
     public class RepositoryWriterIoCManager : BaseIoCManager<IRepositoryWriter>
     {

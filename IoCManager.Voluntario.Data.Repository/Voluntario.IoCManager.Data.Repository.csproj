@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
     <ProjectReference Include="..\Voluntario.Repository\Voluntario.Data.Repository.csproj" />
   </ItemGroup>
 

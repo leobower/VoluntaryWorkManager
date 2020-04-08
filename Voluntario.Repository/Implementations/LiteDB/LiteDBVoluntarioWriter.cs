@@ -14,12 +14,12 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public object ContextObj {get => (object)base.Context;}
         public LiteDBVoluntarioWriter(string dataBaseName, string collectionName)
         {
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(). GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(). GetIContextCurrentImplementation(dataBaseName, collectionName);
         }
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 Context.VoluntarioCollection.Insert(voluntario);
@@ -28,7 +28,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Update(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 Context.VoluntarioCollection.Update(voluntario);
@@ -37,7 +37,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Delete(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 Context.VoluntarioCollection.Delete(voluntario.Id);

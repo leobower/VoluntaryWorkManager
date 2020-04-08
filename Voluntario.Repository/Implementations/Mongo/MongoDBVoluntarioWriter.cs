@@ -16,12 +16,12 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
         public MongoDBVoluntarioWriter(string dataBaseName, string collectionName)
         {
             //TODO
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
         }
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 base.Context.VoluntarioCollection.InsertOne(voluntario);

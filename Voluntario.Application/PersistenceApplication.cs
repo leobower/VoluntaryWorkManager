@@ -27,11 +27,11 @@ namespace Voluntario.Application.Persistence
             if (_voluntario != null && !String.IsNullOrEmpty(RequestId))
             {
                 if (_cryptography == null)
-                    _cryptography = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+                    _cryptography = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
 
                 if (_voluntarioValidations == null)
                 {
-                    _voluntarioValidations = new IoCManager.Voluntario.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
+                    _voluntarioValidations = new Voluntario.IoCManager.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
                     _voluntarioValidations.LengthValidator.Volunt = _voluntario;
                     _voluntarioValidations.Voluntario = _voluntario;
                     _voluntarioValidations.ValidaCEP = (a) => base.CepValidator.ValidateCep(_voluntario.Cep);
@@ -41,7 +41,7 @@ namespace Voluntario.Application.Persistence
 
                 if (_voluntarioPersistence == null)
                 {
-                    _voluntarioPersistence = new IoCManager.Voluntario.Business.VoluntarioPersistenceIocManager().GetCurrentIVoluntarioPersitenceImplementation();
+                    _voluntarioPersistence = new Voluntario.IoCManager.Business.VoluntarioPersistenceIocManager().GetCurrentIVoluntarioPersitenceImplementation();
                     _voluntarioPersistence.VoluntarioValidations = _voluntarioValidations;
                     _voluntarioPersistence.Voluntario = _voluntario;
                     _voluntarioPersistence.Encrypt = (a) => _cryptography.Encrypt(_voluntario.Senha);
@@ -72,12 +72,12 @@ namespace Voluntario.Application.Persistence
         {
             if (_repositoryWriter == null)
             {
-                _repositoryWriter = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation(database, collectionName);
+                _repositoryWriter = new Voluntario.IoCManager.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation(database, collectionName);
                 _repositoryWriter.RequestId = this.RequestId;
             }
             if (_query == null)
             {
-                _query = new IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(_repositoryWriter.ContextObj);
+                _query = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(_repositoryWriter.ContextObj);
 
             }
         }
@@ -85,7 +85,7 @@ namespace Voluntario.Application.Persistence
        
         public void Add()
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_repositoryWriter)
                 {
@@ -106,7 +106,7 @@ namespace Voluntario.Application.Persistence
 
         public void Update()
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_repositoryWriter)
                 {
@@ -118,7 +118,7 @@ namespace Voluntario.Application.Persistence
 
         public void Delete()
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_repositoryWriter)
                 {

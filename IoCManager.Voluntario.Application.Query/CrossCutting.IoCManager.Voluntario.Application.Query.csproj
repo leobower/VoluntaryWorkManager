@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IoCManager.BaseClasses\CrossCutting.IoCManager.BaseClasses.csproj" />
     <ProjectReference Include="..\Voluntario.Application.Query\Voluntario.Application.Query.csproj" />
   </ItemGroup>
 

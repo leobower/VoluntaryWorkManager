@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralTracer.Business\CentralTracer.Business.Publisher.csproj" />
-    <ProjectReference Include="..\IoCManager.BaseClasses\IoCManager.BaseClasses.csproj" />
   </ItemGroup>
 
 </Project>

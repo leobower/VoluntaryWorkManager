@@ -14,7 +14,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public bool IsToDispose { get; set; }
         public LiteDBVoluntarioQuery(string dataBaseName, string collectionName)
         {
-            base.Context = new IoCManager.Voluntario.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
             IsToDispose = true;
         }
 
@@ -27,7 +27,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IVoluntario GetVoluntarioByCpf(Int64 cpf)
         {
             IVoluntario vol = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Cpf);
                 vol = base.Context.VoluntarioCollection.Query()
@@ -41,7 +41,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IList<IVoluntario> GetVoluntarioByName(string name)
         {
             IList<IVoluntario> ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Nome);
                 ret = base.Context.VoluntarioCollection.Query()
@@ -57,7 +57,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IVoluntario GetVoluntarioById(string Id)
         {
             IVoluntario vol = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Id);
                 vol = base.Context.VoluntarioCollection.Query()
@@ -76,7 +76,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IList<IVoluntario> GetListVoluntario(int currentPage)
         {
             IList<IVoluntario> ret = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Nome);
                 ret = base.Context.VoluntarioCollection.Query()
@@ -89,7 +89,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IVoluntario GetVoluntarioByEmail(string email)
         {
             IVoluntario vol = null;
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Email);
                 vol = base.Context.VoluntarioCollection.Query()

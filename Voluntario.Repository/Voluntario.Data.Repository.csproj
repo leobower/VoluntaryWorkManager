@@ -18,8 +18,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
     <ProjectReference Include="..\CentralTracer.Business\CentralTracer.Business.Publisher.csproj" />
-    <ProjectReference Include="..\IoCManager.CentralTrace.Business.Publisher\IoCManager.CentralTrace.Business.Publisher.csproj" />
-    <ProjectReference Include="..\IoCManager.Voluntario.Data.Context\IoCManager.Voluntario.Data.Context.csproj" />
+    <ProjectReference Include="..\IoCManager.CentralTrace.Business.Publisher\CrossCutting.IoCManager.CentralTrace.Business.Publisher.csproj" />
+    <ProjectReference Include="..\IoCManager.Voluntario.Data.Context\Voluntario.IoCManager.Data.Context.csproj" />
     <ProjectReference Include="..\Voluntario.Data.Context\Voluntario.Data.Context.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
   </ItemGroup>

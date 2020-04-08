@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCTracerPubliserTests
     {
@@ -20,7 +20,7 @@ namespace Tests
             ITracerWrapper obj;
             try
             {
-                obj = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(Guid.NewGuid().ToString());
+                obj = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(Guid.NewGuid().ToString());
             }
             catch (Exception ex)
             {

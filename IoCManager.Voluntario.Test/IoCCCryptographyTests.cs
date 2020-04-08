@@ -1,10 +1,10 @@
 using CentralSharedModel.Interfaces;
 using Cryptography;
-using IoCManager.SharedModel;
+using CrossCutting.IoCManager.SharedModel;
 using NUnit.Framework;
 using Voluntario.Data.Context;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCCCryptographyTests
     {
@@ -17,7 +17,7 @@ namespace Tests
         [Test]
         public void TestCryptographyInjection()
         {
-            ICryptography obj = new IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+            ICryptography obj = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
             Assert.IsTrue(obj != null &&  obj.GetType().IsClass);
         }
 

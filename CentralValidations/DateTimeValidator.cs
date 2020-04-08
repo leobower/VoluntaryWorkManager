@@ -17,7 +17,7 @@ namespace CentralValidations
 
         public bool ValidateDateTime(string datetime, out string dateTimeFormatted)
         {
-            using (var tracer = new IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = false;
                 DateTime dt = DateTime.MinValue;

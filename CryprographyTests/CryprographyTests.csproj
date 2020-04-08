@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Criptography.Business\Cryptography.csproj" />
-    <ProjectReference Include="..\IoCManager.Cryptography\IoCManager.Cryptography.csproj" />
+    <ProjectReference Include="..\IoCManager.Cryptography\CrossCutting.IoCManager.Cryptography.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 using CentralSharedModel.Interfaces;
 using CentralTracer.Model;
-using IoCManager.SharedModel;
+using CrossCutting.IoCManager.SharedModel;
 using NUnit.Framework;
 using Voluntario.Data.Context;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCTracerModelTests
     {
@@ -19,7 +19,7 @@ namespace Tests
         {
             try
             {
-                ITraceModel obj = new IoCManager.CentralTrace.Model.CentralTracerModelIoCManager().GetITraceModelCurrentImplementation();
+                ITraceModel obj = new CrossCutting.IoCManager.CentralTrace.Model.CentralTracerModelIoCManager().GetITraceModelCurrentImplementation();
                 Assert.IsTrue(obj != null && obj.GetType().IsClass);
 
             }

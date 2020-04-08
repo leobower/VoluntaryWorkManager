@@ -1,11 +1,9 @@
 ﻿using NUnit.Framework;
-using SerializationManager.Voluntario;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
+using Voluntario.SerializationManager;
 
-namespace Tests
+namespace Voluntario.IoCManager.Tests
 {
     public class IoCSerializationManagerTests
     {
@@ -21,7 +19,7 @@ namespace Tests
             try
             {
                 ICentralSerializationManager<IVoluntario> obj = null;
-                obj = new IoCManager.SerializationManager.Voluntario.SerializationIoCManager().GetISerializationCurrentImplementation();
+                obj = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetISerializationCurrentImplementation();
                 Assert.IsTrue(obj != null && obj.GetType().IsClass);
             }
             catch (Exception ex)

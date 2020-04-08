@@ -1,8 +1,8 @@
-using IoCManager.Voluntario.Business;
+using Voluntario.IoCManager.Business;
 using NUnit.Framework;
 using Voluntario.Domain.BusinessRules.Interfaces;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCVoluntarioValidationsTests
     {

@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IoCManager.SerializationManager.Voluntario\IoCManager.SerializationManager.Voluntario.csproj" />
-    <ProjectReference Include="..\IocManager.Voluntario.Model\IoCManager.Voluntario.Model.csproj" />
-    <ProjectReference Include="..\SerializationManager.Voluntario\SerializationManager.Voluntario.csproj" />
+    <ProjectReference Include="..\IoCManager.SerializationManager.Voluntario\Voluntario.IoCManager.SerializationManager.csproj" />
+    <ProjectReference Include="..\IocManager.Voluntario.Model\Voluntario.IoCManager.Model.csproj" />
+    <ProjectReference Include="..\SerializationManager.Voluntario\Voluntario.SerializationManager.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
   </ItemGroup>
 

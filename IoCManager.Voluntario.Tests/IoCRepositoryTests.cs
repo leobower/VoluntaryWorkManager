@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Voluntario.Data.Repository.Interfaces;
 
-namespace Tests
+namespace Voluntario.IoCManager.Tests
 {
     public class IoCRepositoryTests
     {
@@ -16,7 +16,7 @@ namespace Tests
         [Test]
         public void TestRepositoryWriterInjection()
         {
-            IRepositoryWriter obj = new IoCManager.Voluntario.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
+            IRepositoryWriter obj = new Voluntario.IoCManager.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
 
@@ -25,7 +25,7 @@ namespace Tests
         [Test]
         public void TestRepositoryQueryInjection()
         {
-            IRepositoryQuery obj = new IoCManager.Voluntario.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
+            IRepositoryQuery obj = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
 

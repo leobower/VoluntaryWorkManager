@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace SerializationManager.Voluntario
+namespace Voluntario.SerializationManager
 {
 
     public class LowercaseContractResolver : DefaultContractResolver

@@ -1,12 +1,7 @@
-﻿using IoCManager.BaseClasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Voluntario.Application;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using Voluntario.Application.Query;
-using Voluntario.Data.Context.LiteDb;
 
-namespace IoCManager.Voluntario.Application.Query
+namespace CrossCutting.IoCManager.Voluntario.Application.Query
 {
     public class QueryApplicationIoCManager : BaseIoCManager<IQueryApplication>
     {

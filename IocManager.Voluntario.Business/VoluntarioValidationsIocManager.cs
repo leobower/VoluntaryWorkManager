@@ -1,8 +1,8 @@
-﻿using IoCManager.BaseClasses;
+﻿using CrossCutting.IoCManager.BaseClasses;
 using System.Reflection;
 using Voluntario.Domain.BusinessRules.Interfaces;
 
-namespace IoCManager.Voluntario.Business
+namespace Voluntario.IoCManager.Business
 {
     public class VoluntarioValidationsIocManager : BaseIoCManager<IVoluntarioValidations>
     {

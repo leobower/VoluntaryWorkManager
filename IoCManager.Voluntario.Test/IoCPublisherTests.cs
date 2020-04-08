@@ -4,7 +4,7 @@ using System.Text;
 using CentralMQManager;
 using NUnit.Framework;
 
-namespace Tests
+namespace CrossCutting.IoCManager.Test
 {
     public class IoCPublisherTests
     {
@@ -19,7 +19,7 @@ namespace Tests
         {
             try
             {
-                IPublisher obj = new IoCManager.CentralMQManager.PublisherIoCManager().GetIPublisherCurrentImplementation();
+                IPublisher obj = new CrossCutting.IoCManager.CentralMQManager.PublisherIoCManager().GetIPublisherCurrentImplementation();
                 Assert.IsTrue(obj != null && obj.GetType().IsClass);
 
             }

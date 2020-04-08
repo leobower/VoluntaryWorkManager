@@ -1,11 +1,7 @@
 ﻿using CentralSharedModel.Interfaces;
-using IoCManager.BaseClasses;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+using CrossCutting.IoCManager.BaseClasses;
 
-namespace IoCManager.SharedModel
+namespace CrossCutting.IoCManager.SharedModel
 {
     public  class SharedModelIoCManager : BaseIoCManager<IAddress>
     {

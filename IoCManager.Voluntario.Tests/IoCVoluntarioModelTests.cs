@@ -1,11 +1,11 @@
-using IoCManager.Voluntario.Model;
+using Voluntario.IoCManager.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
 using System;
 using Voluntario.Domain.Entities.Interfaces;
 
-namespace Tests
+namespace Voluntario.IoCManager.Tests
 {
     public class IoCVoluntarioModelTests
     {
