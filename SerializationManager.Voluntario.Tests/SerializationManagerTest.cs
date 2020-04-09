@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.SerializationManager.Tests
@@ -19,11 +20,13 @@ namespace Voluntario.SerializationManager.Tests
             voluntario.Nome = "Leandro Figueiredo Silva Ribeiro";
             voluntario.Senha = "Senha";
             voluntario.Telefone = "12323123";
+            voluntario.AreasInteresse = new List<string>() { "teste01", "teste02" };
+            //voluntario.Foto = new byte[] { 0x48, 0x49, 0x1d, 0x52, 0x53, 0x1d, 0x56, 0x57, 0x00 };
         }
 
         private string TestSerialization()
         {
-            ICentralSerializationManager<IVoluntario> ser = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetISerializationCurrentImplementation();
+            ICentralSerializationManager<IVoluntario> ser = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
 
             return ser.Serialize(voluntario);
         }

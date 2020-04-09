@@ -1,26 +1,38 @@
-﻿using CentralSharedModel.Interfaces;
-using Cryptography;
+﻿using Cryptography;
 using System;
 using Voluntario.Data.Repository.Interfaces;
 using Voluntario.Domain.BusinessRules.Interfaces;
 using Voluntario.Domain.Entities.Interfaces;
 using Voluntario.Application.BaseClasses;
 using Voluntario.Application.Query;
+using Voluntario.SerializationManager;
 
 namespace Voluntario.Application.Persistence
 {
     public class PersistenceApplication : Validations, IDisposable, IPersistenceApplication
     {
-       // private Validations             _validations;
         private IRepositoryWriter       _repositoryWriter;
         private IVoluntarioPersistence  _voluntarioPersistence;
         private IVoluntarioValidations  _voluntarioValidations;
         private ICryptography _cryptography;
         private IQueryApplication _query;
-        //private string _requestId;
+        private string _voluntarioSerialized;
+        private ICentralSerializationManager<IVoluntario> _serializer;
 
         private IVoluntario _voluntario;
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
+        public string VoluntarioSerialized 
+        { 
+            //get => _voluntarioSerialized;
+            set
+            {
+                if(!String.IsNullOrEmpty(value))
+                {
+                    _serializer = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+                    Voluntario = _serializer.Deserialize(value);
+                }
+            }
+        }
 
         private void InitializeObjects()
         {

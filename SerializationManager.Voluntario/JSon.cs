@@ -1,0 +1,78 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.IO;
+using Voluntario.Domain.Entities.Interfaces;
+using System.Reflection;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+
+namespace Voluntario.SerializationManager
+{
+    public class LowercaseContractResolver : DefaultContractResolver
+    {
+        protected override string ResolvePropertyName(string propertyName)
+        {
+            return propertyName.ToLower();
+        }
+    }
+
+    public class JSon : ICentralSerializationManager<IVoluntario>
+    {
+        private readonly JsonSerializerSettings _settings;
+        private IVoluntario _volunt = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+        public JSon()
+        {
+            _settings = new JsonSerializerSettings();
+            _settings.ContractResolver = new LowercaseContractResolver();
+        }
+
+        private IVoluntario DeserializeJSonVol(string vol)
+        {
+            IVoluntario ret = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+            //var JObject = JsonConvert.DeserializeObject(vol);
+            JObject obj = JObject.Parse(vol);
+            //var teste = obj.GetValue("areasinteresse");
+            foreach (PropertyInfo pi in ret.GetType().GetProperties())
+            {
+                if (obj.GetValue(pi.Name.ToLower()) != null)
+                {
+                    //TODO - verificar como o NewtonSoft serializa byte[]
+                    if (!pi.Name.ToLower().Equals("foto"))
+                    {
+                        if (!obj.GetValue(pi.Name.ToLower()).ToString().Contains("["))
+                            pi.SetValue(ret, Convert.ChangeType(obj.GetValue(pi.Name.ToLower()).ToString(), pi.PropertyType));
+                        else
+                        {
+                            //TODO
+                            string val = obj.GetValue(pi.Name.ToLower()).ToString().Replace("[", string.Empty).Replace("]", string.Empty).Replace("\"", string.Empty).Replace(System.Environment.NewLine, string.Empty);
+                            string[] arrVal = val.Split(',');
+                            List<string> listStr = new List<string>();
+                            for (int i = 0; i < arrVal.Length; i++)
+                            {
+                                listStr.Add(arrVal[i]);
+
+                            }
+                            pi.SetValue(ret, listStr);
+
+                        }
+                    }
+
+                }
+                
+            }
+
+            return ret;
+        }
+
+        public IVoluntario Deserialize(string obj)
+        {
+            return DeserializeJSonVol(obj);
+        }
+
+        public string Serialize(IVoluntario obj)
+        {
+            return JsonConvert.SerializeObject(obj, Formatting.Indented, _settings);
+        }
+    }
+}

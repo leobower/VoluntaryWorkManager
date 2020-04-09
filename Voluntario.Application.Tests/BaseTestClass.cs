@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
+using Voluntario.SerializationManager;
 
 namespace Voluntario.Application.Tests
 {
@@ -68,7 +69,14 @@ namespace Voluntario.Application.Tests
             _voluntario.Senha = "12345678";
             _voluntario.Telefone = "12323123";
             _voluntario.AreasInteresse = new List<string>() { "teste01", "teste02" };
-            _voluntario.Foto = new byte[] { 0, 1, 33 };
+           // _voluntario.Foto = new byte[] { 0, 1, 33 };
+        }
+
+        public string GetVoluntarioSerialized()
+        {
+            ICentralSerializationManager<IVoluntario> serializer = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+            return serializer.Serialize(_voluntario);
+
         }
 
     }

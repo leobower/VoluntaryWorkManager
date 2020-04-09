@@ -17,7 +17,8 @@ namespace Tests
             if (Voluntario == null)
                 Setup();
             IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
-            per.Voluntario = Voluntario;
+            //per.Voluntario = Voluntario;
+            per.VoluntarioSerialized = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;
             per.Add();
             
@@ -28,7 +29,8 @@ namespace Tests
         {
             //AddTest();
             IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
-            per.Voluntario = Voluntario;
+            //per.Voluntario = Voluntario;
+            per.VoluntarioSerialized = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;
 
             Voluntario.Email = "leandro_vca@hotmail.com";
@@ -39,9 +41,10 @@ namespace Tests
         [Test]
         public void DeleteTest()
         {
-            AddTest();
+           // AddTest();
             IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
-            per.Voluntario = Voluntario;
+            //per.Voluntario = Voluntario;
+            per.VoluntarioSerialized = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;
             per.Delete();
             

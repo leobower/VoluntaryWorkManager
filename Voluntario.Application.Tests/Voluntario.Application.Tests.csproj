@@ -15,9 +15,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
+    <ProjectReference Include="..\IoCManager.SerializationManager.Voluntario\Voluntario.IoCManager.SerializationManager.csproj" />
     <ProjectReference Include="..\IoCManager.Voluntario.Application.Query\CrossCutting.IoCManager.Voluntario.Application.Query.csproj" />
     <ProjectReference Include="..\IoCManager.Voluntario.Application\CrossCutting.IoCManager.Voluntario.Application.Persistence.csproj" />
     <ProjectReference Include="..\IocManager.Voluntario.Model\Voluntario.IoCManager.Model.csproj" />
+    <ProjectReference Include="..\SerializationManager.Voluntario\Voluntario.SerializationManager.csproj" />
     <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
     <ProjectReference Include="..\Voluntario.Domain\Voluntario.Domain.csproj" />
   </ItemGroup>
