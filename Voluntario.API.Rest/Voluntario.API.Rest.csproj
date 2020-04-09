@@ -8,6 +8,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IoCManager.Voluntario.Application\CrossCutting.IoCManager.Voluntario.Application.Persistence.csproj" />
+    <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
