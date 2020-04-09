@@ -16,7 +16,7 @@ namespace Voluntario.API.Rest.Controllers
     {
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] string voluntario, [FromServices]IConfiguration config)
+        public IActionResult Post([FromBody] string voluntario, [FromServices]IConfiguration config)
         {
             //TODO
             string connStr = config.GetSection("connStr").Value;
