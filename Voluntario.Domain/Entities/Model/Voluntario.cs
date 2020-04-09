@@ -12,7 +12,7 @@ namespace Voluntario.Domain.Entities.Model
         private string cep;
         private string _dataNascimento;
         private string _email;
-        private byte[] _foto;
+        private string _fotoBase64;
         private string _nome;
         private string _senha;
         private string _telefone;
@@ -22,7 +22,7 @@ namespace Voluntario.Domain.Entities.Model
         public string Cep { get => cep; set => cep = value; }
         public string DataNascimento { get => _dataNascimento; set => _dataNascimento = value; }
         public string Email { get => _email; set => _email = value; }
-        public byte[] Foto { get => _foto; set => _foto = value; }
+        public string FotoBase64 { get => _fotoBase64; set => _fotoBase64 = value; }
         public string Nome { get => _nome; set => _nome = value; }
         public string Senha { get => _senha; set => _senha = value; }
         public string Telefone { get => _telefone; set => _telefone = value; }

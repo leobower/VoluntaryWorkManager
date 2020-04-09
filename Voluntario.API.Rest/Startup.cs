@@ -26,7 +26,11 @@ namespace Voluntario.API.Rest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+                                        {
+                                            options.InputFormatters.Insert(0, new RawJsonBodyInputFormatter());
+                                        }
+                            ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger. Info { Title = "Voluntario API", Version = "V1" });
             });

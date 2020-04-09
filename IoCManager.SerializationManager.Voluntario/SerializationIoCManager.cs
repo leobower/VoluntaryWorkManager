@@ -2,7 +2,7 @@
 using Voluntario.Domain.Entities.Interfaces;
 using Voluntario.SerializationManager;
 
-namespace Voluntario.IoCManager.SerializationManager
+namespace CrossCutting.IoCManager.Voluntario.SerializationManager
 {
     public class SerializationIoCManager : BaseIoCManager<ICentralSerializationManager<IVoluntario>>
     {

@@ -69,12 +69,12 @@ namespace Voluntario.Application.Tests
             _voluntario.Senha = "12345678";
             _voluntario.Telefone = "12323123";
             _voluntario.AreasInteresse = new List<string>() { "teste01", "teste02" };
-           // _voluntario.Foto = new byte[] { 0, 1, 33 };
+            _voluntario.FotoBase64 = Convert.ToBase64String(new byte[] { 0, 1, 33,56,87,19 });
         }
 
         public string GetVoluntarioSerialized()
         {
-            ICentralSerializationManager<IVoluntario> serializer = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+            ICentralSerializationManager<IVoluntario> serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
             return serializer.Serialize(_voluntario);
 
         }

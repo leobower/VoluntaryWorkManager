@@ -19,7 +19,7 @@ namespace Voluntario.IoCManager.Tests
             try
             {
                 ICentralSerializationManager<IVoluntario> obj = null;
-                obj = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+                obj = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
                 Assert.IsTrue(obj != null && obj.GetType().IsClass);
             }
             catch (Exception ex)

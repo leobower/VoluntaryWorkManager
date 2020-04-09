@@ -28,7 +28,7 @@ namespace Voluntario.Application.Persistence
             {
                 if(!String.IsNullOrEmpty(value))
                 {
-                    _serializer = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+                    _serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
                     Voluntario = _serializer.Deserialize(value);
                 }
             }

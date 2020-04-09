@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IoCManager.SerializationManager.Voluntario\CrossCutting.IoCManager.Voluntario.SerializationManager.csproj" />
     <ProjectReference Include="..\IoCManager.Voluntario.Application\CrossCutting.IoCManager.Voluntario.Application.Persistence.csproj" />
     <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
   </ItemGroup>

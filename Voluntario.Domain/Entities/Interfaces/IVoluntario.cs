@@ -16,7 +16,7 @@ namespace Voluntario.Domain.Entities.Interfaces
         string DataNascimento { get; set; }
         [CustomMaxLength(0, 25)]
         string Email { get; set; }
-        byte[] Foto { get; set; }
+        string FotoBase64 { get; set; }
         [CustomMaxLength(8, 50)]
         string Nome { get; set; }
         [CustomMaxLength(8, 24)]

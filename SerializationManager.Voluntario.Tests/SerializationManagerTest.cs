@@ -21,12 +21,12 @@ namespace Voluntario.SerializationManager.Tests
             voluntario.Senha = "Senha";
             voluntario.Telefone = "12323123";
             voluntario.AreasInteresse = new List<string>() { "teste01", "teste02" };
-            //voluntario.Foto = new byte[] { 0x48, 0x49, 0x1d, 0x52, 0x53, 0x1d, 0x56, 0x57, 0x00 };
+            voluntario.FotoBase64 = Convert.ToBase64String(new byte[] { 0, 1, 33, 56, 87, 19 });
         }
 
         private string TestSerialization()
         {
-            ICentralSerializationManager<IVoluntario> ser = new Voluntario.IoCManager.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+            ICentralSerializationManager<IVoluntario> ser = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
 
             return ser.Serialize(voluntario);
         }
