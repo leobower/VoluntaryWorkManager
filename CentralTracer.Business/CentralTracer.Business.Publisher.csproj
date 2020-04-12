@@ -9,6 +9,7 @@
     <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
     <ProjectReference Include="..\CentralTracer\CentralTracer.Model.csproj" />
     <ProjectReference Include="..\IoCManager.CentralMQManager\CrossCutting.IoCManager.CentralMQManager.csproj" />
+    <ProjectReference Include="..\IoCManager.TraceModel\CrossCutting.IoCManager.CentralTrace.Model.csproj" />
   </ItemGroup>
 
 </Project>

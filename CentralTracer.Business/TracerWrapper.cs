@@ -25,28 +25,28 @@ namespace CentralTracer.Business.Publisher
 
         private void InitializeObjects(string requestId)
         {
-            //_publisher = new IoCManager.CentralMQManager.PublisherIoCManager().GetIPublisherCurrentImplementation();
+            _publisher = new CrossCutting.IoCManager.CentralMQManager.PublisherIoCManager().GetIPublisherCurrentImplementation();
 
-            //_publisher.HostName = "localhost";///TODO
-            //_publisher.Port = 15672;//TODO
-            //_publisher.QueueName = "centralized_logs_voluntario";//TODO
-            //RequestId = requestId;
+            _publisher.HostName = "localhost";///TODO
+            _publisher.Port = 15672;//TODO
+            _publisher.QueueName = "centralized_logs_voluntario";//TODO
+            RequestId = requestId;
 
-            //_model = new IoCManager.CentralTrace.Model.CentralTracerModelIoCManager().GetITraceModelCurrentImplementation();
-            //_frame = new StackFrame(1);
-            //_method = _frame.GetMethod();
+            _model = new CrossCutting.IoCManager.CentralTrace.Model.CentralTracerModelIoCManager().GetITraceModelCurrentImplementation();
+            _frame = new StackFrame(1);
+            _method = _frame.GetMethod();
 
-            //_model.Id = Guid.NewGuid();
-            //_model.RequestId = RequestId;
-            //_model.ClassName = _method.DeclaringType.Name;
-            //_model.MethodName = _method.Name;
-            //_model.Parameters = GetParameters(_method.GetParameters());
-            //_model.StartTime = DateTime.Now.ToString();
-            //_model.ElapsedTime = 0;
-            //_model.EndTime = null;
+            _model.Id = Guid.NewGuid();
+            _model.RequestId = RequestId;
+            _model.ClassName = _method.DeclaringType.Name;
+            _model.MethodName = _method.Name;
+            _model.Parameters = GetParameters(_method.GetParameters());
+            _model.StartTime = DateTime.Now.ToString();
+            _model.ElapsedTime = 0;
+            _model.EndTime = null;
 
-            //_publisher.Enqueue(_model.ToString());
-            //_sw = Stopwatch.StartNew();
+            _publisher.Enqueue(_model.ToString());
+            _sw = Stopwatch.StartNew();
         }
 
         private string GetParameters(ParameterInfo[] arrParam)
@@ -85,17 +85,17 @@ namespace CentralTracer.Business.Publisher
 
         public void Dispose()
         {
-            //if (!this._disposed)
-            //{
-            //    this._disposed = true;
-            //    _sw.Stop();
-            //    _model.EndTime = DateTime.Now.ToString();
-            //    _model.ElapsedTime = _sw.ElapsedMilliseconds;
-            //    _publisher.Enqueue(_model.ToString());
-            //    // Console.WriteLine(String.Format("EndTime: {0}, RequestId{1},  Class: {2}, Method: {3}, TimeElapsed {4}ms", DateTime.UtcNow, _correlationId, this.className, this.methodName, sw.ElapsedMilliseconds));
-            //    _sw = null;
-            //    _publisher = null;
-            //}
+            if (!this._disposed)
+            {
+                this._disposed = true;
+                _sw.Stop();
+                _model.EndTime = DateTime.Now.ToString();
+                _model.ElapsedTime = _sw.ElapsedMilliseconds;
+                _publisher.Enqueue(_model.ToString());
+                // Console.WriteLine(String.Format("EndTime: {0}, RequestId{1},  Class: {2}, Method: {3}, TimeElapsed {4}ms", DateTime.UtcNow, _correlationId, this.className, this.methodName, sw.ElapsedMilliseconds));
+                _sw = null;
+                _publisher = null;
+            }
         }
 
 

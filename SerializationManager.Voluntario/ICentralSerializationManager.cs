@@ -8,5 +8,7 @@ namespace Voluntario.SerializationManager
     {
         string Serialize(T obj);
         T Deserialize(string obj);
+        bool TryDeserialize(string obj);
+        
     }
 }

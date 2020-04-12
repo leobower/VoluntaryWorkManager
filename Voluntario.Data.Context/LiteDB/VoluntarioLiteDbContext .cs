@@ -1,5 +1,7 @@
 ﻿using LiteDB;
 using System;
+using System.IO;
+using System.Reflection;
 using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Data.Context.LiteDb
@@ -31,7 +33,9 @@ namespace Voluntario.Data.Context.LiteDb
             {
                 try
                 {
-                    VoluntarioDataBase = new LiteDatabase(DataBaseName);
+                    string fullName = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), DataBaseName);
+                    VoluntarioDataBase = new LiteDatabase(fullName);
+                   //Environment.  DataBaseName);
                     VoluntarioCollection = VoluntarioDataBase.GetCollection<IVoluntario>(collectionName);
                     CollectionName = collectionName;
                 }

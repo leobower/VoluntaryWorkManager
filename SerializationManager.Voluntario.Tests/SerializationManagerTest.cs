@@ -8,9 +8,12 @@ namespace Voluntario.SerializationManager.Tests
     public class SerializationManagerTest
     {
         IVoluntario voluntario = null;
+        ICentralSerializationManager<IVoluntario> ser = null;
         [SetUp]
         public void Setup()
         {
+            ser = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+
             voluntario = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
             voluntario.Cep = "11703680";
             voluntario.Cpf = 31495307840;
@@ -26,9 +29,18 @@ namespace Voluntario.SerializationManager.Tests
 
         private string TestSerialization()
         {
-            ICentralSerializationManager<IVoluntario> ser = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
 
             return ser.Serialize(voluntario);
+        }
+
+        private object TestDeserializaton(string obj)
+        {
+            return (object)ser.Deserialize(obj);
+        }
+
+        private bool TestTryDeserialization(string obj)
+        {
+            return ser.TryDeserialize(obj);
         }
 
 
@@ -45,7 +57,56 @@ namespace Voluntario.SerializationManager.Tests
             {
                 throw ex;
             }
-            
+
         }
+
+        [Test]
+        public void DeserializeTest()
+        {
+            try
+            {
+                string message = TestSerialization();
+                object objVolunt = TestDeserializaton(message);
+                Assert.IsNotNull(objVolunt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Test]
+        public void TryDeserializePositiveTest()
+        {
+            try
+            {
+                string message = TestSerialization();
+                Assert.IsTrue(TestTryDeserialization(message));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Test]
+        public void TryDeserializeNegativeTest()
+        {
+            bool test = false;
+            try
+            {
+                string message = TestSerialization();
+                message = message.Replace("id", "id_IUI");
+                test = TestTryDeserialization(message);
+            }
+            catch (Exception ex)
+            {
+                if(!ex.Message.Contains("Invalid Request Body. Follow the model above"))
+                    throw ex;
+            }
+
+            Assert.IsFalse(test);
+        }
+
     }
 }

@@ -74,5 +74,51 @@ namespace Voluntario.SerializationManager
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented, _settings);
         }
+
+        public bool TryDeserialize(string obj)
+        {
+            bool ret = false;
+            try
+            {
+                IVoluntario vol = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+                //var JObject = JsonConvert.DeserializeObject(vol);
+                JObject jObj = JObject.Parse(obj);
+                List<bool> listContainsToken = new List<bool>();
+
+                //List<string> listProps = new List<string>();
+                foreach (PropertyInfo pi in vol.GetType().GetProperties())
+                {
+                    listContainsToken.Add(jObj.ContainsKey(pi.Name.ToLower()));
+                }
+
+                ret = (jObj.Count.Equals(listContainsToken.Count) && !listContainsToken.Contains(false));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if(!ret)
+            {
+                string message = @"Invalid Request Body. Follow the model above
+                                        {
+                                          'id': 'Guid',
+                                          'cpf': 'Long',
+                                          'cep': 'string',
+                                          'datanascimento': 'dd/MM/yyy',
+                                          'email': 'valid@email.com',
+                                          'fotobase64': 'string',
+                                          'nome': 'Full Name',
+                                          'senha': 'Senha',
+                                          'telefone': 'string',
+                                          'areasinteresse': [
+                                            'test01',
+                                            'test02'
+                                          ]
+                                        }";
+                throw new Exception(message);
+            }
+            return ret;
+            
+        }
     }
 }
