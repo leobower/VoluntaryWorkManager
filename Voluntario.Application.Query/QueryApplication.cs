@@ -41,7 +41,6 @@ namespace Voluntario.Application.Query
                     _voluntarioValidations = new Voluntario.IoCManager.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
                     _voluntarioValidations.ValidaCPF = (a) => CpfValidator.ValidateCPF(Cpf.ToString());
                     _voluntarioValidations.ValidaEmail = (a) => EmailValidator.IsValidEmail(Email);
-                    //_voluntarioValidations.ValidaCEP = (a) => _validations.CepValidator.ValidateCep(Cep);
 
                 }
 
