@@ -28,6 +28,7 @@ namespace Voluntario.Domain.BusinessRules.Rules
         public Func<string, bool> ValidaEmail { get => _validaEmail; set => _validaEmail = value; }
         public Func<string, bool> ValidaCEP { get => _validaCEP; set => _validaCEP = value; }
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
+
         public Func< bool> ValidaIdade { get => validaIdade;}
         public Func<bool> ValidaId { get => _lengthValidator.IdValidator; }
         public Func<bool> ValidaLengthCpf { get => _lengthValidator.CpfValidator; }
