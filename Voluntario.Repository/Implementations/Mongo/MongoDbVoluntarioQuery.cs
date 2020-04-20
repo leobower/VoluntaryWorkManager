@@ -101,6 +101,9 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
             }
         }
 
-
+        public bool EmailLogIn(string email, string pass)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,31 +10,38 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
     public class VoluntarioQuery : IVoluntarioQuery
     {
         private const string _senhaObfuscated = "********";
+
+        private Func<string, string, bool> _userLoginByEmail;
         Func<string, IVoluntario> _byId;
         Func<string, IVoluntario> _byEmail;
         Func<Int64, IVoluntario> _byCpf;
         Func<string, IList<IVoluntario>> _byName;
         Func<int, IList<IVoluntario>> _selectAllPaged;
         private IVoluntarioValidations _voluntarioValidations;
+
         private Int64 _cpf;
         private string _email;
         private string _id;
         private string _name;
         private int _currentPage;
+        private string _pass;
 
 
         public IVoluntarioValidations VoluntarioValidations { get => _voluntarioValidations; set => _voluntarioValidations = value; }
 
+        public Func<string, string, bool> UserLoginByEmail { get => _userLoginByEmail; set => _userLoginByEmail = value; }
         public Func<string, IVoluntario> ById { get => _byId; set => _byId = value; }
         public Func<string, IVoluntario> ByEmail { get => _byEmail; set => _byEmail = value; }
         public Func<string, IList<IVoluntario>> ByName { get => _byName; set => _byName = value; }
         public Func<int, IList<IVoluntario>> SelectAllPaged { get => _selectAllPaged; set => _selectAllPaged = value; }
         public Func<long, IVoluntario> ByCpf { get => _byCpf; set => _byCpf = value; }
+
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string Email { get => _email; set => _email = value; }
         public string Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
         public int CurrentPage { get => _currentPage; set => _currentPage = value; }
+        public string Pass { get => _pass; set => _pass = value; }
 
         private bool ValidateObjVoluntarioValidation()
         {
@@ -52,6 +59,15 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         }
 
        
+        public bool EmailLogIn()
+        {
+            if(!String.IsNullOrEmpty(Email))
+                throw new Exception("Provide Email Property Information");
+            if(!String.IsNullOrEmpty(Pass))
+                throw new Exception("Provide Pass Property Information");
+            return this.UserLoginByEmail(Email, Pass);
+        }
+
         public IVoluntario GetById()
         {
             if (String.IsNullOrEmpty(Id))

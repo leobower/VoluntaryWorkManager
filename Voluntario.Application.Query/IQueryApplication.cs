@@ -13,6 +13,9 @@ namespace Voluntario.Application.Query
         string Email { get; set; }
         int CurrentPage { get; set; }
         double TotalPages { get; set; }
+        string Pass { set; }
+
+        bool EmailLogIn();
         IVoluntario GetById();
         IVoluntario GetByCpf();
         IVoluntario GetByEmail();

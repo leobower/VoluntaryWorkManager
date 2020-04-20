@@ -20,3 +20,4 @@ bin/
 *.manifest
 
 
+.vs/config/applicationhost.config

@@ -64,6 +64,7 @@ namespace Voluntario.Application.Tests
             _voluntario.Cpf = GerarCpf();
             _voluntario.DataNascimento = "16/02/1982";
             _voluntario.Email = $"le.ribeiro.vca.{new Random().Next(0,500)}@gmail.com";
+            //_voluntario.Email = "test@test.com";
             _voluntario.Id = Guid.NewGuid().ToString();
             _voluntario.Nome = $"Teste : {_voluntario.Id}";
             _voluntario.Senha = "12345678";

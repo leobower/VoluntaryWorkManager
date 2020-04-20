@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CentralSharedModel.Interfaces;
+using Cryptography;
 using NUnit.Framework;
 using Voluntario.Application;
 using Voluntario.Application.Persistence;
@@ -13,7 +14,7 @@ namespace Tests
 {
     public class QueryApplicationTest : BaseTestClass, IRequest
     {
-       
+        
 
         private IList<IVoluntario> ListaAll()
         {
@@ -76,7 +77,6 @@ namespace Tests
             per.Delete();
         }
 
-
         [Test]
         public void GetByCpf()
         {
@@ -103,7 +103,6 @@ namespace Tests
             Assert.IsNotEmpty(obj.Id);
         }
               
-
         [Test]
         public void GetByEmail()
         {
@@ -190,6 +189,34 @@ namespace Tests
             Assert.IsNotEmpty(obj[0].Id);
         }
 
+        [Test]
+        public void TestLogIn_Positive()
+        {
+            bool result = false;
+            ICryptography _crypto = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            {
+                qry.RequestId = RequestId;
+                qry.Email = "test@test.com";// base.Voluntario.Email;
+                qry.Pass = _crypto.Encrypt(base.Voluntario.Senha);
+                result = qry.EmailLogIn();
+            }
+            Assert.IsTrue(result);
+        }
+        [Test]
+        public void TestLogIn_Negative()
+        {
+            bool result = false;
+            ICryptography _crypto = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+            using (IQueryApplication qry = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(connStr, dataBase, collection))
+            {
+                qry.RequestId = RequestId;
+                qry.Email = base.Voluntario.Email;
+                qry.Pass = _crypto.Encrypt("qqqqqqqqqqqqqqqq");
+                result = qry.EmailLogIn();
+            }
+            Assert.IsFalse(result);
+        }
 
     }
 }

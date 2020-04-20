@@ -18,6 +18,7 @@ namespace Voluntario.Application.Query
         private string name;
         private int _currentPage;
         private double _totalPages;
+        private string _pass;
 
         //public string RequestId { get => _requestId; set => _requestId = value; }
         public long Cpf { get => _cpf; set => _cpf = value; }
@@ -26,6 +27,7 @@ namespace Voluntario.Application.Query
         public string Email { get => _email; set => _email = value; }
         public int CurrentPage { get => _currentPage; set => _currentPage = value; }
         public double TotalPages { get => _totalPages; set => _totalPages = value; }
+        public string Pass { get => _pass; set => _pass = value; }
 
         private IRepositoryQuery _queryRepository;
         private IVoluntarioQuery _voluntarioQuery;
@@ -81,7 +83,16 @@ namespace Voluntario.Application.Query
             }
         }
 
-
+        public bool EmailLogIn()
+        {
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            {
+                using (_queryRepository)
+                {
+                    return _queryRepository.EmailLogIn(Email, Pass);
+                }
+            }
+        }
 
         public IVoluntario GetById()
         {

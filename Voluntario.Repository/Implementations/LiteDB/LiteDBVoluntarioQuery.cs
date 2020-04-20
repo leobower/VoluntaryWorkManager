@@ -12,6 +12,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
     public class LiteDBVoluntarioQuery : BaseLiteDBRepository, IRepositoryQuery
     {
         public bool IsToDispose { get; set; }
+
         public LiteDBVoluntarioQuery(string dataBaseName, string collectionName)
         {
             base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
@@ -23,6 +24,20 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
             base.Context = (IBaseVoluntarioDbContext < LiteDatabase, ILiteCollection < IVoluntario >> )context;
             IsToDispose = false;
         }
+
+        public bool EmailLogIn(string email, string pass)
+        {
+            bool ret = false;
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            {
+                base.Context.VoluntarioCollection.EnsureIndex(x => x.Email);
+                ret = (base.Context.VoluntarioCollection.Query()
+                    .Where(c => c.Email == email && c.Senha == pass)
+                    .FirstOrDefault()) != null;
+            }
+            return ret;
+        }
+
 
         public IVoluntario GetVoluntarioByCpf(Int64 cpf)
         {

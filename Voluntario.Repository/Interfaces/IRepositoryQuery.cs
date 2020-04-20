@@ -13,6 +13,7 @@ namespace Voluntario.Data.Repository.Interfaces
        // IVoluntarioLiteDbContext Context { get; set; }
         bool IsToDispose { get; set; }
 
+        bool EmailLogIn(string email, string pass);
         IVoluntario GetVoluntarioByCpf(Int64 cpf);
         IList<IVoluntario> GetVoluntarioByName(string name);
         IVoluntario GetVoluntarioById(string Id);
