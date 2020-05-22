@@ -17,7 +17,6 @@ namespace Voluntario.Application.Persistence
         private IVoluntarioValidations  _voluntarioValidations;
         private ICryptography _cryptography;
         private IQueryApplication _query;
-        private string _voluntarioSerialized;
         private ICentralSerializationManager<IVoluntario> _serializer;
 
         private IVoluntario _voluntario;
@@ -26,7 +25,6 @@ namespace Voluntario.Application.Persistence
         private readonly IConfiguration _conf;
         public string VoluntarioSerialized 
         { 
-            //get => _voluntarioSerialized;
             set
             {
                 if(!String.IsNullOrEmpty(value))
@@ -70,7 +68,7 @@ namespace Voluntario.Application.Persistence
                     _query.Cpf = _voluntario.Cpf;
                     _query.Email = _voluntario.Email;
                     _query.RequestId = base.RequestId;
-                    _voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();//  ByCpf(_voluntario.Cpf);
+                    _voluntarioPersistence.ExistsCPF = (a) => _query.GetByCpf();
                     _voluntarioPersistence.ExistsEmail = (a) => _query.GetByEmail();
 
                 }

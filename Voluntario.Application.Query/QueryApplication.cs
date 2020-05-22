@@ -12,7 +12,6 @@ namespace Voluntario.Application.Query
 {
     public class QueryApplication : Validations, IRequest, IQueryApplication
     {
-        //private string _requestId;
         private Int64 _cpf;
         private string _email;
         private string _id;
@@ -21,7 +20,6 @@ namespace Voluntario.Application.Query
         private double _totalPages;
         private string _pass;
 
-        //public string RequestId { get => _requestId; set => _requestId = value; }
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string VoluntarioId { get => _id; set => _id = value; }
         public string VoluntarioName { get => name; set => name = value; }
@@ -163,7 +161,7 @@ namespace Voluntario.Application.Query
                     CurrentPage = currentPage;
                     IList<IVoluntario> ret = null;
                     ret = _voluntarioQuery.GetAll();
-                    TotalPages = 10;// _query.TotalPages;
+                    TotalPages = 10;//TODO
                     return ret;
                 }
             }
