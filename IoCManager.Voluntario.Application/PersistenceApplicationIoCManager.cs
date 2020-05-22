@@ -1,25 +1,20 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using Voluntario.Application.Persistence;
 
 namespace CrossCutting.IoCManager.Voluntario.Application.Persistence
 {
     public class PersistenceApplicationIoCManager : BaseIoCManager<IPersistenceApplication>
     {
-        /// <summary>
-        /// TODO
-        /// Be Flexible
-        /// </summary>
-        private readonly string _currentImplementation = "PersistenceApplication";
-
-        //public IPersistenceApplication GetCurrentIPersistenceApplicationImplementation()
-        //{
-        //    return base.GetCurrentImplementation(_currentImplementation);
-        //}
-
-        public IPersistenceApplication GetCurrentIPersistenceApplicationImplementation(string connStr, string database, string collectionName)
+        public PersistenceApplicationIoCManager(IConfiguration conf) : base(conf)
         {
-            object[] arrParams = new object[] { connStr, database , collectionName};
-            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+
+        }
+
+        public IPersistenceApplication GetCurrentIPersistenceApplicationImplementation(string current = null)
+        {
+            object[] arrParams = new object[] { base.Config};
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
         }       
     }
 }

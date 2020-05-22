@@ -1,17 +1,18 @@
 using NUnit.Framework;
 using Cryptography;
 using System;
+using CentralSharedModel.BaseTest;
 
 namespace CryprographyTests
 {
-    public class CryptoTest
+    public class CryptoTest : BaseTestClass
     {
         private ICryptography _customCrypto;
 
         [SetUp]
         public void Setup()
         {
-            _customCrypto = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+            _customCrypto = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager(base.Config).GetICryptographyCurrentImplementation();
         }
 
         [Test]

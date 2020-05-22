@@ -28,7 +28,7 @@ namespace Voluntario.API.Rest
         {
             services.AddMvc(options =>
                                         {
-                                            options.InputFormatters.Insert(0, new RawJsonBodyInputFormatter());
+                                            options.InputFormatters.Insert(0, new RawJsonBodyInputFormatter(Configuration));
                                         }
                             ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c => {

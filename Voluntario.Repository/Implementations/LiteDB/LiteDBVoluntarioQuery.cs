@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,23 +13,28 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
     public class LiteDBVoluntarioQuery : BaseLiteDBRepository, IRepositoryQuery
     {
         public bool IsToDispose { get; set; }
+        private readonly IConfiguration _conf;
 
-        public LiteDBVoluntarioQuery(string dataBaseName, string collectionName)
+        public LiteDBVoluntarioQuery(string dataBaseName, string collectionName, IConfiguration conf)
         {
-            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            _conf = conf;
+
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(conf)
+                .GetIContextCurrentImplementation(dataBaseName, collectionName);
             IsToDispose = true;
         }
 
-        public LiteDBVoluntarioQuery(object context)
+        public LiteDBVoluntarioQuery(object context, IConfiguration conf)
         {
-            base.Context = (IBaseVoluntarioDbContext < LiteDatabase, ILiteCollection < IVoluntario >> )context;
+            _conf = conf;
+            base.Context = (IBaseVoluntarioDbContext <LiteDatabase, ILiteCollection< IVoluntario >>)context;
             IsToDispose = false;
         }
 
         public bool EmailLogIn(string email, string pass)
         {
             bool ret = false;
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Email);
                 ret = (base.Context.VoluntarioCollection.Query()
@@ -42,7 +48,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IVoluntario GetVoluntarioByCpf(Int64 cpf)
         {
             IVoluntario vol = null;
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Cpf);
                 vol = base.Context.VoluntarioCollection.Query()
@@ -56,7 +62,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IList<IVoluntario> GetVoluntarioByName(string name)
         {
             IList<IVoluntario> ret = null;
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Nome);
                 ret = base.Context.VoluntarioCollection.Query()
@@ -72,7 +78,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IVoluntario GetVoluntarioById(string Id)
         {
             IVoluntario vol = null;
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Id);
                 vol = base.Context.VoluntarioCollection.Query()
@@ -91,7 +97,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IList<IVoluntario> GetListVoluntario(int currentPage)
         {
             IList<IVoluntario> ret = null;
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Nome);
                 ret = base.Context.VoluntarioCollection.Query()
@@ -104,7 +110,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
         public IVoluntario GetVoluntarioByEmail(string email)
         {
             IVoluntario vol = null;
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 base.Context.VoluntarioCollection.EnsureIndex(x => x.Email);
                 vol = base.Context.VoluntarioCollection.Query()

@@ -6,6 +6,7 @@ using Voluntario.Domain.Entities.Interfaces;
 using Voluntario.Application.BaseClasses;
 using Voluntario.Application.Query;
 using Voluntario.SerializationManager;
+using Microsoft.Extensions.Configuration;
 
 namespace Voluntario.Application.Persistence
 {
@@ -21,6 +22,8 @@ namespace Voluntario.Application.Persistence
 
         private IVoluntario _voluntario;
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
+
+        private readonly IConfiguration _conf;
         public string VoluntarioSerialized 
         { 
             //get => _voluntarioSerialized;
@@ -28,7 +31,7 @@ namespace Voluntario.Application.Persistence
             {
                 if(!String.IsNullOrEmpty(value))
                 {
-                    _serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+                    _serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager(_conf).GetJSonCurrentImplementation();
                     Voluntario = _serializer.Deserialize(value);
                 }
             }
@@ -39,11 +42,11 @@ namespace Voluntario.Application.Persistence
             if (_voluntario != null && !String.IsNullOrEmpty(RequestId))
             {
                 if (_cryptography == null)
-                    _cryptography = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager().GetICryptographyCurrentImplementation();
+                    _cryptography = new CrossCutting.IoCManager.Cryptography.CryptographyIoCManager(_conf).GetICryptographyCurrentImplementation();
 
                 if (_voluntarioValidations == null)
                 {
-                    _voluntarioValidations = new Voluntario.IoCManager.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
+                    _voluntarioValidations = new Voluntario.IoCManager.Business.VoluntarioValidationsIocManager(_conf).GetCurrentIVoluntarioValidationsImplementation();
                     _voluntarioValidations.LengthValidator.Volunt = _voluntario;
                     _voluntarioValidations.Voluntario = _voluntario;
                     _voluntarioValidations.ValidaCEP = (a) => base.CepValidator.ValidateCep(_voluntario.Cep);
@@ -53,7 +56,7 @@ namespace Voluntario.Application.Persistence
 
                 if (_voluntarioPersistence == null)
                 {
-                    _voluntarioPersistence = new Voluntario.IoCManager.Business.VoluntarioPersistenceIocManager().GetCurrentIVoluntarioPersitenceImplementation();
+                    _voluntarioPersistence = new Voluntario.IoCManager.Business.VoluntarioPersistenceIocManager(_conf).GetCurrentIVoluntarioPersitenceImplementation();
                     _voluntarioPersistence.VoluntarioValidations = _voluntarioValidations;
                     _voluntarioPersistence.Voluntario = _voluntario;
                     _voluntarioPersistence.Encrypt = (a) => _cryptography.Encrypt(_voluntario.Senha);
@@ -80,16 +83,19 @@ namespace Voluntario.Application.Persistence
             }
 
         }
-        public PersistenceApplication(string connStr, string database, string collectionName) 
+        public PersistenceApplication(IConfiguration conf) : base(conf)
         {
+
+            _conf = conf;
+            string connStr = _conf["ConnectionString"]; string database = _conf["DataBaseName"]; string collectionName = _conf["CollectionName"];
             if (_repositoryWriter == null)
             {
-                _repositoryWriter = new Voluntario.IoCManager.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation(database, collectionName);
+                _repositoryWriter = new Voluntario.IoCManager.Data.Repository.RepositoryWriterIoCManager(_conf).GetIRepositoryWriterCurrentImplementation(database, collectionName);
                 _repositoryWriter.RequestId = this.RequestId;
             }
             if (_query == null)
             {
-                _query = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager().GetCurrentIQueryApplicationImplementation(_repositoryWriter.ContextObj);
+                _query = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager(_conf).GetCurrentIQueryApplicationImplementation(_repositoryWriter.ContextObj);
 
             }
         }
@@ -97,7 +103,7 @@ namespace Voluntario.Application.Persistence
        
         public void Add()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_repositoryWriter)
                 {
@@ -118,7 +124,7 @@ namespace Voluntario.Application.Persistence
 
         public void Update()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_repositoryWriter)
                 {
@@ -130,7 +136,7 @@ namespace Voluntario.Application.Persistence
 
         public void Delete()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_repositoryWriter)
                 {

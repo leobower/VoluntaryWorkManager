@@ -18,4 +18,10 @@
     <ProjectReference Include="..\Voluntario.Application\Voluntario.Application.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

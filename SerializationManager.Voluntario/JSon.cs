@@ -6,6 +6,7 @@ using System.Reflection;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace Voluntario.SerializationManager
 {
@@ -16,20 +17,24 @@ namespace Voluntario.SerializationManager
             return propertyName.ToLower();
         }
     }
+    
 
     public class JSon : ICentralSerializationManager<IVoluntario>
     {
         private readonly JsonSerializerSettings _settings;
-        private IVoluntario _volunt = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
-        public JSon()
+        private IVoluntario _volunt = null;
+        private IConfiguration _conf;
+        public JSon(IConfiguration conf)
         {
+            _conf = conf;
             _settings = new JsonSerializerSettings();
             _settings.ContractResolver = new LowercaseContractResolver();
+            _volunt = new Voluntario.IoCManager.Model.ModelIoCManager(_conf).GetIVoluntarioCurrentImplementation();
         }
 
         private IVoluntario DeserializeJSonVol(string vol)
         {
-            IVoluntario ret = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+            IVoluntario ret = new Voluntario.IoCManager.Model.ModelIoCManager(_conf).GetIVoluntarioCurrentImplementation();
             //var JObject = JsonConvert.DeserializeObject(vol);
             JObject obj = JObject.Parse(vol);
             //var teste = obj.GetValue("areasinteresse");
@@ -80,7 +85,7 @@ namespace Voluntario.SerializationManager
             bool ret = false;
             try
             {
-                IVoluntario vol = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+                IVoluntario vol = new Voluntario.IoCManager.Model.ModelIoCManager(_conf).GetIVoluntarioCurrentImplementation();
                 //var JObject = JsonConvert.DeserializeObject(vol);
                 JObject jObj = JObject.Parse(obj);
                 List<bool> listContainsToken = new List<bool>();

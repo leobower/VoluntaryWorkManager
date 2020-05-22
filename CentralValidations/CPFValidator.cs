@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,15 +10,17 @@ namespace CentralValidations
     {
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
+        private readonly IConfiguration _conf;
 
-        public CpfValidator(string requestId)
+        public CpfValidator(string requestId, IConfiguration conf)
         {
+            _conf = conf;
             RequestId = requestId;
         }
 
         public bool ValidateCPF(string cpf, out Int64? cpfConverted)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = true;
                 Int64? cpfConvert = null;
@@ -67,7 +70,7 @@ namespace CentralValidations
 
         public bool ValidateCPF(string cpf)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = true;
                 Int64? cpfConvert = null;

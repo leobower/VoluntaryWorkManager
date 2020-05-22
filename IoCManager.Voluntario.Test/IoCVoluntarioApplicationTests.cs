@@ -1,3 +1,4 @@
+using CentralSharedModel.BaseTest;
 using CrossCutting.IoCManager.Voluntario.Application;
 using CrossCutting.IoCManager.Voluntario.Application.Persistence;
 using CrossCutting.IoCManager.Voluntario.Application.Query;
@@ -9,7 +10,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace CrossCutting.IoCManager.Test
 {
-    public class IoCVoluntarioApplicationTests
+    public class IoCVoluntarioApplicationTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -21,8 +22,9 @@ namespace CrossCutting.IoCManager.Test
         public void TestApplicationPersistenceInjection()
         {
             IPersistenceApplication persistenceApp = null;
-            PersistenceApplicationIoCManager ioc = new PersistenceApplicationIoCManager();
-            persistenceApp = ioc.GetCurrentIPersistenceApplicationImplementation("localhost", "VoluntaryWorkManager", "Voluntario");
+            PersistenceApplicationIoCManager ioc = new PersistenceApplicationIoCManager(base.Config);
+
+            persistenceApp = ioc.GetCurrentIPersistenceApplicationImplementation();
 
             Assert.IsNotNull(persistenceApp);
 
@@ -34,8 +36,9 @@ namespace CrossCutting.IoCManager.Test
         public void TestApplicationQueryInjection()
         {
             IQueryApplication app = null;
-            QueryApplicationIoCManager ioc = new QueryApplicationIoCManager();
-            app = ioc.GetCurrentIQueryApplicationImplementation("localhost", "VoluntaryWorkManager", "Voluntario");
+            QueryApplicationIoCManager ioc = new QueryApplicationIoCManager(base.Config);
+
+            app = ioc.GetCurrentIQueryApplicationImplementation();
 
             Assert.IsNotNull(app);
 

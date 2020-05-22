@@ -1,4 +1,5 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,17 +10,17 @@ namespace Voluntario.IoCManager.Data.Repository
 {
     public class RepositoryQueryIoCManager : BaseIoCManager<IRepositoryQuery>
     {
-        private readonly string _currentImplementation = "LiteDBVoluntarioQuery"; //
-        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(string dataBaseName, string collectionName)
+        public RepositoryQueryIoCManager(IConfiguration conf) : base(conf) { }
+        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(string dataBaseName, string collectionName, string current = null)
         {
-            object[] arrParams = new object[] { dataBaseName, collectionName };
-            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+            object[] arrParams = new object[] { dataBaseName, collectionName, base.Config };
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
         }
 
-        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(object context)
+        public IRepositoryQuery GetIRepositoryQueryCurrentImplementation(object context, string current = null)
         {
-            object[] arrParams = new object[] { context };
-            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+            object[] arrParams = new object[] { context, base.Config };
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
         }
     }
 }

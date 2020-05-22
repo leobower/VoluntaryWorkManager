@@ -1,3 +1,4 @@
+using CentralSharedModel.BaseTest;
 using CentralValidations;
 using NUnit.Framework;
 using System;
@@ -5,7 +6,7 @@ using System.Collections.Generic;
 
 namespace CentralValidations.Test
 {
-    public class CpfValidatorTest
+    public class CpfValidatorTest : BaseTestClass
     {
         private List<string> _listaCpf;
 
@@ -28,7 +29,7 @@ namespace CentralValidations.Test
                 foreach (var item in _listaCpf)
                 {
                     currentCpf = item;
-                    control = new CpfValidator(Guid.NewGuid().ToString()).ValidateCPF(item, out cpf);
+                    control = new CpfValidator(Guid.NewGuid().ToString(), base.Config).ValidateCPF(item, out cpf);
                     if (!control && (cpf == null || !cpf.HasValue))
                     {
                         cpf = null;
@@ -57,7 +58,7 @@ namespace CentralValidations.Test
                 foreach (var item in _listaCpf)
                 {
                     currentCpf = item;
-                    control = new CpfValidator(Guid.NewGuid().ToString()).ValidateCPF(item, out cpf);
+                    control = new CpfValidator(Guid.NewGuid().ToString(), base.Config).ValidateCPF(item, out cpf);
                     if (!control && (cpf == null || !cpf.HasValue))
                     {
                         cpf = null;

@@ -7,7 +7,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.IoCManager.Tests
 {
-    public class IoCContextTests
+    public class IoCContextTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -16,24 +16,14 @@ namespace Voluntario.IoCManager.Tests
         }
 
         [Test]
-        public void TestContextInjection_LiteDb()
+        public void TestContextInjection()
         {
             IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> obj =
-                    new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
+                    new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(base.Config).GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
             //IVoluntarioLiteDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
         }
-
-        //[Test]
-        //public void TestContextInjection_MongoDb()
-        //{
-        //    IBaseVoluntarioDbContext<IMongoDatabase, IMongoCollection<IVoluntario>> obj =
-        //            new IoCManager.Voluntario.Data.Context.ContextIoCManager_2<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
-        //    //IVoluntarioLiteDbContext obj = new IoCManager.Voluntario.Data.Context.ContextIoCManager().GetIContextCurrentImplementation("VoluntaryWorkManager_TestIoCContext", "VoluntarioCollectionTest");
-        //    Assert.IsTrue(obj != null && obj.GetType().IsClass);
-        //    obj.Dispose();
-        //}
 
     }
 }

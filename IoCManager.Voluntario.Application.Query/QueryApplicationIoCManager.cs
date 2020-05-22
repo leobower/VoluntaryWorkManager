@@ -1,26 +1,26 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using Voluntario.Application.Query;
 
 namespace CrossCutting.IoCManager.Voluntario.Application.Query
 {
     public class QueryApplicationIoCManager : BaseIoCManager<IQueryApplication>
     {
-        /// <summary>
-        /// TODO
-        /// Be Flexible
-        /// </summary>
-        private readonly string _currentImplementation = "QueryApplication";
-
-        public IQueryApplication GetCurrentIQueryApplicationImplementation(string connStr, string database, string collectionName)
+        public QueryApplicationIoCManager(IConfiguration conf) : base(conf)
         {
-            object[] arrParams = new object[] { connStr, database, collectionName };
-            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+
         }
 
-        public IQueryApplication GetCurrentIQueryApplicationImplementation(object context)
+        public IQueryApplication GetCurrentIQueryApplicationImplementation(string current = null)
         {
-            object[] arrParams = new object[] { context };
-            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+            object[] arrParams = new object[] { base.Config };
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
+        }
+
+        public IQueryApplication GetCurrentIQueryApplicationImplementation(object context, string current = null)
+        {
+            object[] arrParams = new object[] { context, base.Config };
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
         }
     }
 }

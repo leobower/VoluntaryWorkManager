@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using CentralMQManager;
+using CentralSharedModel.BaseTest;
 using NUnit.Framework;
 
 namespace CrossCutting.IoCManager.Test
 {
-    public class IoCPublisherTests
+    public class IoCPublisherTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -19,7 +20,7 @@ namespace CrossCutting.IoCManager.Test
         {
             try
             {
-                IPublisher obj = new CrossCutting.IoCManager.CentralMQManager.PublisherIoCManager().GetIPublisherCurrentImplementation();
+                IPublisher obj = new CrossCutting.IoCManager.CentralMQManager.PublisherIoCManager(base.Config).GetIPublisherCurrentImplementation();
                 Assert.IsTrue(obj != null && obj.GetType().IsClass);
 
             }

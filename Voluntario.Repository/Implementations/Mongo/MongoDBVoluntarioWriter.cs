@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,18 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
     public class MongoDBVoluntarioWriter : BaseMongoDBRepository, IRepositoryWriter
     {
         public object ContextObj { get => (object)base.Context; }
+        private readonly IConfiguration _conf;
 
-        public MongoDBVoluntarioWriter(string dataBaseName, string collectionName)
+        public MongoDBVoluntarioWriter(string dataBaseName, string collectionName, IConfiguration conf)
         {
-            //TODO
-            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>().GetIContextCurrentImplementation(dataBaseName, collectionName);
+            _conf = conf;
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<IMongoDatabase, IMongoCollection<IVoluntario>>(_conf)
+                .GetIContextCurrentImplementation(dataBaseName, collectionName);
         }
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 base.Context.VoluntarioCollection.InsertOne(voluntario);

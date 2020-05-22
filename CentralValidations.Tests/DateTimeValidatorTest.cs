@@ -1,4 +1,5 @@
-﻿using CentralSharedModel.Interfaces;
+﻿using CentralSharedModel.BaseTest;
+using CentralSharedModel.Interfaces;
 using CentralValidations;
 using NUnit.Framework;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CentralValidations.Test
 {
-    public class DateTimeValidatorTest
+    public class DateTimeValidatorTest : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -24,7 +25,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listDate)
                 {
-                    valid = new DateTimeValidator(Guid.NewGuid().ToString()).ValidateDateTime(item, out data);
+                    valid = new DateTimeValidator(Guid.NewGuid().ToString(), base.Config).ValidateDateTime(item, out data);
                     if (!valid)
                     {
                         break;
@@ -45,14 +46,14 @@ namespace CentralValidations.Test
         [Test]
         public void TestInvalidDateTime()
         {
-            List<string> _listDate = new List<string>() { "2012-23-12 12:00:00", "2012/23/12 12:00:00" };//invalid dates
+            List<string> _listDate = new List<string>() { "2012-23-12 12:00:00", "2012/23/12 12:00:00" };
             string data = null;
             bool valid = true;
             try
             {
                 foreach (var item in _listDate)
                 {
-                    valid = new DateTimeValidator(Guid.NewGuid().ToString()).ValidateDateTime(item, out data);
+                    valid = new DateTimeValidator(Guid.NewGuid().ToString(), base.Config).ValidateDateTime(item, out data);
                     if (valid)
                     {
                         break;
@@ -62,11 +63,10 @@ namespace CentralValidations.Test
             }
             catch (Exception ex)
             {
-                throw ex;//;new Exception(String.Format("Current CPF: {0}", currentCep), ex);
+                throw ex;
             }
 
             Assert.IsNull(data);
-            //Assert.IsNotEmpty(data);
             Assert.IsFalse(valid);
         }
 

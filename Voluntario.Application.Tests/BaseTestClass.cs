@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Voluntario.Domain.Entities.Interfaces;
 using Voluntario.SerializationManager;
@@ -46,24 +48,47 @@ namespace Voluntario.Application.Tests
 
         private IVoluntario _voluntario;
         private string _requestId;
-        //"localhost", "VoluntaryWorkManager", "Voluntario"
-        protected string connStr { get => "localhost"; }
-        protected string dataBase { get => "VoluntaryWorkManager_TestPersistence"; }
-        protected string collection { get => "Voluntario"; }
+        protected string connStr { get; set;  }
+        protected string dataBase { get; set;  }
+        protected string collection { get; set;  }
 
 
         public string RequestId { get => _requestId; set => _requestId = value; }
         protected IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
 
+        protected IConfiguration Config { get; }
+
+        public BaseTestClass()
+        {
+            var configurationBuilder = new ConfigurationBuilder();
+            string path = "";
+            path = Path.Combine(Directory.GetCurrentDirectory(), "appSettings.json");
+            if (File.Exists(path))
+            {
+                configurationBuilder.AddJsonFile(path, false);
+                var root = configurationBuilder.Build();
+                Config = root;
+
+                connStr = Config["ConnectionString"];
+                dataBase = Config["DataBaseName"];
+                collection = Config["CollectionName"];
+            }
+            else
+            {
+                throw new FileNotFoundException(path);
+            }
+        }
+
+
         [SetUp]
         public void Setup()
         {
             _requestId = Guid.NewGuid().ToString();
-            _voluntario = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+            _voluntario = new Voluntario.IoCManager.Model.ModelIoCManager(Config).GetIVoluntarioCurrentImplementation();
             _voluntario.Cep = "11703680";
             _voluntario.Cpf = GerarCpf();
             _voluntario.DataNascimento = "16/02/1982";
-            _voluntario.Email = $"le.ribeiro.vca.{new Random().Next(0,500)}@gmail.com";
+            _voluntario.Email = $"le.ribeiro.vca.{new Random().Next(0,1500)}@gmail.com";
             //_voluntario.Email = "test@test.com";
             _voluntario.Id = Guid.NewGuid().ToString();
             _voluntario.Nome = $"Teste : {_voluntario.Id}";
@@ -75,7 +100,7 @@ namespace Voluntario.Application.Tests
 
         public string GetVoluntarioSerialized()
         {
-            ICentralSerializationManager<IVoluntario> serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+            ICentralSerializationManager<IVoluntario> serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager(Config).GetJSonCurrentImplementation();
             return serializer.Serialize(_voluntario);
 
         }

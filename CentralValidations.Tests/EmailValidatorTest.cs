@@ -1,4 +1,5 @@
-﻿using CentralSharedModel.Interfaces;
+﻿using CentralSharedModel.BaseTest;
+using CentralSharedModel.Interfaces;
 using CentralValidations;
 using NUnit.Framework;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CentralValidations.Test
 {
-    public class EmailValidatorTest
+    public class EmailValidatorTest : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -24,7 +25,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listEmails)
                 {
-                    valid = new EmailValidator(Guid.NewGuid().ToString()).IsValidEmail(item);
+                    valid = new EmailValidator(Guid.NewGuid().ToString(), base.Config).IsValidEmail(item);
                     if (!valid)
                     {
                         break;
@@ -50,7 +51,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listEmails)
                 {
-                    valid = new EmailValidator(Guid.NewGuid().ToString()).IsValidEmail(item);
+                    valid = new EmailValidator(Guid.NewGuid().ToString(), base.Config).IsValidEmail(item);
                     if (valid)
                     {
                         break;
@@ -60,7 +61,7 @@ namespace CentralValidations.Test
             }
             catch (Exception ex)
             {
-                throw ex;//;new Exception(String.Format("Current CPF: {0}", currentCep), ex);
+                throw ex;
             }
 
             Assert.IsFalse(valid);

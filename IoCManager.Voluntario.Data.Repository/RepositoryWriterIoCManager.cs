@@ -1,4 +1,5 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +9,11 @@ namespace Voluntario.IoCManager.Data.Repository
 {
     public class RepositoryWriterIoCManager : BaseIoCManager<IRepositoryWriter>
     {
-        private readonly string _currentImplementation = "LiteDBVoluntarioWriter"; //
-        public IRepositoryWriter GetIRepositoryWriterCurrentImplementation(string dataBaseName, string collectionName)
+        public RepositoryWriterIoCManager(IConfiguration conf) : base(conf) { }
+        public IRepositoryWriter GetIRepositoryWriterCurrentImplementation(string dataBaseName, string collectionName, string current = null)
         {
-            object[] arrParams = new object[] { dataBaseName, collectionName };
-            return base.GetCurrentImplementationWithParameters(_currentImplementation, arrParams);
+            object[] arrParams = new object[] { dataBaseName, collectionName, base.Config };
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
         }
     }
 }

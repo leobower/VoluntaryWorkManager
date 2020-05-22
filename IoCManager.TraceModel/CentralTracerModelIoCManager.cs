@@ -1,5 +1,6 @@
 ﻿using CentralTracer.Model;
 using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,13 @@ namespace CrossCutting.IoCManager.CentralTrace.Model
 {
     public class CentralTracerModelIoCManager : BaseIoCManager<ITraceModel>
     {
-        private readonly string _currentImplementation = "TraceModel";
-        public ITraceModel GetITraceModelCurrentImplementation()
+        public CentralTracerModelIoCManager(IConfiguration conf) : base(conf)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+
+        }
+        public ITraceModel GetITraceModelCurrentImplementation(string current = null)
+        {
+            return base.GetCurrentImplementation(current);
         }
     }
 }

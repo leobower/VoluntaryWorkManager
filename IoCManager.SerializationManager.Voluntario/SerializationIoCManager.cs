@@ -1,4 +1,5 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using Voluntario.Domain.Entities.Interfaces;
 using Voluntario.SerializationManager;
 
@@ -6,11 +7,12 @@ namespace CrossCutting.IoCManager.Voluntario.SerializationManager
 {
     public class SerializationIoCManager : BaseIoCManager<ICentralSerializationManager<IVoluntario>>
     {
-        private readonly string _currentJSonImplementation = "JSon";
+        public SerializationIoCManager(IConfiguration conf) : base(conf) { }
 
-        public ICentralSerializationManager<IVoluntario> GetJSonCurrentImplementation()
+        public ICentralSerializationManager<IVoluntario> GetJSonCurrentImplementation(string current = null)
         {
-            return base.GetCurrentImplementation(_currentJSonImplementation);
+            object[] arrParams = new object[] { base.Config };
+            return base.GetCurrentImplementationWithParameters(arrParams, current);
         }
     }
 }

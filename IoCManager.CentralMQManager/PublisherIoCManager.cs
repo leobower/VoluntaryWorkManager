@@ -1,5 +1,6 @@
 ﻿using CentralMQManager;
 using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,14 @@ namespace CrossCutting.IoCManager.CentralMQManager
 {
     public class PublisherIoCManager : BaseIoCManager<IPublisher>
     {
-        private readonly string _currentImplementation = "Publisher";
-        public IPublisher GetIPublisherCurrentImplementation()
+        public PublisherIoCManager(IConfiguration conf) : base(conf)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+
+        }
+
+        public IPublisher GetIPublisherCurrentImplementation(string current = null)
+        {
+            return base.GetCurrentImplementation(current);
         }
 
     }

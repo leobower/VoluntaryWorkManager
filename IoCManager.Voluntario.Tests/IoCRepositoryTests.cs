@@ -6,7 +6,7 @@ using Voluntario.Data.Repository.Interfaces;
 
 namespace Voluntario.IoCManager.Tests
 {
-    public class IoCRepositoryTests
+    public class IoCRepositoryTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -16,7 +16,12 @@ namespace Voluntario.IoCManager.Tests
         [Test]
         public void TestRepositoryWriterInjection()
         {
-            IRepositoryWriter obj = new Voluntario.IoCManager.Data.Repository.RepositoryWriterIoCManager().GetIRepositoryWriterCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
+            string connStr = base.Config["ConnectionString"];
+            string dataBase = base.Config["DataBaseName"];
+            string collection = base.Config["CollectionName"];
+
+            IRepositoryWriter obj = new Voluntario.IoCManager.Data.Repository.RepositoryWriterIoCManager(base.Config)
+                .GetIRepositoryWriterCurrentImplementation(connStr, dataBase);
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
 
@@ -25,7 +30,12 @@ namespace Voluntario.IoCManager.Tests
         [Test]
         public void TestRepositoryQueryInjection()
         {
-            IRepositoryQuery obj = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation("VoluntaryWorkManager_TestIoCRepository", "VoluntarioCollection");
+            string connStr = base.Config["ConnectionString"];
+            string dataBase = base.Config["DataBaseName"];
+            string collection = base.Config["CollectionName"];
+
+            IRepositoryQuery obj = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager(base.Config)
+                .GetIRepositoryQueryCurrentImplementation(connStr, dataBase);
             Assert.IsTrue(obj != null && obj.GetType().IsClass);
             obj.Dispose();
 

@@ -1,15 +1,19 @@
 ﻿using CentralSharedModel.Interfaces;
 using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 
 namespace CrossCutting.IoCManager.SharedModel
 {
     public  class SharedModelIoCManager : BaseIoCManager<IAddress>
     {
-        private  readonly string _currentIAdressImplementation = "Address";
-
-        public  IAddress GetIAddressCurrentImplementation() 
+        public SharedModelIoCManager(IConfiguration conf) : base(conf)
         {
-            return base.GetCurrentImplementation(_currentIAdressImplementation);
+
+        }
+
+        public  IAddress GetIAddressCurrentImplementation(string current = null) 
+        {
+            return base.GetCurrentImplementation(current);
         }
     }
 }

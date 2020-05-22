@@ -1,4 +1,5 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Voluntario.Domain.BusinessRules.Interfaces;
 
@@ -6,15 +7,11 @@ namespace Voluntario.IoCManager.Business
 {
     public class VoluntarioValidationsIocManager : BaseIoCManager<IVoluntarioValidations>
     {
-        /// <summary>
-        /// TODO
-        /// Be Flexible
-        /// </summary>
-        private readonly string _currentImplementation = "VoluntarioValidations";
+        public VoluntarioValidationsIocManager(IConfiguration conf) : base(conf) { }
 
-        public IVoluntarioValidations GetCurrentIVoluntarioValidationsImplementation()
+        public IVoluntarioValidations GetCurrentIVoluntarioValidationsImplementation(string current = null)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+            return base.GetCurrentImplementation(current);
         }
     }
 }

@@ -13,8 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CentralSharedModel\CentralSharedModel.csproj" />
     <ProjectReference Include="..\Criptography.Business\Cryptography.csproj" />
     <ProjectReference Include="..\IoCManager.Cryptography\CrossCutting.IoCManager.Cryptography.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

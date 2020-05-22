@@ -12,17 +12,19 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
     {
         IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> _context;
         public virtual IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> Context { get => _context; set => _context = value; }
+
         public string RequestId { get; set; }
+
+
 
         public void Validate()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
-            {
+           
                 if (Context == null)
                     throw new Exception("Provide Contructor Information");
                 if (String.IsNullOrEmpty(RequestId))
                     throw new Exception("Provide de RequestId Information");
-            }
+           
 
         }
 

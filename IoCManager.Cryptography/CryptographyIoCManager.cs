@@ -1,15 +1,19 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
 using Cryptography;
+using Microsoft.Extensions.Configuration;
 
 namespace CrossCutting.IoCManager.Cryptography
 {
     public class CryptographyIoCManager : BaseIoCManager<ICryptography>
     {
-        private readonly string _currentIAdressImplementation = "CustomCrypto";
-
-        public ICryptography GetICryptographyCurrentImplementation()
+        public CryptographyIoCManager(IConfiguration conf) : base(conf)
         {
-            return base.GetCurrentImplementation(_currentIAdressImplementation);
+
+        }
+
+        public ICryptography GetICryptographyCurrentImplementation(string current = null)
+        {
+            return base.GetCurrentImplementation(current);
         }
     }
 }

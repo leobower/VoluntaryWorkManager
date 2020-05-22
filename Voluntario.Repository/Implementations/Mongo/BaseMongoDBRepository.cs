@@ -16,14 +16,10 @@ namespace Voluntario.Data.Repository.Implementations.Mongo
 
         public void Validate()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
-            {
-                if (Context == null)
-                    throw new Exception("Provide Contructor Information");
-                if (String.IsNullOrEmpty(RequestId))
-                    throw new Exception("Provide de RequestId Information");
-            }
-
+            if (Context == null)
+                throw new Exception("Provide Contructor Information");
+            if (String.IsNullOrEmpty(RequestId))
+                throw new Exception("Provide de RequestId Information");
         }
     }
 }

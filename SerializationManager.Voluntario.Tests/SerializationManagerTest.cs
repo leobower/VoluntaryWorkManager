@@ -1,3 +1,4 @@
+using CentralSharedModel.BaseTest;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -5,16 +6,16 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.SerializationManager.Tests
 {
-    public class SerializationManagerTest
+    public class SerializationManagerTest : BaseTestClass
     {
         IVoluntario voluntario = null;
         ICentralSerializationManager<IVoluntario> ser = null;
         [SetUp]
         public void Setup()
         {
-            ser = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+            ser = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager(base.Config).GetJSonCurrentImplementation();
 
-            voluntario = new Voluntario.IoCManager.Model.ModelIoCManager().GetIVoluntarioCurrentImplementation();
+            voluntario = new Voluntario.IoCManager.Model.ModelIoCManager(base.Config).GetIVoluntarioCurrentImplementation();
             voluntario.Cep = "11703680";
             voluntario.Cpf = 31495307840;
             voluntario.DataNascimento = "16/02/1982";

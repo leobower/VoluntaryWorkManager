@@ -1,5 +1,6 @@
 ﻿using CentralSharedModel.Interfaces;
 using CentralValidations;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,12 +21,12 @@ namespace Voluntario.Application.BaseClasses
         public DateTimeValidator DateTimeValidator { get => _dateTimeValidator; set => _dateTimeValidator = value; }
         public EmailValidator EmailValidator { get => _emailValidator; set => _emailValidator = value; }
 
-        public Validations()
+        public Validations(IConfiguration conf)
         {
-            _cepValidator = new CepValidator(RequestId);
-            _cpfValidator = new CpfValidator(RequestId);
-            _dateTimeValidator = new DateTimeValidator(RequestId);
-            _emailValidator = new EmailValidator(RequestId);
+            _cepValidator = new CepValidator(RequestId, conf);
+            _cpfValidator = new CpfValidator(RequestId, conf);
+            _dateTimeValidator = new DateTimeValidator(RequestId, conf);
+            _emailValidator = new EmailValidator(RequestId, conf);
         }
     }
 }

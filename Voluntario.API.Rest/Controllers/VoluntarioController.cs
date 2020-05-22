@@ -18,14 +18,11 @@ namespace Voluntario.API.Rest.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] string voluntario, [FromServices]IConfiguration config)
         {
-            //TODO
-            string connStr = config.GetSection("connStr").Value;
-            string dataBase = config.GetSection("dataBase").Value;
-            string collection = config.GetSection("collection").Value;
             string requestId = Guid.NewGuid().ToString();
 
             IPersistenceApplication applicationPer 
-                = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
+                = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
+                .GetCurrentIPersistenceApplicationImplementation();
 
             applicationPer.RequestId = requestId;
             applicationPer.VoluntarioSerialized = voluntario;

@@ -1,12 +1,11 @@
-﻿using CentralSharedModel.Interfaces;
-using CentralValidations;
+﻿using CentralSharedModel.BaseTest;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace CentralValidations.Test
 {
-    public class CepValidatorTest
+    public class CepValidatorTest : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -23,7 +22,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listaCep)
                 {
-                    ret = new CepValidator(Guid.NewGuid().ToString()).ValidateCep(item);
+                    ret = new CepValidator(Guid.NewGuid().ToString(), base.Config).ValidateCep(item);
                     if (!ret)
                     {
                         break;
@@ -48,7 +47,7 @@ namespace CentralValidations.Test
             {
                 foreach (var item in _listaCep)
                 {
-                    ret = new CepValidator(Guid.NewGuid().ToString()).ValidateCep(item);
+                    ret = new CepValidator(Guid.NewGuid().ToString(), base.Config).ValidateCep(item);
                     if (ret)
                     {
                         break;
@@ -58,7 +57,7 @@ namespace CentralValidations.Test
             }
             catch (Exception ex)
             {
-                throw ex;//;new Exception(String.Format("Current CPF: {0}", currentCep), ex);
+                throw ex;
             }
 
             Assert.IsFalse(ret);

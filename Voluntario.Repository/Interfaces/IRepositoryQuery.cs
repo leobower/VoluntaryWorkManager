@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Voluntario.Data.Repository.Interfaces
     {
        // IVoluntarioLiteDbContext Context { get; set; }
         bool IsToDispose { get; set; }
+        
 
         bool EmailLogIn(string email, string pass);
         IVoluntario GetVoluntarioByCpf(Int64 cpf);

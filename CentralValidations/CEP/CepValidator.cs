@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Linq;
 using CentralTracer.Business.Publisher;
+using Microsoft.Extensions.Configuration;
 
 namespace CentralValidations
 {
@@ -29,15 +30,17 @@ namespace CentralValidations
                 }
             }
         }
+        private readonly IConfiguration _conf;
 
-        public CepValidator(string requestId)
+        public CepValidator(string requestId, IConfiguration conf)
         {
+            _conf = conf;
             RequestId = requestId;
         }
 
         public bool ValidateCep(string cep)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = false;
 

@@ -16,7 +16,8 @@ namespace Tests
         {
             if (Voluntario == null)
                 Setup();
-            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
+            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(base.Config)
+                .GetCurrentIPersistenceApplicationImplementation();
             //per.Voluntario = Voluntario;
             per.VoluntarioSerialized = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;
@@ -28,7 +29,8 @@ namespace Tests
         public void UpdateTest()
         {
             //AddTest();
-            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
+            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(base.Config)
+                .GetCurrentIPersistenceApplicationImplementation();
             //per.Voluntario = Voluntario;
             per.VoluntarioSerialized = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;
@@ -42,7 +44,8 @@ namespace Tests
         public void DeleteTest()
         {
            // AddTest();
-            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager().GetCurrentIPersistenceApplicationImplementation(connStr, dataBase, collection);
+            IPersistenceApplication per = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(base.Config)
+                .GetCurrentIPersistenceApplicationImplementation();
             //per.Voluntario = Voluntario;
             per.VoluntarioSerialized = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;

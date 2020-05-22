@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -9,15 +10,17 @@ namespace CentralValidations
     {
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
+        private readonly IConfiguration _conf;
 
-        public EmailValidator(string requestId)
+        public EmailValidator(string requestId, IConfiguration conf)
         {
+            _conf = conf;
             RequestId = requestId;
         }
 
         public bool IsValidEmail(string email)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 if (string.IsNullOrWhiteSpace(email))
                     return false;

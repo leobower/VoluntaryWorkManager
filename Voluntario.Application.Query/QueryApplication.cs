@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using Voluntario.Application.BaseClasses;
@@ -9,7 +10,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Application.Query
 {
-    public class QueryApplication : Validations,IRequest, IQueryApplication
+    public class QueryApplication : Validations, IRequest, IQueryApplication
     {
         //private string _requestId;
         private Int64 _cpf;
@@ -32,6 +33,7 @@ namespace Voluntario.Application.Query
         private IRepositoryQuery _queryRepository;
         private IVoluntarioQuery _voluntarioQuery;
         private IVoluntarioValidations _voluntarioValidations;
+        private readonly IConfiguration _conf;
 
 
         private void InitializeObjects()
@@ -40,7 +42,7 @@ namespace Voluntario.Application.Query
             {
                 if (_voluntarioValidations == null)
                 {
-                    _voluntarioValidations = new Voluntario.IoCManager.Business.VoluntarioValidationsIocManager().GetCurrentIVoluntarioValidationsImplementation();
+                    _voluntarioValidations = new Voluntario.IoCManager.Business.VoluntarioValidationsIocManager(_conf).GetCurrentIVoluntarioValidationsImplementation();
                     _voluntarioValidations.ValidaCPF = (a) => CpfValidator.ValidateCPF(Cpf.ToString());
                     _voluntarioValidations.ValidaEmail = (a) => EmailValidator.IsValidEmail(Email);
 
@@ -48,7 +50,7 @@ namespace Voluntario.Application.Query
 
                 if (_voluntarioQuery == null)
                 {
-                    _voluntarioQuery = new Voluntario.IoCManager.Business.VoluntarioQueryIocManager().GetCurrentIVoluntarioQueryImplementation();
+                    _voluntarioQuery = new Voluntario.IoCManager.Business.VoluntarioQueryIocManager(_conf).GetCurrentIVoluntarioQueryImplementation();
                     _voluntarioQuery.ByCpf = (a) => _queryRepository.GetVoluntarioByCpf(Cpf);
                     _voluntarioQuery.ByEmail = (a) => _queryRepository.GetVoluntarioByEmail(Email);
                     _voluntarioQuery.ById = (a) => _queryRepository.GetVoluntarioById(VoluntarioId);
@@ -63,21 +65,24 @@ namespace Voluntario.Application.Query
                 throw new Exception("Provide value for the RequestId Property.");
         }
 
-        public QueryApplication(string connStr, string database, string collectionName)
+        public QueryApplication(IConfiguration conf) : base(conf)
         {
+            _conf = conf;
+            string connStr = _conf["ConnectionString"]; string database = _conf["DataBaseName"]; string collectionName = _conf["CollectionName"];
             if (_queryRepository == null)
             {
-                _queryRepository = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation(database, collectionName);
+                _queryRepository = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager(_conf).GetIRepositoryQueryCurrentImplementation(database, collectionName);
                 _queryRepository.RequestId = RequestId;
                 _queryRepository.IsToDispose = true;
             }
         }
 
-        public QueryApplication(object context)
+        public QueryApplication(object context, IConfiguration conf) : base(conf)
         {
+            _conf = conf;
             if (_queryRepository == null)
             {
-                _queryRepository = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager().GetIRepositoryQueryCurrentImplementation(context);
+                _queryRepository = new Voluntario.IoCManager.Data.Repository.RepositoryQueryIoCManager(_conf).GetIRepositoryQueryCurrentImplementation(context);
                 _queryRepository.RequestId = RequestId;
                 _queryRepository.IsToDispose = false;
             }
@@ -85,7 +90,7 @@ namespace Voluntario.Application.Query
 
         public bool EmailLogIn()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_queryRepository)
                 {
@@ -96,7 +101,7 @@ namespace Voluntario.Application.Query
 
         public IVoluntario GetById()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_queryRepository)
                 {
@@ -109,7 +114,7 @@ namespace Voluntario.Application.Query
 
         public IVoluntario GetByCpf()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_queryRepository)
                 {
@@ -123,7 +128,7 @@ namespace Voluntario.Application.Query
 
         public IVoluntario GetByEmail()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_queryRepository)
                 {
@@ -136,7 +141,7 @@ namespace Voluntario.Application.Query
 
         public IList<IVoluntario> GetByName()
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_queryRepository)
                 {
@@ -149,7 +154,7 @@ namespace Voluntario.Application.Query
 
         public IList<IVoluntario> GetAllPaged(int currentPage)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 using (_queryRepository)
                 {

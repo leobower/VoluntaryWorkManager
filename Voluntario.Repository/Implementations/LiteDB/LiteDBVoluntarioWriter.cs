@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,14 +13,18 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
     public class LiteDBVoluntarioWriter : BaseLiteDBRepository, IRepositoryWriter
     {
         public object ContextObj {get => (object)base.Context;}
-        public LiteDBVoluntarioWriter(string dataBaseName, string collectionName)
+        private readonly IConfiguration _conf;
+
+        public LiteDBVoluntarioWriter(string dataBaseName, string collectionName, IConfiguration conf)
         {
-            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(). GetIContextCurrentImplementation(dataBaseName, collectionName);
+            _conf = conf;
+            base.Context = new Voluntario.IoCManager.Data.Context.ContextIoCManager<LiteDatabase, ILiteCollection<IVoluntario>>(_conf)
+                .GetIContextCurrentImplementation(dataBaseName, collectionName);
         }
 
         public void Add(IVoluntario voluntario)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 Context.VoluntarioCollection.Insert(voluntario);
@@ -28,7 +33,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Update(IVoluntario voluntario)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 Context.VoluntarioCollection.Update(voluntario);
@@ -37,7 +42,7 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Delete(IVoluntario voluntario)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 Validate();
                 Context.VoluntarioCollection.Delete(voluntario.Id);

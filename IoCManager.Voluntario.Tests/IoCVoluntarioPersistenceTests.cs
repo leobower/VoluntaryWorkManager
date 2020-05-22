@@ -4,7 +4,7 @@ using Voluntario.IoCManager.Business;
 
 namespace Voluntario.IoCManager.Tests
 {
-    public class IoCVoluntarioPersistenceTests
+    public class IoCVoluntarioPersistenceTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -15,7 +15,7 @@ namespace Voluntario.IoCManager.Tests
         public void TestVoluntarioModelInjection()
         {
             IVoluntarioPersistence voluntarioPersistence = null;
-            VoluntarioPersistenceIocManager iocManager = new VoluntarioPersistenceIocManager();
+            VoluntarioPersistenceIocManager iocManager = new VoluntarioPersistenceIocManager(base.Config);
             voluntarioPersistence = iocManager.GetCurrentIVoluntarioPersitenceImplementation();
             Assert.IsNotNull(voluntarioPersistence);
 

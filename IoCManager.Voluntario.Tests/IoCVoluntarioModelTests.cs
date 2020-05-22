@@ -7,7 +7,7 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.IoCManager.Tests
 {
-    public class IoCVoluntarioModelTests
+    public class IoCVoluntarioModelTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -19,7 +19,7 @@ namespace Voluntario.IoCManager.Tests
         public void TestVoluntarioModelInjection()
         {
             IVoluntario voluntario = null;
-            ModelIoCManager iocManager = new ModelIoCManager();
+            ModelIoCManager iocManager = new ModelIoCManager(base.Config);
             voluntario = iocManager.GetIVoluntarioCurrentImplementation();
 
             Assert.IsNotNull(voluntario);

@@ -4,7 +4,7 @@ using Voluntario.IoCManager.Business;
 
 namespace Voluntario.IoCManager.Tests
 {
-    public class IoCVoluntarioQueryTests
+    public class IoCVoluntarioQueryTests : BaseTestClass
     {
         [SetUp]
         public void Setup()
@@ -15,7 +15,7 @@ namespace Voluntario.IoCManager.Tests
         public void TestVoluntarioModelInjection()
         {
             IVoluntarioQuery voluntario = null;
-            VoluntarioQueryIocManager iocManager = new VoluntarioQueryIocManager();
+            VoluntarioQueryIocManager iocManager = new VoluntarioQueryIocManager(base.Config);
             voluntario = iocManager.GetCurrentIVoluntarioQueryImplementation();
             Assert.IsNotNull(voluntario);
 

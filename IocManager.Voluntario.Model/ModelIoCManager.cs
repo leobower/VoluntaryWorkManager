@@ -1,4 +1,5 @@
 ﻿using CrossCutting.IoCManager.BaseClasses;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,10 @@ namespace Voluntario.IoCManager.Model
 {
     public class ModelIoCManager :BaseIoCManager<IVoluntario>
     {
-        private readonly string _currentImplementation = "Voluntario";
-        public IVoluntario GetIVoluntarioCurrentImplementation()
+        public ModelIoCManager(IConfiguration conf) : base(conf) { }
+        public IVoluntario GetIVoluntarioCurrentImplementation(string current = null)
         {
-            return base.GetCurrentImplementation(_currentImplementation);
+            return base.GetCurrentImplementation(current);
         }
     }
 }

@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 using CrossCutting.IoCManager.Voluntario.SerializationManager;
 using Voluntario.SerializationManager;
 using Voluntario.Domain.Entities.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Voluntario.API.Rest
 {
     public class RawJsonBodyInputFormatter : InputFormatter
     {
-        public RawJsonBodyInputFormatter()
+
+        private readonly IConfiguration _conf;
+        public RawJsonBodyInputFormatter(IConfiguration conf)
         {
+            _conf = conf;
             this.SupportedMediaTypes.Add("application/json");
         }
 
@@ -27,7 +31,7 @@ namespace Voluntario.API.Rest
                 try
                 {
                     ICentralSerializationManager<IVoluntario> ser =
-                      new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager().GetJSonCurrentImplementation();
+                      new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager(_conf).GetJSonCurrentImplementation();
 
                     ser.TryDeserialize(content);
                 }

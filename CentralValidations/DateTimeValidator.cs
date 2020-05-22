@@ -1,4 +1,5 @@
 ﻿using CentralSharedModel.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,15 +10,17 @@ namespace CentralValidations
     {
         private string _requestId;
         public string RequestId { get => _requestId; set => _requestId = value; }
+        private readonly IConfiguration _conf;
 
-        public DateTimeValidator(string requestId)
+        public DateTimeValidator(string requestId, IConfiguration conf)
         {
+            _conf = conf;
             RequestId = requestId;
         }
 
         public bool ValidateDateTime(string datetime, out string dateTimeFormatted)
         {
-            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager().GetITraceBusinessCurrentImplementation(RequestId))
+            using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
             {
                 bool ret = false;
                 DateTime dt = DateTime.MinValue;
