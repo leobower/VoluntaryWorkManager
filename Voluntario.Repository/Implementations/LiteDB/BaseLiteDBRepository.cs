@@ -10,24 +10,18 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 {
     public abstract class BaseLiteDBRepository
     {
-        IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> _context;
+        private IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> _context;
         public virtual IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>> Context { get => _context; set => _context = value; }
 
         public string RequestId { get; set; }
 
-
-
         public void Validate()
         {
-           
-                if (Context == null)
-                    throw new Exception("Provide Contructor Information");
-                if (String.IsNullOrEmpty(RequestId))
-                    throw new Exception("Provide de RequestId Information");
-           
-
+            if (Context == null)
+                throw new Exception("Provide Context Information");
+            if (String.IsNullOrEmpty(RequestId))
+                throw new Exception("Provide de RequestId Information");
         }
-
 
     }
 }

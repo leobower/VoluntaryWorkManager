@@ -11,8 +11,4 @@
     <ProjectReference Include="..\IoCManagerSharedModel\CrossCutting.IoCManager.SharedModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CEP\FaixaCep\" />
-  </ItemGroup>
-
 </Project>

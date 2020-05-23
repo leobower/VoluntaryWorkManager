@@ -6,14 +6,17 @@ using Voluntario.Domain.Entities.Interfaces;
 
 namespace Voluntario.Data.Context.LiteDb
 {
-    public class VoluntarioLiteDbContext : IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>>  //IVoluntarioLiteDbContext
+    public class VoluntarioLiteDbContext : IBaseVoluntarioDbContext<LiteDatabase, ILiteCollection<IVoluntario>>
     {
+        #region Fields
         private string _server;
         private int _port;
         private string _dataBaseName;
         private string _userName;
         private string _pass;
         private string _collectionName;
+
+        #endregion
 
         public string Server { get => _server; set => _server = value; }
         public int Port { get => _port; set => _port = value; }
@@ -35,7 +38,6 @@ namespace Voluntario.Data.Context.LiteDb
                 {
                     string fullName = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), DataBaseName);
                     VoluntarioDataBase = new LiteDatabase(fullName);
-                   //Environment.  DataBaseName);
                     VoluntarioCollection = VoluntarioDataBase.GetCollection<IVoluntario>(collectionName);
                     CollectionName = collectionName;
                 }

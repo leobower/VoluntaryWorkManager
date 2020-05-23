@@ -12,29 +12,34 @@ namespace Voluntario.Application.Persistence
 {
     public class PersistenceApplication : Validations, IDisposable, IPersistenceApplication
     {
-        private IRepositoryWriter       _repositoryWriter;
-        private IVoluntarioPersistence  _voluntarioPersistence;
-        private IVoluntarioValidations  _voluntarioValidations;
+        #region Fields
+        private IRepositoryWriter _repositoryWriter;
+        private IVoluntarioPersistence _voluntarioPersistence;
+        private IVoluntarioValidations _voluntarioValidations;
         private ICryptography _cryptography;
         private IQueryApplication _query;
         private ICentralSerializationManager<IVoluntario> _serializer;
-
         private IVoluntario _voluntario;
+        private readonly IConfiguration _conf;
+        #endregion
+
+        #region Props
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
 
-        private readonly IConfiguration _conf;
-        public string VoluntarioSerialized 
-        { 
+        public string VoluntarioSerialized
+        {
             set
             {
-                if(!String.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))
                 {
                     _serializer = new CrossCutting.IoCManager.Voluntario.SerializationManager.SerializationIoCManager(_conf).GetJSonCurrentImplementation();
                     Voluntario = _serializer.Deserialize(value);
                 }
             }
         }
+        #endregion
 
+        #region private methods
         private void InitializeObjects()
         {
             if (_voluntario != null && !String.IsNullOrEmpty(RequestId))
@@ -81,6 +86,8 @@ namespace Voluntario.Application.Persistence
             }
 
         }
+        #endregion
+
         public PersistenceApplication(IConfiguration conf) : base(conf)
         {
 
@@ -98,7 +105,7 @@ namespace Voluntario.Application.Persistence
             }
         }
 
-       
+        #region public methods
         public void Add()
         {
             using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
@@ -115,9 +122,9 @@ namespace Voluntario.Application.Persistence
                         throw ex;
                     }
                 }
-                
+
             }
-           
+
         }
 
         public void Update()
@@ -150,6 +157,8 @@ namespace Voluntario.Application.Persistence
             _voluntarioPersistence = null;
             _voluntarioValidations = null;
         }
+        #endregion
+
     }
 }
 

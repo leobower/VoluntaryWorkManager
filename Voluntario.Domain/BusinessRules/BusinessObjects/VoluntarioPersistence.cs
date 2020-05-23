@@ -10,26 +10,30 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
 {
     public class VoluntarioPersistence : IVoluntarioPersistence
     {
+        #region Fields
         private IVoluntarioValidations _voluntarioValidations;
         private IVoluntario _voluntario;
-
         private Action<IVoluntario> _insert;
         private Action<IVoluntario> _delete;
         private Action<IVoluntario> _update;
         private Func<string, IVoluntario> _existsEmail;
         private Func<Int64, IVoluntario> _existsCPF;
-
         private Func<string, string> _encrypt;
+        #endregion
 
+        #region Props
         public IVoluntario Voluntario { get => _voluntario; set => _voluntario = value; }
         public IVoluntarioValidations VoluntarioValidations { get => _voluntarioValidations; set => _voluntarioValidations = value; }
+        #endregion
 
+        #region Props Delegates
         public Action<IVoluntario> Insert { get => _insert; set => _insert = value; }
         public Action<IVoluntario> Delete { get => _delete; set => _delete = value; }
         public Action<IVoluntario> Update { get => _update; set => _update = value; }
         public Func<string, string> Encrypt { set => _encrypt = value; }
         public Func<string, IVoluntario> ExistsEmail { get => _existsEmail; set => _existsEmail = value; }
         public Func<Int64, IVoluntario> ExistsCPF { get => _existsCPF; set => _existsCPF = value; }
+        #endregion
 
         private bool ValidateObjVoluntario()
         {
@@ -96,7 +100,7 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
            
         }
 
-
+        #region Public Methods
         public void InsertVoluntario()
         {
             ValidateVoluntario();
@@ -124,5 +128,8 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
 
             this.Delete(Voluntario);
         }
+        #endregion
+
+
     }
 }

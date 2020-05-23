@@ -12,6 +12,8 @@ namespace Voluntario.Application.Query
 {
     public class QueryApplication : Validations, IRequest, IQueryApplication
     {
+
+        #region Fields
         private Int64 _cpf;
         private string _email;
         private string _id;
@@ -20,6 +22,13 @@ namespace Voluntario.Application.Query
         private double _totalPages;
         private string _pass;
 
+        private IRepositoryQuery _queryRepository;
+        private IVoluntarioQuery _voluntarioQuery;
+        private IVoluntarioValidations _voluntarioValidations;
+        private readonly IConfiguration _conf;
+        #endregion
+
+        #region Props
         public long Cpf { get => _cpf; set => _cpf = value; }
         public string VoluntarioId { get => _id; set => _id = value; }
         public string VoluntarioName { get => name; set => name = value; }
@@ -27,13 +36,9 @@ namespace Voluntario.Application.Query
         public int CurrentPage { get => _currentPage; set => _currentPage = value; }
         public double TotalPages { get => _totalPages; set => _totalPages = value; }
         public string Pass { get => _pass; set => _pass = value; }
+        #endregion
 
-        private IRepositoryQuery _queryRepository;
-        private IVoluntarioQuery _voluntarioQuery;
-        private IVoluntarioValidations _voluntarioValidations;
-        private readonly IConfiguration _conf;
-
-
+        #region private methods
         private void InitializeObjects()
         {
             if (!String.IsNullOrEmpty(RequestId))
@@ -62,6 +67,8 @@ namespace Voluntario.Application.Query
             else
                 throw new Exception("Provide value for the RequestId Property.");
         }
+        #endregion
+
 
         public QueryApplication(IConfiguration conf) : base(conf)
         {
@@ -86,6 +93,7 @@ namespace Voluntario.Application.Query
             }
         }
 
+        #region public methods
         public bool EmailLogIn()
         {
             using (var tracer = new CrossCutting.IoCManager.CentralTrace.Business.Publisher.CentralTracerBusinessIoCManager(_conf).GetITraceBusinessCurrentImplementation(RequestId))
@@ -120,7 +128,7 @@ namespace Voluntario.Application.Query
                     _voluntarioQuery.Cpf = this.Cpf;
                     return _voluntarioQuery.GetByCpf();
                 }
-                
+
             }
         }
 
@@ -173,5 +181,7 @@ namespace Voluntario.Application.Query
             _voluntarioQuery = null;
             _voluntarioValidations = null;
         }
+        #endregion
+
     }
 }
