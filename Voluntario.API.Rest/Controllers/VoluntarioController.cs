@@ -10,33 +10,113 @@ using Voluntario.Application.Persistence;
 
 namespace Voluntario.API.Rest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class VoluntarioController : ControllerBase
     {
-        // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody] string voluntario, [FromServices]IConfiguration config)
         {
-            string requestId = Guid.NewGuid().ToString();
-
-            IPersistenceApplication applicationPer 
+            using (IPersistenceApplication applicationPer
                 = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
-                .GetCurrentIPersistenceApplicationImplementation();
-
-            applicationPer.RequestId = requestId;
-            applicationPer.VoluntarioSerialized = voluntario;
-            try
+                .GetCurrentIPersistenceApplicationImplementation())
             {
-                applicationPer.Add();
-                return Ok(voluntario);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError,ex.Message);
-            }
+                string _requestId = Guid.NewGuid().ToString();
+                applicationPer.RequestId = _requestId;
+                applicationPer.VoluntarioSerialized = voluntario;
+                try
+                {
+                    applicationPer.Add();
+                    return Created("api/[controller]", applicationPer.Voluntario);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+                }
 
-
+            }
         }
+
+        [HttpPut]
+        public IActionResult Put([FromBody] string voluntario, [FromServices]IConfiguration config)
+        {
+            using (IPersistenceApplication applicationPer
+                = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
+                .GetCurrentIPersistenceApplicationImplementation())
+            {
+                string _requestId = Guid.NewGuid().ToString();
+                applicationPer.RequestId = _requestId;
+                applicationPer.VoluntarioSerialized = voluntario;
+                try
+                {
+                    applicationPer.Update();
+                    return NoContent();
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+                }
+
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete([FromBody] string voluntario, [FromServices]IConfiguration config)
+        {
+            using (IPersistenceApplication applicationPer
+                = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
+                .GetCurrentIPersistenceApplicationImplementation())
+            {
+                string _requestId = Guid.NewGuid().ToString();
+                applicationPer.RequestId = _requestId;
+                applicationPer.VoluntarioSerialized = voluntario;
+                try
+                {
+                    applicationPer.Delete();
+                    return NoContent();
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+                }
+
+            }
+        }
+
+        [HttpGet]
+        [Route("/Voluntarios/{cpf}")]
+        public IActionResult GetByCPF(string cpf)
+        {
+            return null;
+        }
+
+        [HttpGet]
+        [Route("/Voluntarios/{id}")]
+        public IActionResult GetById(string id)
+        {
+            return null;
+        }
+
+        [HttpGet]
+        [Route("/Voluntarios/{email}")]
+        public IActionResult GetByEmail(string email)
+        {
+            return null;
+        }
+
+        [HttpGet]
+        [Route("/Voluntarios/{name}")]
+        public IActionResult GetByName(string name)
+        {
+            return null;
+        }
+
+        [HttpGet]
+        [Route("/Voluntarios/Email/{email}/Pass/{pass}")]
+        public IActionResult Login(string email, string pass)
+        {
+            return null;
+        }
+
     }
 }

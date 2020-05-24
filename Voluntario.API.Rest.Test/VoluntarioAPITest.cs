@@ -22,7 +22,7 @@ namespace Voluntario.API.Rest.Test
                 HttpResponseMessage response = client.PostAsync(
                      endpoint, new StringContent(
                          request, Encoding.UTF8, "application/json")).Result;
-                ret = (response.StatusCode == HttpStatusCode.OK);
+                ret = (response.StatusCode == HttpStatusCode.Created);
 
             }
 

@@ -51,9 +51,13 @@ namespace Voluntario.Data.Repository.Implementations.LiteDB
 
         public void Dispose()
         {
-            Context.VoluntarioDataBase.Dispose();
-            Context.VoluntarioCollection = null;
-            Context = null;
+            if(Context != null)
+            {
+                Context.VoluntarioDataBase.Dispose();
+                Context.VoluntarioCollection = null;
+                Context = null;
+            }
+            
             RequestId = null;
         }
 

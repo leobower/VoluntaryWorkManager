@@ -6,7 +6,7 @@ using Voluntario.SerializationManager;
 
 namespace Voluntario.Application.Persistence
 {
-    public interface IPersistenceApplication
+    public interface IPersistenceApplication : IDisposable
     {
         IVoluntario Voluntario { get; set; }
         string VoluntarioSerialized { set; }
@@ -15,6 +15,6 @@ namespace Voluntario.Application.Persistence
         void Add();
         void Update();
         void Delete();
-        void Dispose();
+        //void Dispose();
     }
 }

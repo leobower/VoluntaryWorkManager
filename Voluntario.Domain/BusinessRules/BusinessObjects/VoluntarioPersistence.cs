@@ -105,6 +105,10 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
         {
             ValidateVoluntario();
             SetSenha();
+
+            if (String.IsNullOrEmpty(Voluntario.Id))
+                Voluntario.Id = Guid.NewGuid().ToString();
+
             if (ExistsCPF(_voluntario.Cpf) != null)
                 throw new Exception("Check the CPF information!");
             else
