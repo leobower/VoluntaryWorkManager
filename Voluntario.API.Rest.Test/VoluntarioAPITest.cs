@@ -13,7 +13,7 @@ namespace Voluntario.API.Rest.Test
         [Test]
         public void PostTest()
         {
-            string endpoint = string.Format("https://localhost:44302/api/Voluntario/");
+            string endpoint = string.Format("https://localhost:44302/api/v1/Voluntario/");
             bool ret = false;
             using (var client = new HttpClient())
             {
