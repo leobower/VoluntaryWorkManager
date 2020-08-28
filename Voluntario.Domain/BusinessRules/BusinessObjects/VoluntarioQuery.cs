@@ -93,7 +93,7 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
                 throw new Exception("Provide CPF Property Information");
             var ret = this.ByCpf(Cpf);
             if (ret != null)
-                ret.Senha = _senhaObfuscated;
+                ret.Senha = null;//_senhaObfuscated;
             return ret;
         }
 
@@ -104,14 +104,14 @@ namespace Voluntario.Domain.BusinessRules.BusinessObjects
                 throw new Exception("Provide Email Property Information");
             var ret = this.ByEmail(Email);
             if (ret != null)
-                ret.Senha = _senhaObfuscated;
+                ret.Senha = null;//_senhaObfuscated;
             return ret;
         }
 
         private IList<IVoluntario> SetSenhaList(IList<IVoluntario> pList)
         {
             var lista = (List<IVoluntario>)pList;
-            lista.ForEach(p => { p.Senha = _senhaObfuscated; });
+            lista.ForEach(p => { p.Senha = null;/*_senhaObfuscated;*/ });
             return lista;
         }
 

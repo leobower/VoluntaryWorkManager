@@ -5,12 +5,14 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Voluntario.Application.Persistence;
+using Voluntario.Application.Query;
 
 namespace Voluntario.API.Rest.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/voluntario")]
     [ApiController]
     public class VoluntarioController : ControllerBase
     {
@@ -21,8 +23,8 @@ namespace Voluntario.API.Rest.Controllers
                 = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
                 .GetCurrentIPersistenceApplicationImplementation())
             {
-                string _requestId = Guid.NewGuid().ToString();
-                applicationPer.RequestId = _requestId;
+                string requestId = Guid.NewGuid().ToString();
+                applicationPer.RequestId = requestId;
                 applicationPer.VoluntarioSerialized = voluntario;
                 try
                 {
@@ -44,8 +46,8 @@ namespace Voluntario.API.Rest.Controllers
                 = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
                 .GetCurrentIPersistenceApplicationImplementation())
             {
-                string _requestId = Guid.NewGuid().ToString();
-                applicationPer.RequestId = _requestId;
+                string requestId = Guid.NewGuid().ToString();
+                applicationPer.RequestId = requestId;
                 applicationPer.VoluntarioSerialized = voluntario;
                 try
                 {
@@ -67,8 +69,8 @@ namespace Voluntario.API.Rest.Controllers
                 = new CrossCutting.IoCManager.Voluntario.Application.Persistence.PersistenceApplicationIoCManager(config)
                 .GetCurrentIPersistenceApplicationImplementation())
             {
-                string _requestId = Guid.NewGuid().ToString();
-                applicationPer.RequestId = _requestId;
+                string requestId = Guid.NewGuid().ToString();
+                applicationPer.RequestId = requestId;
                 applicationPer.VoluntarioSerialized = voluntario;
                 try
                 {
@@ -84,39 +86,154 @@ namespace Voluntario.API.Rest.Controllers
         }
 
         [HttpGet]
-        [Route("/Voluntarios/{cpf}")]
-        public IActionResult GetByCPF(string cpf)
+        [Route("{cpf}")]
+        public IActionResult GetByCPF(string cpf, [FromServices]IConfiguration config)
         {
-            return null;
+            if(long.TryParse(cpf,out long cpfParsed))
+            {
+                try
+                {
+                    using (IQueryApplication queryApplication
+                            = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager(config).GetCurrentIQueryApplicationImplementation())
+                    {
+                        string requestId = Guid.NewGuid().ToString();
+                        queryApplication.RequestId = requestId;
+                        queryApplication.Cpf = cpfParsed;
+                        var obj = queryApplication.GetByCpf();
+                        return StatusCode(200, JToken.FromObject(obj));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //TODO: log de exception
+                    return StatusCode(500);
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
-        [Route("/Voluntarios/{id}")]
-        public IActionResult GetById(string id)
+        [Route("{id}")]
+        public IActionResult GetById(string id, [FromServices]IConfiguration config)
         {
-            return null;
+            if (!string.IsNullOrEmpty(id) && Guid.TryParse(id, out Guid idParsed))
+            {
+                try
+                {
+                    using (IQueryApplication queryApplication
+                            = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager(config).GetCurrentIQueryApplicationImplementation())
+                    {
+                        string requestId = Guid.NewGuid().ToString();
+                        queryApplication.RequestId = requestId;
+                        queryApplication.VoluntarioId = id;
+                        var obj = queryApplication.GetById();
+                        return StatusCode(200, JToken.FromObject(obj));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //TODO: log de exception
+                    return StatusCode(500);
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
-        [Route("/Voluntarios/{email}")]
-        public IActionResult GetByEmail(string email)
+        [Route("{email}")]
+        public IActionResult GetByEmail(string email, [FromServices]IConfiguration config)
         {
-            return null;
+            if (!string.IsNullOrEmpty(email))
+            {
+                try
+                {
+                    using (IQueryApplication queryApplication
+                            = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager(config).GetCurrentIQueryApplicationImplementation())
+                    {
+                        string requestId = Guid.NewGuid().ToString();
+                        queryApplication.RequestId = requestId;
+                        queryApplication.Email = email;
+                        var obj = queryApplication.GetByEmail();
+                        return StatusCode(200, JToken.FromObject(obj));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //TODO: log de exception
+                    return StatusCode(500);
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
-        [Route("/Voluntarios/{name}")]
-        public IActionResult GetByName(string name)
+        [Route("{name}")]
+        public IActionResult GetByName(string name, [FromServices]IConfiguration config)
         {
-            return null;
+            if (!string.IsNullOrEmpty(name))
+            {
+                try
+                {
+                    using (IQueryApplication queryApplication
+                            = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager(config).GetCurrentIQueryApplicationImplementation())
+                    {
+                        string requestId = Guid.NewGuid().ToString();
+                        queryApplication.RequestId = requestId;
+                        queryApplication.Email = name;
+                        var obj = queryApplication.GetByName();
+                        return StatusCode(200, JArray.FromObject(obj));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //TODO: log de exception
+                    return StatusCode(500);
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        [HttpGet]
-        [Route("/Voluntarios/Email/{email}/Pass/{pass}")]
-        public IActionResult Login(string email, string pass)
-        {
-            return null;
-        }
+        //[HttpGet]
+        //[Route("Email/{email}/Pass/{pass}")]
+        //public IActionResult Login(string email, string pass, [FromServices]IConfiguration config)
+        //{
+        //    if (!string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
+        //    {
+        //        try
+        //        {
+        //            using (IQueryApplication queryApplication
+        //                    = new CrossCutting.IoCManager.Voluntario.Application.Query.QueryApplicationIoCManager(config).GetCurrentIQueryApplicationImplementation())
+        //            {
+        //                string requestId = Guid.NewGuid().ToString();
+        //                queryApplication.RequestId = requestId;
+        //                queryApplication.Email = name;
+        //                var obj = queryApplication.GetByName();
+        //                return StatusCode(200, JArray.FromObject(obj));
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //TODO: log de exception
+        //            return StatusCode(500);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
 
     }
 }
