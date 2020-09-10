@@ -20,6 +20,7 @@ namespace Tests
                 .GetCurrentIPersistenceApplicationImplementation();
             //per.Voluntario = Voluntario;
             per.VoluntarioSerialized = base.GetVoluntarioSerialized();
+            string test = base.GetVoluntarioSerialized();
             per.RequestId = RequestId;
             per.Add();
             

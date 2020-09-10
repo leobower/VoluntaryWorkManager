@@ -47,7 +47,7 @@ namespace Voluntario.API.Rest.Controllers
                 .GetCurrentIPersistenceApplicationImplementation())
             {
                 string requestId = Guid.NewGuid().ToString();
-                applicationPer.RequestId = requestId;
+                applicationPer.RequestId = requestId;   
                 applicationPer.VoluntarioSerialized = voluntario;
                 try
                 {
@@ -197,7 +197,7 @@ namespace Voluntario.API.Rest.Controllers
                     {
                         string requestId = Guid.NewGuid().ToString();
                         queryApplication.RequestId = requestId;
-                        queryApplication.Email = name;
+                        queryApplication.VoluntarioName = name;
                         var obj = queryApplication.GetByName();
                         if (obj != null)
                             return StatusCode(200, JArray.FromObject(obj));
