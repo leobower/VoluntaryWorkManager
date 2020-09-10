@@ -86,7 +86,7 @@ namespace Voluntario.API.Rest.Controllers
         }
 
         [HttpGet]
-        [Route("{cpf}")]
+        [Route("cpf/{cpf}")]
         public IActionResult GetByCPF(string cpf, [FromServices]IConfiguration config)
         {
             if(long.TryParse(cpf,out long cpfParsed))
@@ -100,7 +100,10 @@ namespace Voluntario.API.Rest.Controllers
                         queryApplication.RequestId = requestId;
                         queryApplication.Cpf = cpfParsed;
                         var obj = queryApplication.GetByCpf();
-                        return StatusCode(200, JToken.FromObject(obj));
+                        if (obj != null)
+                            return StatusCode(200, JToken.FromObject(obj));
+                        else
+                            return StatusCode(404);
                     }
                 }
                 catch (Exception ex)
@@ -116,7 +119,7 @@ namespace Voluntario.API.Rest.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("id/{id}")]
         public IActionResult GetById(string id, [FromServices]IConfiguration config)
         {
             if (!string.IsNullOrEmpty(id) && Guid.TryParse(id, out Guid idParsed))
@@ -130,7 +133,10 @@ namespace Voluntario.API.Rest.Controllers
                         queryApplication.RequestId = requestId;
                         queryApplication.VoluntarioId = id;
                         var obj = queryApplication.GetById();
-                        return StatusCode(200, JToken.FromObject(obj));
+                        if (obj != null)
+                            return StatusCode(200, JToken.FromObject(obj));
+                        else
+                            return StatusCode(404);
                     }
                 }
                 catch (Exception ex)
@@ -146,7 +152,7 @@ namespace Voluntario.API.Rest.Controllers
         }
 
         [HttpGet]
-        [Route("{email}")]
+        [Route("email/{email}")]
         public IActionResult GetByEmail(string email, [FromServices]IConfiguration config)
         {
             if (!string.IsNullOrEmpty(email))
@@ -160,7 +166,10 @@ namespace Voluntario.API.Rest.Controllers
                         queryApplication.RequestId = requestId;
                         queryApplication.Email = email;
                         var obj = queryApplication.GetByEmail();
-                        return StatusCode(200, JToken.FromObject(obj));
+                        if (obj != null)
+                            return StatusCode(200, JToken.FromObject(obj));
+                        else
+                            return StatusCode(404);
                     }
                 }
                 catch (Exception ex)
@@ -176,7 +185,7 @@ namespace Voluntario.API.Rest.Controllers
         }
 
         [HttpGet]
-        [Route("{name}")]
+        [Route("name/{name}")]
         public IActionResult GetByName(string name, [FromServices]IConfiguration config)
         {
             if (!string.IsNullOrEmpty(name))
@@ -190,7 +199,10 @@ namespace Voluntario.API.Rest.Controllers
                         queryApplication.RequestId = requestId;
                         queryApplication.Email = name;
                         var obj = queryApplication.GetByName();
-                        return StatusCode(200, JArray.FromObject(obj));
+                        if (obj != null)
+                            return StatusCode(200, JArray.FromObject(obj));
+                        else
+                            return StatusCode(404);
                     }
                 }
                 catch (Exception ex)
